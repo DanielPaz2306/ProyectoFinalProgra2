@@ -13,11 +13,11 @@ public class ParkPlus {
     public static void main(String[] args) {
   
         
-        ConexionSQL.conectar();
+      ConexionSQL.conectar();
         
-      /*MenuPrincipal main = new MenuPrincipal();
+      MenuPrincipal main = new MenuPrincipal();
       
-      main.setVisible(true);*/
+      main.setVisible(true);
         
     }
 }

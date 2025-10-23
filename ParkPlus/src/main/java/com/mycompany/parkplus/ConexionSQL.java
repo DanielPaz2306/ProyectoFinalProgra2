@@ -20,6 +20,7 @@ public class ConexionSQL {
     try {
         conexion = DriverManager.getConnection(URL);
         System.out.println("✅ Conexión exitosa a SQL Server");
+        
     } catch (SQLException e) {
         System.out.println("❌ Error al conectar: " + e.getMessage());
     }

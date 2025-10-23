@@ -3,6 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.parkplus;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
@@ -40,21 +44,20 @@ public class NuevoTicket extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtCarnet = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtFecha = new javax.swing.JTextField();
-        radioMoto = new javax.swing.JRadioButton();
-        radioCarro = new javax.swing.JRadioButton();
         radioCatedratico = new javax.swing.JRadioButton();
         btnFlat = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
         txtCapacidad = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        comboTipo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(116, 197, 137));
+        jPanel1.setBackground(new java.awt.Color(176, 204, 224));
 
         labelPlaca.setFont(new java.awt.Font("Gontserrat SemiBold", 0, 24)); // NOI18N
         labelPlaca.setText("Placa");
@@ -76,8 +79,8 @@ public class NuevoTicket extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Gontserrat Medium", 0, 18)); // NOI18N
         jLabel2.setText("Carnet");
 
-        jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
+        txtCarnet.setEditable(false);
+        txtCarnet.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setText("Fecha y Hora");
 
@@ -85,22 +88,10 @@ public class NuevoTicket extends javax.swing.JFrame {
         txtFecha.setBackground(new java.awt.Color(255, 255, 255));
         txtFecha.setText(fechaHoraFormateada);
 
-        buttonGroup1.add(radioMoto);
-        radioMoto.setFont(new java.awt.Font("Gontserrat", 0, 12)); // NOI18N
-        radioMoto.setText("Moto");
-        radioMoto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioMotoActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(radioCarro);
-        radioCarro.setFont(new java.awt.Font("Gontserrat", 0, 12)); // NOI18N
-        radioCarro.setText("Carro");
-
         buttonGroup1.add(radioCatedratico);
         radioCatedratico.setFont(new java.awt.Font("Gontserrat", 0, 12)); // NOI18N
         radioCatedratico.setText("Catedrático");
+        radioCatedratico.setEnabled(false);
 
         buttonGroup2.add(btnFlat);
         btnFlat.setFont(new java.awt.Font("Gontserrat", 0, 12)); // NOI18N
@@ -119,6 +110,14 @@ public class NuevoTicket extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Gontserrat", 0, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 102, 0));
         jButton1.setText("Ingresar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        comboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Moto", "Carro" }));
+        comboTipo.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -128,7 +127,7 @@ public class NuevoTicket extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -138,10 +137,11 @@ public class NuevoTicket extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtPlaca)
                                     .addComponent(txtNombre)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)))
-                            .addComponent(radioCatedratico, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(radioMoto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(radioCarro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtCarnet, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(radioCatedratico, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                                .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(34, 34, 34)
@@ -177,14 +177,12 @@ public class NuevoTicket extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtCarnet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(radioMoto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(radioCarro)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(radioCatedratico)
-                        .addGap(0, 6, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(radioCatedratico)
+                            .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
@@ -195,7 +193,7 @@ public class NuevoTicket extends javax.swing.JFrame {
                         .addComponent(btnFlat)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jRadioButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txtCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -220,9 +218,67 @@ public class NuevoTicket extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
 
-    private void radioMotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMotoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_radioMotoActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+     
+    if(buttonGroup2.getSelection() == null ){
+    
+        JOptionPane.showMessageDialog(this, "Debes seleccionar al menos una tarifa ");
+        
+    }    
+    else{
+        
+    
+    String placa = txtPlaca.getText().trim();
+    
+    if (placa.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor ingresa una placa");
+        return;
+    }    
+        Connection con = ConexionSQL.conectar();
+    
+    String sql = "SELECT * FROM REGISTROS WHERE placa = ?";
+    
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
+        ps.setString(1, placa);
+        ResultSet rs = ps.executeQuery();
+        
+        if (rs.next()) {
+  
+            String nombre = rs.getString("nombre");
+            String carnet = rs.getString("carnet");
+            String tipoV = rs.getString("tipovehiculo");
+            Integer catedratico = rs.getInt("esCatedratico");
+            
+            txtNombre.setText(nombre);
+            txtCarnet.setText(carnet);
+            
+            if(tipoV.equalsIgnoreCase("Carro")){
+                comboTipo.setSelectedIndex(2);
+            }
+            
+            else if(tipoV.equalsIgnoreCase("Motocicleta")){
+                comboTipo.setSelectedIndex(1);
+            }
+            
+            if (catedratico == 1){ radioCatedratico.setSelected(true);} 
+            int opcion = JOptionPane.showConfirmDialog(this, "¿Desea Generar este Ticket?");
+            
+            if(opcion == JOptionPane.YES_OPTION){
+                //ACA DEBO PONER LA IMPRESION DEL TICKET Y GUARDADO DEL REGISTRO
+            }
+            
+            
+                } 
+        
+        else {
+            JOptionPane.showMessageDialog(this, "No se encontró la placa ingresada.");
+        }
+        
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error al consultar: " + e.getMessage());
+    }
+       } 
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,6 +309,7 @@ public class NuevoTicket extends javax.swing.JFrame {
     private javax.swing.JRadioButton btnFlat;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JComboBox<String> comboTipo;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -261,12 +318,10 @@ public class NuevoTicket extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel labelPlaca;
-    private javax.swing.JRadioButton radioCarro;
     private javax.swing.JRadioButton radioCatedratico;
-    private javax.swing.JRadioButton radioMoto;
     private javax.swing.JLabel txtCapacidad;
+    private javax.swing.JTextField txtCarnet;
     private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPlaca;
