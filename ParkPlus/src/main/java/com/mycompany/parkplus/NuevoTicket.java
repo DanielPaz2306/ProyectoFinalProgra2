@@ -243,28 +243,33 @@ public class NuevoTicket extends javax.swing.JFrame {
         ResultSet rs = ps.executeQuery();
         
         if (rs.next()) {
-  
+            
             String nombre = rs.getString("nombre");
             String carnet = rs.getString("carnet");
             String tipoV = rs.getString("tipovehiculo");
+            
             Integer catedratico = rs.getInt("esCatedratico");
             
             txtNombre.setText(nombre);
             txtCarnet.setText(carnet);
             
             if(tipoV.equalsIgnoreCase("Carro")){
-                comboTipo.setSelectedIndex(2);
-            }
-            
-            else if(tipoV.equalsIgnoreCase("Motocicleta")){
                 comboTipo.setSelectedIndex(1);
-            }
-            
+            }    
+            else if(tipoV.equalsIgnoreCase("Motocicleta")){
+                comboTipo.setSelectedIndex(2);
+            }           
             if (catedratico == 1){ radioCatedratico.setSelected(true);} 
-            int opcion = JOptionPane.showConfirmDialog(this, "¿Desea Generar este Ticket?");
+            else { radioCatedratico.setSelected(false);}
             
+            int opcion = JOptionPane.showConfirmDialog(this, "¿Desea Generar este Ticket?");
             if(opcion == JOptionPane.YES_OPTION){
-                //ACA DEBO PONER LA IMPRESION DEL TICKET Y GUARDADO DEL REGISTRO
+                String tarifa = "";
+                Vehiculo vehTicket = new Vehiculo(placa, carnet, nombre, tipoV);
+                if(btnFlat.isSelected()){ tarifa = "Flat";}
+                else{ tarifa = "Variable";}
+                
+                
             }
             
             

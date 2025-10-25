@@ -13,11 +13,13 @@ public class Vehiculo {
     private String placa;
     private String carnet;
     private String nombre;
+    private String tipoV;
 
-    public Vehiculo(String placa, String carnet, String nombre) {
+    public Vehiculo(String placa, String carnet, String nombre, String tipoV) {
         this.placa = placa;
         this.carnet = carnet;
         this.nombre = nombre;
+        this.tipoV = tipoV;
     }
 
     public String getPlaca() {
@@ -28,6 +30,12 @@ public class Vehiculo {
     }
     public String getNombre() {
         return nombre;
+    }
+    public String getTipo(){
+        return tipoV;
+    }
+    public void setTipo(String tipoV){
+        this.tipoV = tipoV;
     }
     public void setPlaca(String placa) {
         this.placa = placa;

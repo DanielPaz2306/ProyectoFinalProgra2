@@ -11,14 +11,14 @@ import java.time.LocalDateTime;
  */
 public class Ticket {
     private Vehiculo vehiculo;
-    private char tarifa; //F = FLAT ; V = VARIABLE
+    private String tarifa; //F = FLAT ; V = VARIABLE
     private LocalDateTime fecha;
-    private char tipoVehiculo; // M = MOTO | C = CARRO | CT = CATEDRATICO
+    private String tipoVehiculo; // M = MOTO | C = CARRO | CT = CATEDRATICO
     private String lugarAsignado; 
     private String idTicket;
     public long totalTicket;
 
-    public Ticket(Vehiculo vehiculo, char tarifa, LocalDateTime fecha, char tipoVehiculo, String lugarAsignado, String idTicket, long totalTicket) {
+    public Ticket(Vehiculo vehiculo, String tarifa, LocalDateTime fecha, String tipoVehiculo, String lugarAsignado, String idTicket, long totalTicket) {
         this.vehiculo = vehiculo;
         this.tarifa = tarifa;
         this.fecha = fecha;
@@ -31,13 +31,13 @@ public class Ticket {
     public Vehiculo getVehiculo() {
         return vehiculo;
     }
-    public char getTarifa() {
+    public String getTarifa() {
         return tarifa;
     }
     public LocalDateTime getFecha() {
         return fecha;
     }
-    public char getTipoVehiculo() {
+    public String getTipoVehiculo() {
         return tipoVehiculo;
     }
     public String getLugarAsignado() {
@@ -49,17 +49,16 @@ public class Ticket {
     public long getTotalTicket() {
         return totalTicket;
     }
-    
     public void setVehiculo(Vehiculo vehiculo) {
         this.vehiculo = vehiculo;
     }
-    public void setTarifa(char tarifa) {
+    public void setTarifa(String tarifa) {
         this.tarifa = tarifa;
     }
     public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
-    public void setTipoVehiculo(char tipoVehiculo) {
+    public void setTipoVehiculo(String tipoVehiculo) {
         this.tipoVehiculo = tipoVehiculo;
     }
     public void setLugarAsignado(String lugarAsignado) {
@@ -72,6 +71,9 @@ public class Ticket {
         this.totalTicket = totalTicket;
     }
     
+    public void generarTicket(){
+        
+    }
     
     
 }
