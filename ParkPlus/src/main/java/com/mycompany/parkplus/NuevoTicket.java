@@ -220,13 +220,12 @@ public class NuevoTicket extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
      
-    if(buttonGroup2.getSelection() == null ){
+   if(buttonGroup2.getSelection() == null ){
+
+    JOptionPane.showMessageDialog(this, "Debes seleccionar al menos una tarifa ");
     
-        JOptionPane.showMessageDialog(this, "Debes seleccionar al menos una tarifa ");
-        
-    }    
-    else{
-        
+}    
+else{
     
     String placa = txtPlaca.getText().trim();
     
@@ -239,6 +238,7 @@ public class NuevoTicket extends javax.swing.JFrame {
     String sql = "SELECT * FROM REGISTROS WHERE placa = ?";
     
     try (PreparedStatement ps = con.prepareStatement(sql)) {
+        
         ps.setString(1, placa);
         ResultSet rs = ps.executeQuery();
         
@@ -281,26 +281,36 @@ public class NuevoTicket extends javax.swing.JFrame {
                         
                     LugarDAO vehiculoAsignar = new LugarDAO(placa);
                     lugarAsignado = vehiculoAsignar.registrarEntradaCatedratico(placa, tipoV);
-                    String sql2 = "SELECT id FROM historico WHERE placa = ?";
-                    PreparedStatement ps2 = con.prepareStatement(sql);
+                    String sql2 = "SELECT TOP 1 id FROM historico WHERE placa = ? ORDER BY id DESC";
+                    PreparedStatement ps2 = con.prepareStatement(sql2);
                     ps2.setString(1, placa);
                     ResultSet rs2 = ps2.executeQuery();
-                    String idTicket = rs2.getString("id");
+                    String idTicket = "";
+                    if (rs2.next()) {
+                        idTicket = rs2.getString("id");
+                    }
                     Ticket ticketFlat = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
                     ticketFlat.imprimirTicketFlatCatedratico();
+                    rs2.close();
+                    ps2.close();
                     }    
                     
                     else{ //Y SINO, REGISTRA UN CARRO EN UN LUGAR COMUN
                         
                     LugarDAO vehiculoAsignar = new LugarDAO(placa);
                     lugarAsignado = vehiculoAsignar.registrarEntradaCarro(placa);
-                    String sql2 = "SELECT id FROM historico WHERE placa = ?";
-                    PreparedStatement ps2 = con.prepareStatement(sql);
+                    String sql2 = "SELECT TOP 1 id FROM historico WHERE placa = ? ORDER BY id DESC";
+                    PreparedStatement ps2 = con.prepareStatement(sql2);
                     ps2.setString(1, placa);
                     ResultSet rs2 = ps2.executeQuery();
-                    String idTicket = rs2.getString("id");
+                    String idTicket = "";
+                    if (rs2.next()) {
+                        idTicket = rs2.getString("id");
+                    }
                     Ticket ticketFlat = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
                     ticketFlat.imprimirTicketFlatCarro();
+                    rs2.close();
+                    ps2.close();
                     }                  
                     
                     }
@@ -310,26 +320,36 @@ public class NuevoTicket extends javax.swing.JFrame {
                         
                     LugarDAO vehiculoAsignar = new LugarDAO(placa);
                     lugarAsignado = vehiculoAsignar.registrarEntradaCatedratico(placa, tipoV);
-                    String sql2 = "SELECT id FROM historico WHERE placa = ?";
-                    PreparedStatement ps2 = con.prepareStatement(sql);
+                    String sql2 = "SELECT TOP 1 id FROM historico WHERE placa = ? ORDER BY id DESC";
+                    PreparedStatement ps2 = con.prepareStatement(sql2);
                     ps2.setString(1, placa);
                     ResultSet rs2 = ps2.executeQuery();
-                    String idTicket = rs2.getString("id");
+                    String idTicket = "";
+                    if (rs2.next()) {
+                        idTicket = rs2.getString("id");
+                    }
                     Ticket ticketFlat = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
                     ticketFlat.imprimirTicketFlatCatedratico();
+                    rs2.close();
+                    ps2.close();
                     }    
                     
                     else{ //Y SINO, REGISTRA UN MOTO EN UN LUGAR COMUN
                         
                     LugarDAO vehiculoAsignar = new LugarDAO(placa);
                     lugarAsignado = vehiculoAsignar.registrarEntradaMoto(placa);
-                    String sql2 = "SELECT id FROM historico WHERE placa = ?";
-                    PreparedStatement ps2 = con.prepareStatement(sql);
+                    String sql2 = "SELECT TOP 1 id FROM historico WHERE placa = ? ORDER BY id DESC";
+                    PreparedStatement ps2 = con.prepareStatement(sql2);
                     ps2.setString(1, placa);
                     ResultSet rs2 = ps2.executeQuery();
-                    String idTicket = rs2.getString("id");
+                    String idTicket = "";
+                    if (rs2.next()) {
+                        idTicket = rs2.getString("id");
+                    }
                     Ticket ticketFlat = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
                     ticketFlat.imprimirTicketFlatMoto();
+                    rs2.close();
+                    ps2.close();
                     } 
                 }
             }
@@ -345,26 +365,36 @@ public class NuevoTicket extends javax.swing.JFrame {
 
                         LugarDAO vehiculoAsignar = new LugarDAO(placa);
                         lugarAsignado = vehiculoAsignar.registrarEntradaCatedratico(placa, tipoV);
-                        String sql2 = "SELECT id FROM historico WHERE placa = ?";
-                        PreparedStatement ps2 = con.prepareStatement(sql);
+                        String sql2 = "SELECT TOP 1 id FROM historico WHERE placa = ? ORDER BY id DESC";
+                        PreparedStatement ps2 = con.prepareStatement(sql2);
                         ps2.setString(1, placa);
                         ResultSet rs2 = ps2.executeQuery();
-                        String idTicket = rs2.getString("id");
+                        String idTicket = "";
+                        if (rs2.next()) {
+                            idTicket = rs2.getString("id");
+                        }
                         Ticket ticketVariable = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
                         ticketVariable.imprimirTicketVariableCatedratico();
+                        rs2.close();
+                        ps2.close();
                         }    
                     
                         else{ //Y SINO, REGISTRA UN CARRO EN UN LUGAR COMUN
 
                         LugarDAO vehiculoAsignar = new LugarDAO(placa);
                         lugarAsignado = vehiculoAsignar.registrarEntradaCarro(placa);
-                        String sql2 = "SELECT id FROM historico WHERE placa = ?";
-                        PreparedStatement ps2 = con.prepareStatement(sql);
+                        String sql2 = "SELECT TOP 1 id FROM historico WHERE placa = ? ORDER BY id DESC";
+                        PreparedStatement ps2 = con.prepareStatement(sql2);
                         ps2.setString(1, placa);
                         ResultSet rs2 = ps2.executeQuery();
-                        String idTicket = rs2.getString("id");
+                        String idTicket = "";
+                        if (rs2.next()) {
+                            idTicket = rs2.getString("id");
+                        }
                         Ticket ticketVariable = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
                         ticketVariable.imprimirTicketVariableCarro();
+                        rs2.close();
+                        ps2.close();
                         }                    
                     }
                     
@@ -375,25 +405,35 @@ public class NuevoTicket extends javax.swing.JFrame {
                         
                             LugarDAO vehiculoAsignar = new LugarDAO(placa);
                             lugarAsignado = vehiculoAsignar.registrarEntradaCatedratico(placa, tipoV);
-                            String sql2 = "SELECT id FROM historico WHERE placa = ?";
-                            PreparedStatement ps2 = con.prepareStatement(sql);
+                            String sql2 = "SELECT TOP 1 id FROM historico WHERE placa = ? ORDER BY id DESC";
+                            PreparedStatement ps2 = con.prepareStatement(sql2);
                             ps2.setString(1, placa);
                             ResultSet rs2 = ps2.executeQuery();
-                            String idTicket = rs2.getString("id");
+                            String idTicket = "";
+                            if (rs2.next()) {
+                                idTicket = rs2.getString("id");
+                            }
                             Ticket ticketVariable = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
                             ticketVariable.imprimirTicketVariableCatedratico();
+                            rs2.close();
+                            ps2.close();
                         }    
                         
                         else{ //Y SINO, REGISTRA UNA MOTO EN UN LUGAR DE MOTO
                             LugarDAO vehiculoAsignar = new LugarDAO(placa);
                             lugarAsignado = vehiculoAsignar.registrarEntradaMoto(placa);
-                            String sql2 = "SELECT id FROM historico WHERE placa = ?";
-                            PreparedStatement ps2 = con.prepareStatement(sql);
+                            String sql2 = "SELECT TOP 1 id FROM historico WHERE placa = ? ORDER BY id DESC";
+                            PreparedStatement ps2 = con.prepareStatement(sql2);
                             ps2.setString(1, placa);
                             ResultSet rs2 = ps2.executeQuery();
-                            String idTicket = rs2.getString("id");
+                            String idTicket = "";
+                            if (rs2.next()) {
+                                idTicket = rs2.getString("id");
+                            }
                             Ticket ticketVariable = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
                             ticketVariable.imprimirTicketVariableMoto();
+                            rs2.close();
+                            ps2.close();
                         }
                     }
                 } 
@@ -407,8 +447,8 @@ public class NuevoTicket extends javax.swing.JFrame {
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(this, "Error al consultar: " + e.getMessage());
     }
-       } 
-    
+}
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     
