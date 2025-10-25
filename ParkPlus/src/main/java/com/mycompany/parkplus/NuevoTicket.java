@@ -234,7 +234,7 @@ public class NuevoTicket extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Por favor ingresa una placa");
         return;
     }    
-        Connection con = ConexionSQL.conectar();
+    Connection con = ConexionSQL.conectar();
     
     String sql = "SELECT * FROM REGISTROS WHERE placa = ?";
     
@@ -264,16 +264,141 @@ public class NuevoTicket extends javax.swing.JFrame {
             
             int opcion = JOptionPane.showConfirmDialog(this, "¿Desea Generar este Ticket?");
             if(opcion == JOptionPane.YES_OPTION){
+                Integer lugarAsignado = 0;
                 String tarifa = "";
+                long totalPagar;
                 Vehiculo vehTicket = new Vehiculo(placa, carnet, nombre, tipoV);
-                if(btnFlat.isSelected()){ tarifa = "Flat";}
-                else{ tarifa = "Variable";}
-                
-                
+                LocalDateTime ahora = LocalDateTime.now();
+                DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+                String fechaHoraFormateada = ahora.format(formato);     
+                if(btnFlat.isSelected()) //VERIFICACION PARA TARIFA PLANA
+                { 
+                    tarifa = "Flat";
+                    totalPagar = 10;
+                    if(tipoV.equalsIgnoreCase("Carro"))
+                    {
+                    if(radioCatedratico.isSelected()){ //SI ES CATEDRATICO REGISTRA UN CARRO EN UN LUGAR DE CATEDRATICO
+                        
+                    LugarDAO vehiculoAsignar = new LugarDAO(placa);
+                    lugarAsignado = vehiculoAsignar.registrarEntradaCatedratico(placa, tipoV);
+                    String sql2 = "SELECT id FROM historico WHERE placa = ?";
+                    PreparedStatement ps2 = con.prepareStatement(sql);
+                    ps2.setString(1, placa);
+                    ResultSet rs2 = ps2.executeQuery();
+                    String idTicket = rs2.getString("id");
+                    Ticket ticketFlat = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
+                    ticketFlat.imprimirTicketFlatCatedratico();
+                    }    
+                    
+                    else{ //Y SINO, REGISTRA UN CARRO EN UN LUGAR COMUN
+                        
+                    LugarDAO vehiculoAsignar = new LugarDAO(placa);
+                    lugarAsignado = vehiculoAsignar.registrarEntradaCarro(placa);
+                    String sql2 = "SELECT id FROM historico WHERE placa = ?";
+                    PreparedStatement ps2 = con.prepareStatement(sql);
+                    ps2.setString(1, placa);
+                    ResultSet rs2 = ps2.executeQuery();
+                    String idTicket = rs2.getString("id");
+                    Ticket ticketFlat = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
+                    ticketFlat.imprimirTicketFlatCarro();
+                    }                  
+                    
+                    }
+                    else if(tipoV.equalsIgnoreCase("Moto")) //SI ES MOTO
+                    {
+                    if(radioCatedratico.isSelected()){ //SI ES CATEDRATICO REGISTRA UN MOTO EN UN LUGAR DE CATEDRATICO
+                        
+                    LugarDAO vehiculoAsignar = new LugarDAO(placa);
+                    lugarAsignado = vehiculoAsignar.registrarEntradaCatedratico(placa, tipoV);
+                    String sql2 = "SELECT id FROM historico WHERE placa = ?";
+                    PreparedStatement ps2 = con.prepareStatement(sql);
+                    ps2.setString(1, placa);
+                    ResultSet rs2 = ps2.executeQuery();
+                    String idTicket = rs2.getString("id");
+                    Ticket ticketFlat = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
+                    ticketFlat.imprimirTicketFlatCatedratico();
+                    }    
+                    
+                    else{ //Y SINO, REGISTRA UN MOTO EN UN LUGAR COMUN
+                        
+                    LugarDAO vehiculoAsignar = new LugarDAO(placa);
+                    lugarAsignado = vehiculoAsignar.registrarEntradaMoto(placa);
+                    String sql2 = "SELECT id FROM historico WHERE placa = ?";
+                    PreparedStatement ps2 = con.prepareStatement(sql);
+                    ps2.setString(1, placa);
+                    ResultSet rs2 = ps2.executeQuery();
+                    String idTicket = rs2.getString("id");
+                    Ticket ticketFlat = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
+                    ticketFlat.imprimirTicketFlatMoto();
+                    } 
+                }
             }
-            
-            
+                else{ //SI ES TARIFA VARIABLE
+                    
+                    tarifa = "Variable";
+                    totalPagar = 0;
+                    
+                    if(tipoV.equalsIgnoreCase("Carro")) //SI ES CARRO
+                    {
+                        
+                        if(radioCatedratico.isSelected()){ //SI ES CATEDRATICO REGISTRA UN CARRO EN UN LUGAR DE CATEDRATICO
+
+                        LugarDAO vehiculoAsignar = new LugarDAO(placa);
+                        lugarAsignado = vehiculoAsignar.registrarEntradaCatedratico(placa, tipoV);
+                        String sql2 = "SELECT id FROM historico WHERE placa = ?";
+                        PreparedStatement ps2 = con.prepareStatement(sql);
+                        ps2.setString(1, placa);
+                        ResultSet rs2 = ps2.executeQuery();
+                        String idTicket = rs2.getString("id");
+                        Ticket ticketVariable = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
+                        ticketVariable.imprimirTicketVariableCatedratico();
+                        }    
+                    
+                        else{ //Y SINO, REGISTRA UN CARRO EN UN LUGAR COMUN
+
+                        LugarDAO vehiculoAsignar = new LugarDAO(placa);
+                        lugarAsignado = vehiculoAsignar.registrarEntradaCarro(placa);
+                        String sql2 = "SELECT id FROM historico WHERE placa = ?";
+                        PreparedStatement ps2 = con.prepareStatement(sql);
+                        ps2.setString(1, placa);
+                        ResultSet rs2 = ps2.executeQuery();
+                        String idTicket = rs2.getString("id");
+                        Ticket ticketVariable = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
+                        ticketVariable.imprimirTicketVariableCarro();
+                        }                    
+                    }
+                    
+                    else if(tipoV.equalsIgnoreCase("Moto")) //SI ES MOTO
+                    {
+                        
+                        if(radioCatedratico.isSelected()){ //SI ES CATEDRATICO REGISTRA UNA MOTO EN UN LUGAR DE CATEDRATICO
+                        
+                            LugarDAO vehiculoAsignar = new LugarDAO(placa);
+                            lugarAsignado = vehiculoAsignar.registrarEntradaCatedratico(placa, tipoV);
+                            String sql2 = "SELECT id FROM historico WHERE placa = ?";
+                            PreparedStatement ps2 = con.prepareStatement(sql);
+                            ps2.setString(1, placa);
+                            ResultSet rs2 = ps2.executeQuery();
+                            String idTicket = rs2.getString("id");
+                            Ticket ticketVariable = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
+                            ticketVariable.imprimirTicketVariableCatedratico();
+                        }    
+                        
+                        else{ //Y SINO, REGISTRA UNA MOTO EN UN LUGAR DE MOTO
+                            LugarDAO vehiculoAsignar = new LugarDAO(placa);
+                            lugarAsignado = vehiculoAsignar.registrarEntradaMoto(placa);
+                            String sql2 = "SELECT id FROM historico WHERE placa = ?";
+                            PreparedStatement ps2 = con.prepareStatement(sql);
+                            ps2.setString(1, placa);
+                            ResultSet rs2 = ps2.executeQuery();
+                            String idTicket = rs2.getString("id");
+                            Ticket ticketVariable = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
+                            ticketVariable.imprimirTicketVariableMoto();
+                        }
+                    }
                 } 
+            }    
+        } 
         
         else {
             JOptionPane.showMessageDialog(this, "No se encontró la placa ingresada.");
@@ -283,11 +408,10 @@ public class NuevoTicket extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Error al consultar: " + e.getMessage());
     }
        } 
+    
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
