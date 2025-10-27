@@ -136,6 +136,8 @@ public class NuevaSalida extends javax.swing.JFrame {
     String placa = txtPlaca.getText().trim();
     String tipoV = "";
     Integer catedratico = 0;
+    String tarifa = "";
+    Integer pagoPorHora = 2;
     if (placa.isEmpty()) {
         JOptionPane.showMessageDialog(this, "Por favor ingresa una placa");
         return;
@@ -153,6 +155,7 @@ public class NuevaSalida extends javax.swing.JFrame {
             
             tipoV = rs.getString("tipovehiculo");
             catedratico = rs.getInt("esCatedratico");
+            tarifa = rs.getString("tarifa");
             
 
         }      
@@ -163,6 +166,28 @@ public class NuevaSalida extends javax.swing.JFrame {
         }
     LugarDAO regSalida = new LugarDAO(placa);
 
+    switch(tarifa.toUpperCase()){
+        case "FLAT":
+            switch(catedratico){
+                case 0:
+                    switch(tipoV.toUpperCase()){
+                        case "CARRO": regSalida.registrarSalidaCarroFlat(placa);
+                        case "MOTO": regSalida.registrarSalidaMotoFlat(placa); 
+                    }
+                case 1:
+                    regSalida.registrarSalidaCatedraticoFlat(placa);
+            }
+        case "VARIABLE":
+           switch(catedratico){
+                case 0:
+                    switch(tipoV.toUpperCase()){
+                        case "CARRO": regSalida.registrarSalidaCarroVariable(placa, pagoPorHora);
+                        case "MOTO": regSalida.registrarSalidaMotoVariable(placa, pagoPorHora); 
+                    }
+                case 1:
+                    regSalida.registrarSalidaCatedraticoVariable(placa, pagoPorHora);
+            }
+    }
     
     
     
