@@ -285,11 +285,12 @@ else{
                     PreparedStatement ps2 = con.prepareStatement(sql2);
                     ps2.setString(1, placa);
                     ResultSet rs2 = ps2.executeQuery();
-                    String idTicket = "";
+                    Integer idTicket = 0;
                     if (rs2.next()) {
-                        idTicket = rs2.getString("id");
+                        idTicket = rs2.getInt("id");
                     }
                     Ticket ticketFlat = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
+                    ticketFlat.setIdTicket(idTicket);
                     ticketFlat.imprimirTicketFlatCatedratico();
                     rs2.close();
                     ps2.close();
@@ -303,11 +304,13 @@ else{
                     PreparedStatement ps2 = con.prepareStatement(sql2);
                     ps2.setString(1, placa);
                     ResultSet rs2 = ps2.executeQuery();
-                    String idTicket = "";
+                    Integer idTicket = 0;
                     if (rs2.next()) {
-                        idTicket = rs2.getString("id");
+                        idTicket = rs2.getInt("id");
+                        System.out.println("ID ENCONTRADO");
                     }
                     Ticket ticketFlat = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
+                    ticketFlat.setIdTicket(idTicket);
                     ticketFlat.imprimirTicketFlatCarro();
                     rs2.close();
                     ps2.close();
@@ -324,11 +327,12 @@ else{
                     PreparedStatement ps2 = con.prepareStatement(sql2);
                     ps2.setString(1, placa);
                     ResultSet rs2 = ps2.executeQuery();
-                    String idTicket = "";
+                    Integer idTicket = 0;
                     if (rs2.next()) {
-                        idTicket = rs2.getString("id");
+                        idTicket = rs2.getInt("id");
                     }
                     Ticket ticketFlat = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
+                    ticketFlat.setIdTicket(idTicket);
                     ticketFlat.imprimirTicketFlatCatedratico();
                     rs2.close();
                     ps2.close();
@@ -342,11 +346,12 @@ else{
                     PreparedStatement ps2 = con.prepareStatement(sql2);
                     ps2.setString(1, placa);
                     ResultSet rs2 = ps2.executeQuery();
-                    String idTicket = "";
+                    Integer idTicket = 0;
                     if (rs2.next()) {
-                        idTicket = rs2.getString("id");
+                        idTicket = rs2.getInt("id");
                     }
                     Ticket ticketFlat = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
+                    ticketFlat.setIdTicket(idTicket);
                     ticketFlat.imprimirTicketFlatMoto();
                     rs2.close();
                     ps2.close();
@@ -369,11 +374,12 @@ else{
                         PreparedStatement ps2 = con.prepareStatement(sql2);
                         ps2.setString(1, placa);
                         ResultSet rs2 = ps2.executeQuery();
-                        String idTicket = "";
+                        Integer idTicket = 0;
                         if (rs2.next()) {
-                            idTicket = rs2.getString("id");
+                        idTicket = rs2.getInt("id");
                         }
                         Ticket ticketVariable = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
+                        ticketVariable.setIdTicket(idTicket);
                         ticketVariable.imprimirTicketVariableCatedratico();
                         rs2.close();
                         ps2.close();
@@ -387,11 +393,12 @@ else{
                         PreparedStatement ps2 = con.prepareStatement(sql2);
                         ps2.setString(1, placa);
                         ResultSet rs2 = ps2.executeQuery();
-                        String idTicket = "";
+                        Integer idTicket = 0;
                         if (rs2.next()) {
-                            idTicket = rs2.getString("id");
+                            idTicket = rs2.getInt("id");
                         }
                         Ticket ticketVariable = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
+                        ticketVariable.setIdTicket(idTicket);
                         ticketVariable.imprimirTicketVariableCarro();
                         rs2.close();
                         ps2.close();
@@ -409,11 +416,12 @@ else{
                             PreparedStatement ps2 = con.prepareStatement(sql2);
                             ps2.setString(1, placa);
                             ResultSet rs2 = ps2.executeQuery();
-                            String idTicket = "";
+                            Integer idTicket = 0;
                             if (rs2.next()) {
-                                idTicket = rs2.getString("id");
+                                idTicket = rs2.getInt("id");
                             }
                             Ticket ticketVariable = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
+                            ticketVariable.setIdTicket(idTicket);
                             ticketVariable.imprimirTicketVariableCatedratico();
                             rs2.close();
                             ps2.close();
@@ -426,11 +434,12 @@ else{
                             PreparedStatement ps2 = con.prepareStatement(sql2);
                             ps2.setString(1, placa);
                             ResultSet rs2 = ps2.executeQuery();
-                            String idTicket = "";
+                            Integer idTicket = 0;
                             if (rs2.next()) {
-                                idTicket = rs2.getString("id");
+                                idTicket = rs2.getInt("id");
                             }
                             Ticket ticketVariable = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
+                            ticketVariable.setIdTicket(idTicket);
                             ticketVariable.imprimirTicketVariableMoto();
                             rs2.close();
                             ps2.close();

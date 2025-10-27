@@ -20,10 +20,10 @@ public class Ticket {
     private String fecha;
     private String tipoVehiculo; // M = MOTO | C = CARRO | CT = CATEDRATICO
     private Integer lugarAsignado; 
-    private String idTicket;
+    private int idTicket;
     public long totalTicket;
 
-    public Ticket(Vehiculo vehiculo, String tarifa, String fecha, String tipoVehiculo, Integer lugarAsignado, String idTicket, long totalTicket) {
+    public Ticket(Vehiculo vehiculo, String tarifa, String fecha, String tipoVehiculo, Integer lugarAsignado, Integer idTicket, long totalTicket) {
         this.vehiculo = vehiculo;
         this.tarifa = tarifa;
         this.fecha = fecha;
@@ -32,7 +32,7 @@ public class Ticket {
         this.totalTicket = totalTicket;
     } //Para Ticket Flat
     
-    public Ticket(Vehiculo vehiculo, String tarifa, String fecha, String tipoVehiculo, Integer lugarAsignado) {
+    public Ticket(Vehiculo vehiculo, String tarifa, String fecha, String tipoVehiculo, Integer lugarAsignado, Integer idTicket) {
         this.vehiculo = vehiculo;
         this.tarifa = tarifa;
         this.fecha = fecha;
@@ -56,7 +56,7 @@ public class Ticket {
     public Integer getLugarAsignado() {
         return lugarAsignado;
     }
-    public String getIdTicket() {
+    public Integer getIdTicket() {
         return idTicket;
     }
     public long getTotalTicket() {
@@ -77,7 +77,7 @@ public class Ticket {
     public void setLugarAsignado(Integer lugarAsignado) {
         this.lugarAsignado = lugarAsignado;
     }
-    public void setIdTicket(String idTicket) {
+    public void setIdTicket(Integer idTicket) {
         this.idTicket = idTicket;
     }
     public void setTotalTicket(long totalTicket) {
@@ -97,7 +97,7 @@ public class Ticket {
                 + "\nCarnet: "+ this.vehiculo.getCarnet()
                 + "\nTarifa Pagada: "+ this.tarifa
                 + "\nTipo de Vehiculo: "+ this.vehiculo.getTipo()
-                + "\nLugar Asignado: C"+ this.lugarAsignado
+                + "\nLugar Asignado: C-"+ this.lugarAsignado
                 + "\nTotal a Pagar: Q"+ this.totalTicket);
     }
     public void imprimirTicketFlatMoto(){
@@ -105,7 +105,7 @@ public class Ticket {
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("MM/dd");
         String fechaFormateada = ahora.format(formato);
         JOptionPane.showMessageDialog(null,
-                  "\nID Ticket: " + this.idTicket
+                  "\nID Ticket: TKT-" + this.idTicket
                 + "\nFecha de Ingreso: " + this.fecha
                 + "\nFecha de Salida: " + fechaFormateada
                 + "\nPlaca: " + this.vehiculo.getPlaca()
@@ -113,7 +113,7 @@ public class Ticket {
                 + "\nCarnet: "+ this.vehiculo.getCarnet()
                 + "\nTarifa Pagada: "+ this.tarifa
                 + "\nTipo de Vehiculo: "+ this.vehiculo.getTipo()
-                + "\nLugar Asignado: M"+ this.lugarAsignado
+                + "\nLugar Asignado: M-"+ this.lugarAsignado
                 + "\nTotal a Pagar: Q"+ this.totalTicket);
     }
     public void imprimirTicketFlatCatedratico(){
@@ -121,7 +121,7 @@ public class Ticket {
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("MM/dd");
         String fechaFormateada = ahora.format(formato);
         JOptionPane.showMessageDialog(null,
-                  "\nID Ticket: " + this.idTicket
+                  "\nID Ticket: TKT-" + this.idTicket
                 + "\nFecha de Ingreso: " + this.fecha
                 + "\nFecha de Salida: " + fechaFormateada
                 + "\nPlaca: " + this.vehiculo.getPlaca()
@@ -129,7 +129,7 @@ public class Ticket {
                 + "\nCarnet: "+ this.vehiculo.getCarnet()
                 + "\nTarifa Pagada: "+ this.tarifa
                 + "\nTipo de Vehiculo: "+ this.vehiculo.getTipo()
-                + "\nLugar Asignado: CT"+ this.lugarAsignado
+                + "\nLugar Asignado: CT-"+ this.lugarAsignado
                 + "\nTotal a Pagar: Q"+ this.totalTicket);
     }
     
@@ -138,7 +138,7 @@ public class Ticket {
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("MM/dd");
         String fechaFormateada = ahora.format(formato);
         JOptionPane.showMessageDialog(null,
-                  "\nID Ticket: " + this.idTicket
+                  "\nID Ticket: TKT-" + this.idTicket
                 + "\nFecha de Ingreso: " + this.fecha
                 + "\nFecha de Salida: " + fechaFormateada
                 + "\nPlaca: " + this.vehiculo.getPlaca()
@@ -146,7 +146,7 @@ public class Ticket {
                 + "\nCarnet: "+ this.vehiculo.getCarnet()
                 + "\nTarifa Pagada: "+ this.tarifa
                 + "\nTipo de Vehiculo: "+ this.vehiculo.getTipo()
-                + "\nLugar Asignado: C"+ this.lugarAsignado
+                + "\nLugar Asignado: C-"+ this.lugarAsignado
                 + "\nTotal a Pagar: Q"+ this.totalTicket);
     }
     public void imprimirTicketVariableMoto(){
@@ -154,7 +154,7 @@ public class Ticket {
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("MM/dd");
         String fechaFormateada = ahora.format(formato);
         JOptionPane.showMessageDialog(null,
-                  "\nID Ticket: " + this.idTicket
+                  "\nID Ticket: TKT-" + this.idTicket
                 + "\nFecha de Ingreso: " + this.fecha
                 + "\nFecha de Salida: " + fechaFormateada
                 + "\nPlaca: " + this.vehiculo.getPlaca()
@@ -162,7 +162,7 @@ public class Ticket {
                 + "\nCarnet: "+ this.vehiculo.getCarnet()
                 + "\nTarifa Pagada: "+ this.tarifa
                 + "\nTipo de Vehiculo: "+ this.vehiculo.getTipo()
-                + "\nLugar Asignado: M"+ this.lugarAsignado
+                + "\nLugar Asignado: M-"+ this.lugarAsignado
                 + "\nTotal a Pagar: Q"+ this.totalTicket);
     }
     public void imprimirTicketVariableCatedratico(){
@@ -170,7 +170,7 @@ public class Ticket {
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("MM/dd");
         String fechaFormateada = ahora.format(formato);
         JOptionPane.showMessageDialog(null,
-                  "\nID Ticket: " + this.idTicket
+                  "\nID Ticket: TKT-" + this.idTicket
                 + "\nFecha de Ingreso: " + this.fecha
                 + "\nFecha de Salida: " + fechaFormateada
                 + "\nPlaca: " + this.vehiculo.getPlaca()
@@ -178,7 +178,7 @@ public class Ticket {
                 + "\nCarnet: "+ this.vehiculo.getCarnet()
                 + "\nTarifa Pagada: "+ this.tarifa
                 + "\nTipo de Vehiculo: "+ this.vehiculo.getTipo()
-                + "\nLugar Asignado: CT"+ this.lugarAsignado
+                + "\nLugar Asignado: CT-"+ this.lugarAsignado
                 + "\nTotal a Pagar: Q"+ this.totalTicket);
     }
 }

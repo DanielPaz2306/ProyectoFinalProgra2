@@ -23,6 +23,7 @@ public class LugarDAO {
 
     // Registrar la entrada de un vehículo
     public Integer registrarEntradaMoto(String placa) {
+        int lugarOcupado = 0;
         String queryLugar = "SELECT TOP 1 * FROM lugaresMotos WHERE ocupado = 0 ORDER BY numero";
         try (Connection conn = ConexionSQL.conectar();
              PreparedStatement psLugar = conn.prepareStatement(queryLugar);
@@ -44,13 +45,13 @@ public class LugarDAO {
                 try (PreparedStatement psReg = conn.prepareStatement(insertRegistro)) {
                     psReg.setString(1, placa);
                     psReg.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
-                    Integer lugarOcupado = rs.getInt("numero");
+                    lugarOcupado = rs.getInt("numero");
                     psReg.setInt(3, lugarOcupado);
                     psReg.executeUpdate();
                 }
 
                 JOptionPane.showMessageDialog(null, "El Vehículo " + placa + " ingresó en lugar M" + rs.getInt("numero"));
-                Integer lugarOcupado = rs.getInt("numero");
+                lugarOcupado = rs.getInt("numero");
                 return lugarOcupado;
             } else {
                 JOptionPane.showMessageDialog(null, "No hay lugares disponibles, espere a que se desocupe uno");
@@ -60,9 +61,10 @@ public class LugarDAO {
             e.printStackTrace();
             
         }
-        return null;
+        return lugarOcupado;
     }
     public Integer registrarEntradaCarro(String placa) {
+        int lugarOcupado = 0;
         String queryLugar = "SELECT TOP 1 * FROM lugaresCarros WHERE ocupado = 0 ORDER BY numero";
         try (Connection conn = ConexionSQL.conectar();
              PreparedStatement psLugar = conn.prepareStatement(queryLugar); //Prepara un objeto con el query que ya puse arriba, y lo uso para evitar inyecciones SQL, y luego puedo complementarlo con ps.setString
@@ -71,7 +73,7 @@ public class LugarDAO {
             if (rs.next()) {
                 int idLugar = rs.getInt("id");
                 // EL LUGAR PASA A ESTAR OCUPADO
-                String updateLugar = "UPDATE lugaresCarro SET ocupado = 1, placa = ?, hora_entrada = ? WHERE id = ?";
+                String updateLugar = "UPDATE lugaresCarros SET ocupado = 1, placa = ?, hora_entrada = ? WHERE id = ?";
                 try (PreparedStatement psUpdate = conn.prepareStatement(updateLugar)) {
                     psUpdate.setString(1, placa);
                     psUpdate.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
@@ -84,13 +86,13 @@ public class LugarDAO {
                 try (PreparedStatement psReg = conn.prepareStatement(insertRegistro)) {
                     psReg.setString(1, placa);
                     psReg.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
-                    Integer lugarOcupado = rs.getInt("numero");
+                    lugarOcupado = rs.getInt("numero");
                     psReg.setInt(3, lugarOcupado);
                     psReg.executeUpdate();
                 }
 
                 JOptionPane.showMessageDialog(null, "El Vehículo " + placa + " ingresó en lugar C" + rs.getInt("numero"));
-                Integer lugarOcupado = rs.getInt("numero");
+                lugarOcupado = rs.getInt("numero");
                 return lugarOcupado;
             } else {
                 JOptionPane.showMessageDialog(null, "No hay lugares disponibles, espere a que se desocupe uno");
@@ -101,9 +103,10 @@ public class LugarDAO {
             e.printStackTrace();
             
         }
-        return null;
+        return lugarOcupado;
     } 
     public Integer registrarEntradaCatedratico(String placa, String tipoVehiculo) {
+        int lugarOcupado = 0;
         String queryLugar = "SELECT TOP 1 * FROM lugaresCatedraticos WHERE ocupado = 0 ORDER BY numero";
         try (Connection conn = ConexionSQL.conectar();
              PreparedStatement psLugar = conn.prepareStatement(queryLugar);
@@ -112,12 +115,12 @@ public class LugarDAO {
             if (rs.next()) {
                 int idLugar = rs.getInt("id");
                 // ACTUALIZA EL LUGAR
-                String updateLugar = "UPDATE lugaresCatedraticos SET ocupado = 1, placa = ?, hora_entrada = ? WHERE id = ?, tipoVehiculo = ?";
+                String updateLugar = "UPDATE lugaresCatedraticos SET ocupado = 1, placa = ?, hora_entrada = ?, tipoVehiculo = ? WHERE id = ?";
                 try (PreparedStatement psUpdate = conn.prepareStatement(updateLugar)) {
                     psUpdate.setString(1, placa);
-                    psUpdate.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
-                    psUpdate.setInt(3, idLugar);
-                    psUpdate.setString(4, tipoVehiculo);
+                    psUpdate.setObject(2, LocalDateTime.now());
+                    psUpdate.setString(3, tipoVehiculo);
+                    psUpdate.setInt(4, idLugar);
                     psUpdate.executeUpdate();
                 }
 
@@ -125,16 +128,17 @@ public class LugarDAO {
                 String insertRegistro = "INSERT INTO historico (placa, hora_entrada, tipo_vehiculo ,lugarOcupado) VALUES (?, ?, ?, ?)";
                 try (PreparedStatement psReg = conn.prepareStatement(insertRegistro)) {
                     psReg.setString(1, placa);
-                    psReg.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
+                    psReg.setObject(2, LocalDateTime.now());
                     psReg.setString(3, tipoVehiculo);
-                    Integer lugarOcupado = rs.getInt("numero");
+                    lugarOcupado = rs.getInt("numero");
                     psReg.setInt(4, lugarOcupado);
                     psReg.executeUpdate();
                 }
 
                 JOptionPane.showMessageDialog(null, "El Vehículo " + placa + " ingresó en lugar CT" + rs.getInt("numero"));
-                Integer lugarOcupado = rs.getInt("numero");
+                lugarOcupado = rs.getInt("numero");
                 return lugarOcupado;
+               
             } else {
                 JOptionPane.showMessageDialog(null, "No hay lugares disponibles, espere a que se desocupe uno");
                 
@@ -144,7 +148,7 @@ public class LugarDAO {
             e.printStackTrace();
             
         }
-        return null;
+        return lugarOcupado;
     }
     
     
