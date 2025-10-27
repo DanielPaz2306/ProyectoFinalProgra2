@@ -54,6 +54,7 @@ public class NuevoTicket extends javax.swing.JFrame {
         txtCapacidad = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         comboTipo = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -119,14 +120,23 @@ public class NuevoTicket extends javax.swing.JFrame {
         comboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Moto", "Carro" }));
         comboTipo.setEnabled(false);
 
+        jButton2.setBackground(new java.awt.Color(255, 153, 153));
+        jButton2.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        jButton2.setText("Volver ");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -157,7 +167,8 @@ public class NuevoTicket extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(28, 28, 28))
         );
@@ -196,7 +207,9 @@ public class NuevoTicket extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
                 .addGap(17, 17, 17))
         );
 
@@ -224,11 +237,11 @@ public class NuevoTicket extends javax.swing.JFrame {
 
     JOptionPane.showMessageDialog(this, "Debes seleccionar al menos una tarifa ");
     
-}    
-else{
+    }    
+   
+    else{
     
     String placa = txtPlaca.getText().trim();
-    
     if (placa.isEmpty()) {
         JOptionPane.showMessageDialog(this, "Por favor ingresa una placa");
         return;
@@ -247,21 +260,17 @@ else{
             String nombre = rs.getString("nombre");
             String carnet = rs.getString("carnet");
             String tipoV = rs.getString("tipovehiculo");
-            
             Integer catedratico = rs.getInt("esCatedratico");
-            
             txtNombre.setText(nombre);
             txtCarnet.setText(carnet);
-            
             if(tipoV.equalsIgnoreCase("Carro")){
                 comboTipo.setSelectedIndex(1);
             }    
             else if(tipoV.equalsIgnoreCase("Motocicleta")){
                 comboTipo.setSelectedIndex(2);
-            }           
-            if (catedratico == 1){ radioCatedratico.setSelected(true);} 
+            }    
+            if (catedratico == 1){ radioCatedratico.setSelected(true);}
             else { radioCatedratico.setSelected(false);}
-            
             int opcion = JOptionPane.showConfirmDialog(this, "¿Desea Generar este Ticket?");
             if(opcion == JOptionPane.YES_OPTION){
                 Integer lugarAsignado = 0;
@@ -270,7 +279,8 @@ else{
                 Vehiculo vehTicket = new Vehiculo(placa, carnet, nombre, tipoV);
                 LocalDateTime ahora = LocalDateTime.now();
                 DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-                String fechaHoraFormateada = ahora.format(formato);     
+                String fechaHoraFormateada = ahora.format(formato);
+                
                 if(btnFlat.isSelected()) //VERIFICACION PARA TARIFA PLANA
                 { 
                     tarifa = "Flat";
@@ -280,7 +290,7 @@ else{
                     if(radioCatedratico.isSelected()){ //SI ES CATEDRATICO REGISTRA UN CARRO EN UN LUGAR DE CATEDRATICO
                         
                     LugarDAO vehiculoAsignar = new LugarDAO(placa);
-                    lugarAsignado = vehiculoAsignar.registrarEntradaCatedratico(placa, tipoV);
+                    lugarAsignado = vehiculoAsignar.registrarEntradaCatedratico(placa, tipoV, tarifa);
                     String sql2 = "SELECT TOP 1 id FROM historico WHERE placa = ? ORDER BY id DESC";
                     PreparedStatement ps2 = con.prepareStatement(sql2);
                     ps2.setString(1, placa);
@@ -299,7 +309,7 @@ else{
                     else{ //Y SINO, REGISTRA UN CARRO EN UN LUGAR COMUN
                         
                     LugarDAO vehiculoAsignar = new LugarDAO(placa);
-                    lugarAsignado = vehiculoAsignar.registrarEntradaCarro(placa);
+                    lugarAsignado = vehiculoAsignar.registrarEntradaCarro(placa, tarifa);
                     String sql2 = "SELECT TOP 1 id FROM historico WHERE placa = ? ORDER BY id DESC";
                     PreparedStatement ps2 = con.prepareStatement(sql2);
                     ps2.setString(1, placa);
@@ -322,7 +332,7 @@ else{
                     if(radioCatedratico.isSelected()){ //SI ES CATEDRATICO REGISTRA UN MOTO EN UN LUGAR DE CATEDRATICO
                         
                     LugarDAO vehiculoAsignar = new LugarDAO(placa);
-                    lugarAsignado = vehiculoAsignar.registrarEntradaCatedratico(placa, tipoV);
+                    lugarAsignado = vehiculoAsignar.registrarEntradaCatedratico(placa, tipoV, tarifa);
                     String sql2 = "SELECT TOP 1 id FROM historico WHERE placa = ? ORDER BY id DESC";
                     PreparedStatement ps2 = con.prepareStatement(sql2);
                     ps2.setString(1, placa);
@@ -341,7 +351,7 @@ else{
                     else{ //Y SINO, REGISTRA UN MOTO EN UN LUGAR COMUN
                         
                     LugarDAO vehiculoAsignar = new LugarDAO(placa);
-                    lugarAsignado = vehiculoAsignar.registrarEntradaMoto(placa);
+                    lugarAsignado = vehiculoAsignar.registrarEntradaMoto(placa, tarifa);
                     String sql2 = "SELECT TOP 1 id FROM historico WHERE placa = ? ORDER BY id DESC";
                     PreparedStatement ps2 = con.prepareStatement(sql2);
                     ps2.setString(1, placa);
@@ -369,7 +379,7 @@ else{
                         if(radioCatedratico.isSelected()){ //SI ES CATEDRATICO REGISTRA UN CARRO EN UN LUGAR DE CATEDRATICO
 
                         LugarDAO vehiculoAsignar = new LugarDAO(placa);
-                        lugarAsignado = vehiculoAsignar.registrarEntradaCatedratico(placa, tipoV);
+                        lugarAsignado = vehiculoAsignar.registrarEntradaCatedratico(placa, tipoV, tarifa);
                         String sql2 = "SELECT TOP 1 id FROM historico WHERE placa = ? ORDER BY id DESC";
                         PreparedStatement ps2 = con.prepareStatement(sql2);
                         ps2.setString(1, placa);
@@ -388,7 +398,7 @@ else{
                         else{ //Y SINO, REGISTRA UN CARRO EN UN LUGAR COMUN
 
                         LugarDAO vehiculoAsignar = new LugarDAO(placa);
-                        lugarAsignado = vehiculoAsignar.registrarEntradaCarro(placa);
+                        lugarAsignado = vehiculoAsignar.registrarEntradaCarro(placa, tarifa);
                         String sql2 = "SELECT TOP 1 id FROM historico WHERE placa = ? ORDER BY id DESC";
                         PreparedStatement ps2 = con.prepareStatement(sql2);
                         ps2.setString(1, placa);
@@ -411,7 +421,7 @@ else{
                         if(radioCatedratico.isSelected()){ //SI ES CATEDRATICO REGISTRA UNA MOTO EN UN LUGAR DE CATEDRATICO
                         
                             LugarDAO vehiculoAsignar = new LugarDAO(placa);
-                            lugarAsignado = vehiculoAsignar.registrarEntradaCatedratico(placa, tipoV);
+                            lugarAsignado = vehiculoAsignar.registrarEntradaCatedratico(placa, tipoV, tarifa);
                             String sql2 = "SELECT TOP 1 id FROM historico WHERE placa = ? ORDER BY id DESC";
                             PreparedStatement ps2 = con.prepareStatement(sql2);
                             ps2.setString(1, placa);
@@ -429,7 +439,7 @@ else{
                         
                         else{ //Y SINO, REGISTRA UNA MOTO EN UN LUGAR DE MOTO
                             LugarDAO vehiculoAsignar = new LugarDAO(placa);
-                            lugarAsignado = vehiculoAsignar.registrarEntradaMoto(placa);
+                            lugarAsignado = vehiculoAsignar.registrarEntradaMoto(placa, tarifa);
                             String sql2 = "SELECT TOP 1 id FROM historico WHERE placa = ? ORDER BY id DESC";
                             PreparedStatement ps2 = con.prepareStatement(sql2);
                             ps2.setString(1, placa);
@@ -459,6 +469,10 @@ else{
 }
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     
     public static void main(String args[]) {
@@ -490,6 +504,7 @@ else{
     private javax.swing.JComboBox<String> comboTipo;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

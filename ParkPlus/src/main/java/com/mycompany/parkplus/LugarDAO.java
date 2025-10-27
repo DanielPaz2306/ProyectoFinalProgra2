@@ -22,9 +22,10 @@ public class LugarDAO {
     } //Constructor para Registrar Catedráticos
 
     // Registrar la entrada de un vehículo
-    public Integer registrarEntradaMoto(String placa) {
+    public Integer registrarEntradaMoto(String placa, String tipoTarifa) {
         int lugarOcupado = 0;
         String queryLugar = "SELECT TOP 1 * FROM lugaresMotos WHERE ocupado = 0 ORDER BY numero";
+        
         try (Connection conn = ConexionSQL.conectar();
              PreparedStatement psLugar = conn.prepareStatement(queryLugar);
              ResultSet rs = psLugar.executeQuery()) {
@@ -32,7 +33,7 @@ public class LugarDAO {
             if (rs.next()) {
                 int idLugar = rs.getInt("id");
                 // Actualizar el lugar como ocupado
-                String updateLugar = "UPDATE lugaresMotos SET ocupado = 1, placa = ?, hora_entrada = ? WHERE id = ?";
+                String updateLugar = "UPDATE lugaresMotos SET ocupado = 1, placa = ?, hora_entrada = ? WHERE idTicket = ?";
                 try (PreparedStatement psUpdate = conn.prepareStatement(updateLugar)) {
                     psUpdate.setString(1, placa);
                     psUpdate.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
@@ -41,12 +42,13 @@ public class LugarDAO {
                 }
 
                 // Insertar registro de entrada
-                String insertRegistro = "INSERT INTO historico (placa, hora_entrada, tipo_vehiculo) VALUES (?, ?, 'MOTOCICLETA', ?)";
+                String insertRegistro = "INSERT INTO historico (placa, hora_entrada, tipo_vehiculo, lugarOcupado, tarifa) VALUES (?, ?, 'MOTOCICLETA', ?)";
                 try (PreparedStatement psReg = conn.prepareStatement(insertRegistro)) {
                     psReg.setString(1, placa);
                     psReg.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
                     lugarOcupado = rs.getInt("numero");
                     psReg.setInt(3, lugarOcupado);
+                    psReg.setString(4, tipoTarifa);
                     psReg.executeUpdate();
                 }
 
@@ -63,7 +65,7 @@ public class LugarDAO {
         }
         return lugarOcupado;
     }
-    public Integer registrarEntradaCarro(String placa) {
+    public Integer registrarEntradaCarro(String placa, String tipoTarifa) {
         int lugarOcupado = 0;
         String queryLugar = "SELECT TOP 1 * FROM lugaresCarros WHERE ocupado = 0 ORDER BY numero";
         try (Connection conn = ConexionSQL.conectar();
@@ -73,7 +75,7 @@ public class LugarDAO {
             if (rs.next()) {
                 int idLugar = rs.getInt("id");
                 // EL LUGAR PASA A ESTAR OCUPADO
-                String updateLugar = "UPDATE lugaresCarros SET ocupado = 1, placa = ?, hora_entrada = ? WHERE id = ?";
+                String updateLugar = "UPDATE lugaresCarros SET ocupado = 1, placa = ?, hora_entrada = ? WHERE idTicket = ?";
                 try (PreparedStatement psUpdate = conn.prepareStatement(updateLugar)) {
                     psUpdate.setString(1, placa);
                     psUpdate.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
@@ -82,12 +84,13 @@ public class LugarDAO {
                 }
 
                 // INGRESO a HISTORICO
-                String insertRegistro = "INSERT INTO historico (placa, hora_entrada, tipo_vehiculo, lugarOcupado) VALUES (?, ?, 'CARRO', ?)";
+                String insertRegistro = "INSERT INTO historico (placa, hora_entrada, tipo_vehiculo, lugarOcupado, tarifa) VALUES (?, ?, 'CARRO', ?)";
                 try (PreparedStatement psReg = conn.prepareStatement(insertRegistro)) {
                     psReg.setString(1, placa);
                     psReg.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
                     lugarOcupado = rs.getInt("numero");
                     psReg.setInt(3, lugarOcupado);
+                    psReg.setString(4, tipoTarifa);
                     psReg.executeUpdate();
                 }
 
@@ -105,7 +108,7 @@ public class LugarDAO {
         }
         return lugarOcupado;
     } 
-    public Integer registrarEntradaCatedratico(String placa, String tipoVehiculo) {
+    public Integer registrarEntradaCatedratico(String placa, String tipoVehiculo, String tipoTarifa) {
         int lugarOcupado = 0;
         String queryLugar = "SELECT TOP 1 * FROM lugaresCatedraticos WHERE ocupado = 0 ORDER BY numero";
         try (Connection conn = ConexionSQL.conectar();
@@ -115,7 +118,7 @@ public class LugarDAO {
             if (rs.next()) {
                 int idLugar = rs.getInt("id");
                 // ACTUALIZA EL LUGAR
-                String updateLugar = "UPDATE lugaresCatedraticos SET ocupado = 1, placa = ?, hora_entrada = ?, tipoVehiculo = ? WHERE id = ?";
+                String updateLugar = "UPDATE lugaresCatedraticos SET ocupado = 1, placa = ?, hora_entrada = ?, tipoVehiculo = ? WHERE idTicket = ?";
                 try (PreparedStatement psUpdate = conn.prepareStatement(updateLugar)) {
                     psUpdate.setString(1, placa);
                     psUpdate.setObject(2, LocalDateTime.now());
@@ -125,13 +128,14 @@ public class LugarDAO {
                 }
 
                 // INGRESAR AL HISTORICO
-                String insertRegistro = "INSERT INTO historico (placa, hora_entrada, tipo_vehiculo ,lugarOcupado) VALUES (?, ?, ?, ?)";
+                String insertRegistro = "INSERT INTO historico (placa, hora_entrada, tipo_vehiculo ,lugarOcupado, tarifa) VALUES (?, ?, ?, ?, ?)";
                 try (PreparedStatement psReg = conn.prepareStatement(insertRegistro)) {
                     psReg.setString(1, placa);
                     psReg.setObject(2, LocalDateTime.now());
                     psReg.setString(3, tipoVehiculo);
                     lugarOcupado = rs.getInt("numero");
                     psReg.setInt(4, lugarOcupado);
+                    psReg.setString(5, tipoTarifa);
                     psReg.executeUpdate();
                 }
 
