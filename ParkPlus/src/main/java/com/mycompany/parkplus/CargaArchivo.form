@@ -144,7 +144,7 @@
                 <StringItem index="2" value="Lugares Carros"/>
                 <StringItem index="3" value="Lugares Catedraticos"/>
                 <StringItem index="4" value="Lugares Motos"/>
-                <StringItem index="5" value="Registro Vehiculos"/>
+                <StringItem index="5" value="Registros"/>
               </StringArray>
             </Property>
             <Property name="enabled" type="boolean" value="false"/>

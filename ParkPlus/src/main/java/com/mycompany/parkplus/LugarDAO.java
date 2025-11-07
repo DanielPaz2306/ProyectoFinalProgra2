@@ -75,7 +75,7 @@ public class LugarDAO {
             if (rs.next()) {
                 int idLugar = rs.getInt("id");
                 // EL LUGAR PASA A ESTAR OCUPADO
-                String updateLugar = "UPDATE lugaresCarros SET ocupado = 1, placa = ?, hora_entrada = ? WHERE idTicket = ?";
+                String updateLugar = "UPDATE lugaresCarros SET ocupado = 1, placa = ?, hora_entrada = ? WHERE id = ?";
                 try (PreparedStatement psUpdate = conn.prepareStatement(updateLugar)) {
                     psUpdate.setString(1, placa);
                     psUpdate.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));

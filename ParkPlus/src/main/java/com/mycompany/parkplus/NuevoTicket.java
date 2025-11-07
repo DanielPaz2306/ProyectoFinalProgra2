@@ -259,7 +259,7 @@ public class NuevoTicket extends javax.swing.JFrame {
             
             String nombre = rs.getString("nombre");
             String carnet = rs.getString("carnet");
-            String tipoV = rs.getString("tipovehiculo");
+            String tipoV = rs.getString("tipoVehiculo");
             Integer catedratico = rs.getInt("esCatedratico");
             txtNombre.setText(nombre);
             txtCarnet.setText(carnet);
@@ -291,13 +291,13 @@ public class NuevoTicket extends javax.swing.JFrame {
                         
                     LugarDAO vehiculoAsignar = new LugarDAO(placa);
                     lugarAsignado = vehiculoAsignar.registrarEntradaCatedratico(placa, tipoV, tarifa);
-                    String sql2 = "SELECT TOP 1 id FROM historico WHERE placa = ? ORDER BY id DESC";
+                    String sql2 = "SELECT TOP 1 idTicket FROM historico WHERE placa = ? ORDER BY idTicket DESC";
                     PreparedStatement ps2 = con.prepareStatement(sql2);
                     ps2.setString(1, placa);
                     ResultSet rs2 = ps2.executeQuery();
                     Integer idTicket = 0;
                     if (rs2.next()) {
-                        idTicket = rs2.getInt("id");
+                        idTicket = rs2.getInt("idTicket");
                     }
                     Ticket ticketFlat = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
                     ticketFlat.setIdTicket(idTicket);
@@ -310,13 +310,13 @@ public class NuevoTicket extends javax.swing.JFrame {
                         
                     LugarDAO vehiculoAsignar = new LugarDAO(placa);
                     lugarAsignado = vehiculoAsignar.registrarEntradaCarro(placa, tarifa);
-                    String sql2 = "SELECT TOP 1 id FROM historico WHERE placa = ? ORDER BY id DESC";
+                    String sql2 = "SELECT TOP 1 idTicket FROM historico WHERE placa = ? ORDER BY idTicket DESC";
                     PreparedStatement ps2 = con.prepareStatement(sql2);
                     ps2.setString(1, placa);
                     ResultSet rs2 = ps2.executeQuery();
                     Integer idTicket = 0;
                     if (rs2.next()) {
-                        idTicket = rs2.getInt("id");
+                        idTicket = rs2.getInt("idTicket");
                         System.out.println("ID ENCONTRADO");
                     }
                     Ticket ticketFlat = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
@@ -333,7 +333,7 @@ public class NuevoTicket extends javax.swing.JFrame {
                         
                     LugarDAO vehiculoAsignar = new LugarDAO(placa);
                     lugarAsignado = vehiculoAsignar.registrarEntradaCatedratico(placa, tipoV, tarifa);
-                    String sql2 = "SELECT TOP 1 id FROM historico WHERE placa = ? ORDER BY id DESC";
+                    String sql2 = "SELECT TOP 1 idTicket FROM historico WHERE placa = ? ORDER BY id DESC";
                     PreparedStatement ps2 = con.prepareStatement(sql2);
                     ps2.setString(1, placa);
                     ResultSet rs2 = ps2.executeQuery();
@@ -352,7 +352,7 @@ public class NuevoTicket extends javax.swing.JFrame {
                         
                     LugarDAO vehiculoAsignar = new LugarDAO(placa);
                     lugarAsignado = vehiculoAsignar.registrarEntradaMoto(placa, tarifa);
-                    String sql2 = "SELECT TOP 1 id FROM historico WHERE placa = ? ORDER BY id DESC";
+                    String sql2 = "SELECT TOP 1 idTicket FROM historico WHERE placa = ? ORDER BY id DESC";
                     PreparedStatement ps2 = con.prepareStatement(sql2);
                     ps2.setString(1, placa);
                     ResultSet rs2 = ps2.executeQuery();
@@ -380,7 +380,7 @@ public class NuevoTicket extends javax.swing.JFrame {
 
                         LugarDAO vehiculoAsignar = new LugarDAO(placa);
                         lugarAsignado = vehiculoAsignar.registrarEntradaCatedratico(placa, tipoV, tarifa);
-                        String sql2 = "SELECT TOP 1 id FROM historico WHERE placa = ? ORDER BY id DESC";
+                        String sql2 = "SELECT TOP 1 idTicket FROM historico WHERE placa = ? ORDER BY id DESC";
                         PreparedStatement ps2 = con.prepareStatement(sql2);
                         ps2.setString(1, placa);
                         ResultSet rs2 = ps2.executeQuery();
@@ -399,7 +399,7 @@ public class NuevoTicket extends javax.swing.JFrame {
 
                         LugarDAO vehiculoAsignar = new LugarDAO(placa);
                         lugarAsignado = vehiculoAsignar.registrarEntradaCarro(placa, tarifa);
-                        String sql2 = "SELECT TOP 1 id FROM historico WHERE placa = ? ORDER BY id DESC";
+                        String sql2 = "SELECT TOP 1 idTicket FROM historico WHERE placa = ? ORDER BY id DESC";
                         PreparedStatement ps2 = con.prepareStatement(sql2);
                         ps2.setString(1, placa);
                         ResultSet rs2 = ps2.executeQuery();
@@ -422,7 +422,7 @@ public class NuevoTicket extends javax.swing.JFrame {
                         
                             LugarDAO vehiculoAsignar = new LugarDAO(placa);
                             lugarAsignado = vehiculoAsignar.registrarEntradaCatedratico(placa, tipoV, tarifa);
-                            String sql2 = "SELECT TOP 1 id FROM historico WHERE placa = ? ORDER BY id DESC";
+                            String sql2 = "SELECT TOP 1 idTicket FROM historico WHERE placa = ? ORDER BY id DESC";
                             PreparedStatement ps2 = con.prepareStatement(sql2);
                             ps2.setString(1, placa);
                             ResultSet rs2 = ps2.executeQuery();
@@ -440,7 +440,7 @@ public class NuevoTicket extends javax.swing.JFrame {
                         else{ //Y SINO, REGISTRA UNA MOTO EN UN LUGAR DE MOTO
                             LugarDAO vehiculoAsignar = new LugarDAO(placa);
                             lugarAsignado = vehiculoAsignar.registrarEntradaMoto(placa, tarifa);
-                            String sql2 = "SELECT TOP 1 id FROM historico WHERE placa = ? ORDER BY id DESC";
+                            String sql2 = "SELECT TOP 1 idTicket FROM historico WHERE placa = ? ORDER BY id DESC";
                             PreparedStatement ps2 = con.prepareStatement(sql2);
                             ps2.setString(1, placa);
                             ResultSet rs2 = ps2.executeQuery();
@@ -464,7 +464,7 @@ public class NuevoTicket extends javax.swing.JFrame {
         }
         
     } catch (SQLException e) {
-        JOptionPane.showMessageDialog(this, "Error al consultar: " + e.getMessage());
+        JOptionPane.showMessageDialog(this, "Error al CONSULTAR: " + e.getMessage());
     }
 }
 

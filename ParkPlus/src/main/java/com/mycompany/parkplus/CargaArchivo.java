@@ -76,7 +76,7 @@ public class CargaArchivo extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
         jLabel1.setText("Archivo que desea importar/exportar: ");
 
-        comboArchivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alumnos", "Historico", "Lugares Carros", "Lugares Catedraticos", "Lugares Motos", "Registro Vehiculos" }));
+        comboArchivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alumnos", "Historico", "Lugares Carros", "Lugares Catedraticos", "Lugares Motos", "Registros" }));
         comboArchivo.setEnabled(false);
         comboArchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -217,7 +217,6 @@ public class CargaArchivo extends javax.swing.JFrame {
                     break;
                 case "REGISTROS":
                     exportarRegistros(rutaSeleccionada, con);
-
                     break;
                 case "HISTORICO":
                     exportarRegistros(rutaSeleccionada, con);
@@ -349,45 +348,60 @@ public class CargaArchivo extends javax.swing.JFrame {
             }
         }
 
-    public static void importarRegistros(File archivo, Connection con) {
-            if (archivo == null) {
-                System.out.println("⚠ No se seleccionó archivo.");
-                return;
+public static void importarRegistros(File archivo, Connection con) {
+    if (archivo == null) {
+        System.out.println("No se seleccionó archivo.");
+        return;
+    }
+
+    String linea;
+    String separador = ","; // separador CSV
+
+    try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+        // Saltar la cabecera
+        br.readLine();
+
+        while ((linea = br.readLine()) != null) {
+            String[] datos = linea.split(separador);
+
+            if (datos.length < 8) {
+                System.err.println("Línea inválida: " + linea);
+                continue;
             }
 
-            String linea;
-            String separador = ","; // ESTE ES EL SEPARADOR DE COLUMNAS
+            String nombre = datos[0].trim();
+            String apellido = datos[1].trim();
+            String carnet = datos[2].trim();
+            String correo = datos[3].trim();
+            String telefono = datos[4].trim();
+            String placa = datos[5].trim();
+            String tipoVehiculo = datos[6].trim();
+            int esCatedratico = Integer.parseInt(datos[7].trim());
 
-            try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
-                // Saltar la primera línea (cabecera)
-                br.readLine();
+            String sql = "INSERT INTO REGISTROS (nombre, apellido, carnet, correo, telefono, placa, tipoVehiculo, esCatedratico) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-                while ((linea = br.readLine()) != null) {
-                    String[] datos = linea.split(separador);
-
-                    String placa = datos[0].trim();
-                    String tipo = datos[1].trim();
-                    String horaEntrada = datos[2].trim();
-                    String horaSalida = datos[3].trim();
-
-                    String sql = "INSERT INTO REGISTROS (placa, tipo, horaEntrada, horaSalida) VALUES (?, ?, ?, ?)";
-
-                    try (PreparedStatement ps = con.prepareStatement(sql)) {
-                        ps.setString(1, placa);
-                        ps.setString(2, tipo);
-                        ps.setString(3, horaEntrada);
-                        ps.setString(4, horaSalida);
-                        ps.executeUpdate();
-                    }
-                }
-                JOptionPane.showMessageDialog(null, "Importe Realizado con Éxito!");
-                System.out.println("✅ Datos importados correctamente desde el CSV.");
-                
-
-            } catch (Exception e) {
-                e.printStackTrace();
+            try (PreparedStatement ps = con.prepareStatement(sql)) {
+                ps.setString(1, nombre);
+                ps.setString(2, apellido);
+                ps.setString(3, carnet);
+                ps.setString(4, correo);
+                ps.setString(5, telefono);
+                ps.setString(6, placa);
+                ps.setString(7, tipoVehiculo);
+                ps.setInt(8, esCatedratico);
+                ps.executeUpdate();
             }
         }
+
+        JOptionPane.showMessageDialog(null, "✅ Importación realizada con éxito.");
+        System.out.println("✅ Datos importados correctamente desde el CSV.");
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "❌ Error al importar: " + e.getMessage());
+    }
+}
+
     public static void importarAlumnos(File archivo, Connection con) {
             if (archivo == null) {
                 System.out.println("⚠ No se seleccionó archivo.");
