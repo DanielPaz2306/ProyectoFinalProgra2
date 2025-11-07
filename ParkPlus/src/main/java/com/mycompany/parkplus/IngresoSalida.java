@@ -115,11 +115,13 @@ public class IngresoSalida extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         NuevaSalida newSalida = new NuevaSalida();
+        newSalida.setAlwaysOnTop(true);
         newSalida.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         NuevoTicket newTicket = new NuevoTicket();
+        newTicket.setAlwaysOnTop(true);
         newTicket.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 

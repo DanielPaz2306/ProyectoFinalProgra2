@@ -43,15 +43,35 @@ public class CargaArchivo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        btnPath = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         comboArchivo = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         comboImpExp = new javax.swing.JComboBox<>();
         txtPath = new javax.swing.JTextField();
-        btnPath = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+
+        jButton2.setBackground(new java.awt.Color(255, 153, 153));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton2.setText("Volver");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        btnPath.setText("...");
+        btnPath.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPathActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
         jLabel1.setText("Archivo que desea importar/exportar: ");
@@ -85,63 +105,72 @@ public class CargaArchivo extends javax.swing.JFrame {
         txtPath.setBackground(new java.awt.Color(255, 255, 255));
         txtPath.setText("Ruta de Archivo");
 
-        btnPath.setText("...");
-        btnPath.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPathActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addGap(154, 154, 154)
+                        .addComponent(jButton1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboImpExp, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(comboArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtPath, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnPath, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(comboImpExp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(comboArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPath)
+                    .addComponent(txtPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(25, 25, 25))))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(280, 280, 280))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboImpExp, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(40, 40, 40)
-                        .addComponent(comboArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtPath, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(btnPath, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(48, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(comboImpExp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(comboArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPath))
-                .addGap(31, 31, 31)
-                .addComponent(jButton1)
-                .addContainerGap(37, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         Connection con = ConexionSQL.conectar();
+    Connection con = ConexionSQL.conectar();
     String seleccion = comboImpExp.getSelectedItem().toString().toUpperCase();
     String seleccionA = comboArchivo.getSelectedItem().toString().toUpperCase();
 
@@ -161,14 +190,14 @@ public class CargaArchivo extends javax.swing.JFrame {
                 case "LUGARES MOTOS":
                     importarLugaresMotos(archivoSeleccionado, con);
                     break;
-                case "REGISTRO VEHICULOS":
+                case "REGISTROS":
                     importarRegistros(archivoSeleccionado, con);
                     break;
                 case "HISTORICO":
                     JOptionPane.showMessageDialog(null, "No puedes importar registro histórico.");
                     break;
                 default:
-                    JOptionPane.showMessageDialog(null, "Selección no válida.");
+                    JOptionPane.showMessageDialog(null, "Porfavor Selecciona lo que deseas importar.");
             }
             break;
 
@@ -186,19 +215,21 @@ public class CargaArchivo extends javax.swing.JFrame {
                 case "LUGARES MOTOS":
                     exportarLugaresMotos(rutaSeleccionada, con);
                     break;
-                case "REGISTRO VEHICULOS":
+                case "REGISTROS":
                     exportarRegistros(rutaSeleccionada, con);
+
                     break;
                 case "HISTORICO":
-                    exportarRegistros(rutaSeleccionada, con);  
+                    exportarRegistros(rutaSeleccionada, con);
+                    
                     break;
                 default:
-                    JOptionPane.showMessageDialog(null, "Selección no válida.");
+                    JOptionPane.showMessageDialog(null, "Porfavor selecciona lo que deseas exportar");
             }
             break;
 
         default:
-            JOptionPane.showMessageDialog(null, "Por favor selecciona una opción válida.");
+            JOptionPane.showMessageDialog(null, "Porfavor selecciona lo que deseas hacer.");
     }
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -220,34 +251,42 @@ public class CargaArchivo extends javax.swing.JFrame {
 
     private void btnPathActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPathActionPerformed
         String verificacionImpExp = comboImpExp.getSelectedItem().toString().toUpperCase();
-        if(comboImpExp.getSelectedIndex() == -1 || comboArchivo.getSelectedIndex() == -1){
-            JOptionPane.showMessageDialog(null, "Porfavor Completa las Selecciones de arriba para continuar!!");
+
+        if (comboImpExp.getSelectedIndex() == -1 || comboArchivo.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null, "¡Por favor completa las selecciones de arriba para continuar!");
             return;
-        }
-        
-        else{
-            if(verificacionImpExp.equals("EXPORTAR")){
+        } 
+        else {
+            if (verificacionImpExp.equalsIgnoreCase("EXPORTAR")) {
                 JFileChooser chooser = new JFileChooser();
-                chooser.setDialogTitle("Escoge la Ruta para guardar tu archivo");
+                chooser.setDialogTitle("Escoge la ruta para guardar tu archivo");
                 chooser.setSelectedFile(new File("Export.csv")); // nombre por defecto
+
                 int seleccion = chooser.showSaveDialog(this);
 
                 if (seleccion == JFileChooser.APPROVE_OPTION) {
                     rutaSeleccionada = chooser.getSelectedFile();
+
+                    // VERIFICA SI TIENE .CSV, sino lo agrega
+                    if (!rutaSeleccionada.getName().toLowerCase().endsWith(".csv")) {
+                        rutaSeleccionada = new File(rutaSeleccionada.getAbsolutePath() + ".csv");
+                    }
+
                     txtPath.setText(rutaSeleccionada.getAbsolutePath());
                     System.out.println("Su ruta es: " + rutaSeleccionada.getAbsolutePath());
-                } 
-                else {
-                    JOptionPane.showMessageDialog(this, "Seleccion de Ruta Invalida.");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Selección de ruta inválida.");
+                }
+            } else {
+                archivoSeleccionado = seleccionarCSV();
+                if (archivoSeleccionado != null) {
+                    txtPath.setText(archivoSeleccionado.getAbsolutePath());
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se seleccionó ningún archivo CSV.");
                 }
             }
-            else{
-                archivoSeleccionado = seleccionarCSV();
-                txtPath.setText(archivoSeleccionado.getAbsolutePath());
-            }
         }
-            
-        
+
         
         
     }//GEN-LAST:event_btnPathActionPerformed
@@ -255,6 +294,10 @@ public class CargaArchivo extends javax.swing.JFrame {
     private void comboArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboArchivoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboArchivoActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -286,8 +329,10 @@ public class CargaArchivo extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboArchivo;
     private javax.swing.JComboBox<String> comboImpExp;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtPath;
     // End of variables declaration//GEN-END:variables
     
@@ -303,8 +348,7 @@ public class CargaArchivo extends javax.swing.JFrame {
                 return null;
             }
         }
-   
-    
+
     public static void importarRegistros(File archivo, Connection con) {
             if (archivo == null) {
                 System.out.println("⚠ No se seleccionó archivo.");
@@ -336,8 +380,9 @@ public class CargaArchivo extends javax.swing.JFrame {
                         ps.executeUpdate();
                     }
                 }
-
+                JOptionPane.showMessageDialog(null, "Importe Realizado con Éxito!");
                 System.out.println("✅ Datos importados correctamente desde el CSV.");
+                
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -364,9 +409,8 @@ public class CargaArchivo extends javax.swing.JFrame {
                     String apellidos = datos[2].trim();
                     String telefono = datos[3].trim();
                     String correo = datos[4].trim();
-                    String placa = datos[5].trim();
 
-                    String sql = "INSERT INTO Alumnos (carnet, nombres, apellidos, telefono, correo, placa) VALUES (?, ?, ?, ?, ?, ?)";
+                    String sql = "INSERT INTO Alumnos (carnet, nombres, apellidos, telefono, correo) VALUES (?, ?, ?, ?, ?)";
 
                     try (PreparedStatement ps = con.prepareStatement(sql)) {
                         ps.setString(1, carnet);
@@ -374,11 +418,10 @@ public class CargaArchivo extends javax.swing.JFrame {
                         ps.setString(3, apellidos);
                         ps.setString(4, telefono);
                         ps.setString(5, correo);
-                        ps.setString(6, placa);
                         ps.executeUpdate();
                     }
                 }
-
+                JOptionPane.showMessageDialog(null, "Importe Realizado con Éxito!");
                 System.out.println("✅ Datos importados correctamente desde el CSV.");
 
             } catch (Exception e) {
@@ -414,7 +457,7 @@ public class CargaArchivo extends javax.swing.JFrame {
                         ps.executeUpdate();
                     }
                 }
-
+                JOptionPane.showMessageDialog(null, "Importe Realizado con Éxito!");
                 System.out.println("✅ Datos importados correctamente desde el CSV.");
 
             } catch (Exception e) {
@@ -450,7 +493,7 @@ public class CargaArchivo extends javax.swing.JFrame {
                         ps.executeUpdate();
                     }
                 }
-
+                JOptionPane.showMessageDialog(null, "Importe Realizado con Éxito!");
                 System.out.println("✅ Datos importados correctamente desde el CSV.");
 
             } catch (Exception e) {
@@ -486,7 +529,7 @@ public class CargaArchivo extends javax.swing.JFrame {
                         ps.executeUpdate();
                     }
                 }
-
+                JOptionPane.showMessageDialog(null, "Importe Realizado con Éxito!");
                 System.out.println("✅ Datos importados correctamente desde el CSV.");
 
             } catch (Exception e) {
@@ -522,9 +565,9 @@ public class CargaArchivo extends javax.swing.JFrame {
                 fw.append(rs.getString("esCatedratico") == null ? "" : rs.getString("esCatedratico")).append(",");
                 fw.append(rs.getString("lugarOcupado") == null ? "" : rs.getString("lugarOcupado")).append(",");
                 fw.append(rs.getString("tarifa") == null ? "" : rs.getString("tarifa")).append(",");
-                
+                fw.append("\n");                
             }
-
+            JOptionPane.showMessageDialog(null, "Exporte Realizado con Éxito!");
             System.out.println("Archivo CSV generado correctamente en: " + archivo.getAbsolutePath());
 
         } catch (SQLException | IOException e) {
@@ -556,9 +599,10 @@ public class CargaArchivo extends javax.swing.JFrame {
                 fw.append(rs.getString("telefono") == null ? "" : rs.getString("telefono")).append(",");
                 fw.append(rs.getString("correo") == null ? "" : rs.getString("correo")).append(",");
                 fw.append(rs.getString("placa") == null ? "" : rs.getString("placa")).append(",");
+                fw.append("\n"); 
                 
             }
-
+            JOptionPane.showMessageDialog(null, "Exporte Realizado con Éxito!");
             System.out.println("Archivo CSV generado correctamente en: " + archivo.getAbsolutePath());
 
         } catch (SQLException | IOException e) {
@@ -571,14 +615,14 @@ public class CargaArchivo extends javax.swing.JFrame {
             return;
         }
 
-        String sql = "SELECT carnet, nombres, apellidos, telefono, correo, placa FROM Alumnos";
+        String sql = "SELECT carnet, nombres, apellidos, telefono, correo FROM Alumnos";
 
         try (Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery(sql);
              FileWriter fw = new FileWriter(archivo)) {
 
           
-            fw.append("carnet,nombres,apellidos,telefono,correo,placa\n");
+            fw.append("carnet,nombres,apellidos,telefono,correo\n");
 
     
             while (rs.next()) {
@@ -595,10 +639,10 @@ public class CargaArchivo extends javax.swing.JFrame {
                 fw.append(rs.getString("apellidos") == null ? "" : rs.getString("apellidos")).append(",");
                 fw.append(rs.getString("telefono") == null ? "" : rs.getString("telefono")).append(",");
                 fw.append(rs.getString("correo") == null ? "" : rs.getString("correo")).append(",");
-                fw.append(rs.getString("placa") == null ? "" : rs.getString("placa")).append(",");
+                fw.append("\n"); 
                 
             }
-
+            JOptionPane.showMessageDialog(null, "Exporte Realizado con Éxito!");
             System.out.println("Archivo CSV generado correctamente en: " + archivo.getAbsolutePath());
 
         } catch (SQLException | IOException e) {
@@ -628,9 +672,10 @@ public class CargaArchivo extends javax.swing.JFrame {
                 // Control de valores nulos
                 fw.append(rs.getString("placa") == null ? "" : rs.getString("placa")).append(",");
                 fw.append(rs.getString("hora_entrada") == null ? "" : rs.getString("hora_entrada")).append(",");
+                fw.append("\n"); 
                 
             }
-
+            JOptionPane.showMessageDialog(null, "Exporte Realizado con Éxito!");
             System.out.println("Archivo CSV generado correctamente en: " + archivo.getAbsolutePath());
 
         } catch (SQLException | IOException e) {
@@ -662,7 +707,7 @@ public class CargaArchivo extends javax.swing.JFrame {
                 fw.append(rs.getString("hora_entrada") == null ? "" : rs.getString("hora_entrada")).append(",");
                 fw.append(rs.getString("tipoVehiculo") == null ? "" : rs.getString("tipoVehiculo")).append("\n");
             }
-
+            JOptionPane.showMessageDialog(null, "Exporte Realizado con Éxito!");
             System.out.println("Archivo CSV generado correctamente en: " + archivo.getAbsolutePath());
 
         } catch (SQLException | IOException e) {
@@ -692,16 +737,16 @@ public class CargaArchivo extends javax.swing.JFrame {
                 // Control de valores nulos
                 fw.append(rs.getString("placa") == null ? "" : rs.getString("placa")).append(",");
                 fw.append(rs.getString("hora_entrada") == null ? "" : rs.getString("hora_entrada")).append(",");
-                
+                fw.append("\n"); 
             }
-
+            JOptionPane.showMessageDialog(null, "Exporte Realizado con Éxito!");
             System.out.println("Archivo CSV generado correctamente en: " + archivo.getAbsolutePath());
 
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
     }
-        }
+    }
 
 
 
