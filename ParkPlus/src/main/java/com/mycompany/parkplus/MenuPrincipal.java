@@ -17,12 +17,13 @@ import java.sql.Statement;
 public class MenuPrincipal extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MenuPrincipal.class.getName());
-    private JLabel[] labels;
+    private JToggleButton[] buttons;
     
     public MenuPrincipal() {
         
         initComponents();
         iniciarVerificacionLugaresCarros();
+        iniciarVerificacionLugaresCatedraticos();
     }
 
 
@@ -37,88 +38,144 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         panelMapa = new javax.swing.JPanel();
-        panelTxtLugares = new javax.swing.JPanel();
-        txtC1 = new javax.swing.JLabel();
-        txtC2 = new javax.swing.JLabel();
-        txtC3 = new javax.swing.JLabel();
-        txtC4 = new javax.swing.JLabel();
-        txtC5 = new javax.swing.JLabel();
-        txtC6 = new javax.swing.JLabel();
-        txtC7 = new javax.swing.JLabel();
-        txtC8 = new javax.swing.JLabel();
-        txtC9 = new javax.swing.JLabel();
-        txtC10 = new javax.swing.JLabel();
-        txtC11 = new javax.swing.JLabel();
-        txtC12 = new javax.swing.JLabel();
-        txtC13 = new javax.swing.JLabel();
-        txtC14 = new javax.swing.JLabel();
-        txtC15 = new javax.swing.JLabel();
-        txtC16 = new javax.swing.JLabel();
-        txtC17 = new javax.swing.JLabel();
-        txtC18 = new javax.swing.JLabel();
-        txtC19 = new javax.swing.JLabel();
-        txtC20 = new javax.swing.JLabel();
-        txtC21 = new javax.swing.JLabel();
-        txtC22 = new javax.swing.JLabel();
-        txtC23 = new javax.swing.JLabel();
-        txtC24 = new javax.swing.JLabel();
-        txtC25 = new javax.swing.JLabel();
-        txtC26 = new javax.swing.JLabel();
-        txtC27 = new javax.swing.JLabel();
-        txtC28 = new javax.swing.JLabel();
-        txtC30 = new javax.swing.JLabel();
-        txtC29 = new javax.swing.JLabel();
-        txtC31 = new javax.swing.JLabel();
-        txtC32 = new javax.swing.JLabel();
-        txtC33 = new javax.swing.JLabel();
-        txtC34 = new javax.swing.JLabel();
-        txtC35 = new javax.swing.JLabel();
-        txtC36 = new javax.swing.JLabel();
-        txtC37 = new javax.swing.JLabel();
-        txtC38 = new javax.swing.JLabel();
-        txtC39 = new javax.swing.JLabel();
-        txtC40 = new javax.swing.JLabel();
-        txtC41 = new javax.swing.JLabel();
-        txtC42 = new javax.swing.JLabel();
-        txtC43 = new javax.swing.JLabel();
-        txtC44 = new javax.swing.JLabel();
-        txtC45 = new javax.swing.JLabel();
-        txtC46 = new javax.swing.JLabel();
-        txtC47 = new javax.swing.JLabel();
-        txtC48 = new javax.swing.JLabel();
-        txtC49 = new javax.swing.JLabel();
-        txtC50 = new javax.swing.JLabel();
-        txtC51 = new javax.swing.JLabel();
-        txtC52 = new javax.swing.JLabel();
-        txtC53 = new javax.swing.JLabel();
-        txtC54 = new javax.swing.JLabel();
-        txtC55 = new javax.swing.JLabel();
-        txtC56 = new javax.swing.JLabel();
-        txtC57 = new javax.swing.JLabel();
-        txtC58 = new javax.swing.JLabel();
-        txtC59 = new javax.swing.JLabel();
-        txtC60 = new javax.swing.JLabel();
-        txtC61 = new javax.swing.JLabel();
-        txtC62 = new javax.swing.JLabel();
-        txtC63 = new javax.swing.JLabel();
-        txtC64 = new javax.swing.JLabel();
-        txtC65 = new javax.swing.JLabel();
-        txtC66 = new javax.swing.JLabel();
-        txtC67 = new javax.swing.JLabel();
-        txtC68 = new javax.swing.JLabel();
-        txtC69 = new javax.swing.JLabel();
-        txtC70 = new javax.swing.JLabel();
-        txtC71 = new javax.swing.JLabel();
-        txtC72 = new javax.swing.JLabel();
-        txtC73 = new javax.swing.JLabel();
-        txtC74 = new javax.swing.JLabel();
-        txtC75 = new javax.swing.JLabel();
-        txtC76 = new javax.swing.JLabel();
-        txtC77 = new javax.swing.JLabel();
-        txtC78 = new javax.swing.JLabel();
-        txtC79 = new javax.swing.JLabel();
-        txtC80 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        btnC1 = new javax.swing.JToggleButton();
+        btnC2 = new javax.swing.JToggleButton();
+        btnC3 = new javax.swing.JToggleButton();
+        btnC4 = new javax.swing.JToggleButton();
+        btnC5 = new javax.swing.JToggleButton();
+        btnC6 = new javax.swing.JToggleButton();
+        btnC7 = new javax.swing.JToggleButton();
+        btnC8 = new javax.swing.JToggleButton();
+        btnC9 = new javax.swing.JToggleButton();
+        btnC10 = new javax.swing.JToggleButton();
+        btnC11 = new javax.swing.JToggleButton();
+        btnC12 = new javax.swing.JToggleButton();
+        btnC13 = new javax.swing.JToggleButton();
+        btnC14 = new javax.swing.JToggleButton();
+        btnC15 = new javax.swing.JToggleButton();
+        btnC16 = new javax.swing.JToggleButton();
+        btnC17 = new javax.swing.JToggleButton();
+        btnC18 = new javax.swing.JToggleButton();
+        btnC19 = new javax.swing.JToggleButton();
+        btnC20 = new javax.swing.JToggleButton();
+        btnC21 = new javax.swing.JToggleButton();
+        btnC22 = new javax.swing.JToggleButton();
+        btnC23 = new javax.swing.JToggleButton();
+        btnC24 = new javax.swing.JToggleButton();
+        btnC25 = new javax.swing.JToggleButton();
+        btnC26 = new javax.swing.JToggleButton();
+        btnC27 = new javax.swing.JToggleButton();
+        btnC28 = new javax.swing.JToggleButton();
+        btnC29 = new javax.swing.JToggleButton();
+        btnC30 = new javax.swing.JToggleButton();
+        btnC31 = new javax.swing.JToggleButton();
+        btnC32 = new javax.swing.JToggleButton();
+        btnC33 = new javax.swing.JToggleButton();
+        btnC34 = new javax.swing.JToggleButton();
+        btnC35 = new javax.swing.JToggleButton();
+        btnC36 = new javax.swing.JToggleButton();
+        btnC37 = new javax.swing.JToggleButton();
+        btnC38 = new javax.swing.JToggleButton();
+        btnC39 = new javax.swing.JToggleButton();
+        btnC40 = new javax.swing.JToggleButton();
+        btnC41 = new javax.swing.JToggleButton();
+        btnC42 = new javax.swing.JToggleButton();
+        btnC43 = new javax.swing.JToggleButton();
+        btnC44 = new javax.swing.JToggleButton();
+        btnC45 = new javax.swing.JToggleButton();
+        btnC46 = new javax.swing.JToggleButton();
+        btnC47 = new javax.swing.JToggleButton();
+        btnC48 = new javax.swing.JToggleButton();
+        btnC49 = new javax.swing.JToggleButton();
+        btnC50 = new javax.swing.JToggleButton();
+        btnC51 = new javax.swing.JToggleButton();
+        btnC52 = new javax.swing.JToggleButton();
+        btnC53 = new javax.swing.JToggleButton();
+        btnC54 = new javax.swing.JToggleButton();
+        btnC55 = new javax.swing.JToggleButton();
+        btnC56 = new javax.swing.JToggleButton();
+        btnC57 = new javax.swing.JToggleButton();
+        btnC58 = new javax.swing.JToggleButton();
+        btnC59 = new javax.swing.JToggleButton();
+        btnC60 = new javax.swing.JToggleButton();
+        btnC61 = new javax.swing.JToggleButton();
+        btnC62 = new javax.swing.JToggleButton();
+        btnC63 = new javax.swing.JToggleButton();
+        btnC64 = new javax.swing.JToggleButton();
+        btnC65 = new javax.swing.JToggleButton();
+        btnC66 = new javax.swing.JToggleButton();
+        btnC67 = new javax.swing.JToggleButton();
+        btnC68 = new javax.swing.JToggleButton();
+        btnC69 = new javax.swing.JToggleButton();
+        btnC70 = new javax.swing.JToggleButton();
+        btnC71 = new javax.swing.JToggleButton();
+        btnC72 = new javax.swing.JToggleButton();
+        btnC73 = new javax.swing.JToggleButton();
+        btnC74 = new javax.swing.JToggleButton();
+        btnC75 = new javax.swing.JToggleButton();
+        btnC76 = new javax.swing.JToggleButton();
+        btnC77 = new javax.swing.JToggleButton();
+        btnC78 = new javax.swing.JToggleButton();
+        btnC79 = new javax.swing.JToggleButton();
+        btnC80 = new javax.swing.JToggleButton();
+        btnC81 = new javax.swing.JToggleButton();
+        btnC82 = new javax.swing.JToggleButton();
+        btnC83 = new javax.swing.JToggleButton();
+        btnC84 = new javax.swing.JToggleButton();
+        btnC85 = new javax.swing.JToggleButton();
+        btnC86 = new javax.swing.JToggleButton();
+        btnC87 = new javax.swing.JToggleButton();
+        btnC88 = new javax.swing.JToggleButton();
+        btnC89 = new javax.swing.JToggleButton();
+        btnC90 = new javax.swing.JToggleButton();
+        btnC91 = new javax.swing.JToggleButton();
+        btnC92 = new javax.swing.JToggleButton();
+        btnC93 = new javax.swing.JToggleButton();
+        btnC94 = new javax.swing.JToggleButton();
+        btnC95 = new javax.swing.JToggleButton();
+        btnC96 = new javax.swing.JToggleButton();
+        btnC97 = new javax.swing.JToggleButton();
+        btnC98 = new javax.swing.JToggleButton();
+        btnC99 = new javax.swing.JToggleButton();
+        btnC100 = new javax.swing.JToggleButton();
+        btnC101 = new javax.swing.JToggleButton();
+        btnC102 = new javax.swing.JToggleButton();
+        btnC103 = new javax.swing.JToggleButton();
+        btnC104 = new javax.swing.JToggleButton();
+        btnC105 = new javax.swing.JToggleButton();
+        btnC106 = new javax.swing.JToggleButton();
+        btnC107 = new javax.swing.JToggleButton();
+        btnC108 = new javax.swing.JToggleButton();
+        btnC109 = new javax.swing.JToggleButton();
+        btnC110 = new javax.swing.JToggleButton();
+        btnC111 = new javax.swing.JToggleButton();
+        btnC112 = new javax.swing.JToggleButton();
+        btnC113 = new javax.swing.JToggleButton();
+        btnC114 = new javax.swing.JToggleButton();
+        btnC115 = new javax.swing.JToggleButton();
+        btnC116 = new javax.swing.JToggleButton();
+        btnC117 = new javax.swing.JToggleButton();
+        btnC118 = new javax.swing.JToggleButton();
+        btnC119 = new javax.swing.JToggleButton();
+        btnC120 = new javax.swing.JToggleButton();
+        btnCT10 = new javax.swing.JToggleButton();
+        btnCT11 = new javax.swing.JToggleButton();
+        btnCT12 = new javax.swing.JToggleButton();
+        btnCT13 = new javax.swing.JToggleButton();
+        btnCT14 = new javax.swing.JToggleButton();
+        btnCT15 = new javax.swing.JToggleButton();
+        btnCT16 = new javax.swing.JToggleButton();
+        btnCT17 = new javax.swing.JToggleButton();
+        btnCT18 = new javax.swing.JToggleButton();
+        btnCT9 = new javax.swing.JToggleButton();
+        btnCT8 = new javax.swing.JToggleButton();
+        btnCT7 = new javax.swing.JToggleButton();
+        btnCT6 = new javax.swing.JToggleButton();
+        btnCT5 = new javax.swing.JToggleButton();
+        btnCT4 = new javax.swing.JToggleButton();
+        btnCT3 = new javax.swing.JToggleButton();
+        btnCT2 = new javax.swing.JToggleButton();
+        btnCT1 = new javax.swing.JToggleButton();
         panelDatosUser = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -161,6 +218,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Poppins SemiBold", 1, 12)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/registro.png"))); // NOI18N
         jButton2.setText("Ingresar Registros");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton6.setFont(new java.awt.Font("Poppins SemiBold", 1, 12)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 0, 0));
@@ -174,448 +236,544 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         panelMapa.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelTxtLugares.setOpaque(false);
+        btnC1.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC1.setText("jToggleButton4");
+        btnC1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnC1ActionPerformed(evt);
+            }
+        });
+        panelMapa.add(btnC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 40, -1));
+
+        btnC2.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC2.setText("jToggleButton120");
+        panelMapa.add(btnC2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 40, -1));
+
+        btnC3.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC3.setText("jToggleButton1");
+        panelMapa.add(btnC3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 40, -1));
+
+        btnC4.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC4.setText("jToggleButton2");
+        panelMapa.add(btnC4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 40, -1));
+
+        btnC5.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC5.setText("jToggleButton3");
+        panelMapa.add(btnC5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 40, -1));
+
+        btnC6.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC6.setText("jToggleButton5");
+        panelMapa.add(btnC6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 40, -1));
+
+        btnC7.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC7.setText("jToggleButton6");
+        panelMapa.add(btnC7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 40, -1));
+
+        btnC8.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC8.setText("jToggleButton7");
+        panelMapa.add(btnC8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 40, -1));
+
+        btnC9.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC9.setText("jToggleButton8");
+        panelMapa.add(btnC9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 40, -1));
+
+        btnC10.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC10.setText("jToggleButton9");
+        panelMapa.add(btnC10, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 40, -1));
+
+        btnC11.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC11.setText("jToggleButton10");
+        panelMapa.add(btnC11, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 40, -1));
+
+        btnC12.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC12.setText("jToggleButton11");
+        panelMapa.add(btnC12, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, 40, -1));
+
+        btnC13.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC13.setText("jToggleButton12");
+        panelMapa.add(btnC13, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 40, -1));
+
+        btnC14.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC14.setText("jToggleButton13");
+        panelMapa.add(btnC14, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 40, -1));
+
+        btnC15.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC15.setText("jToggleButton14");
+        panelMapa.add(btnC15, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 40, -1));
+
+        btnC16.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC16.setText("jToggleButton15");
+        panelMapa.add(btnC16, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 40, -1));
+
+        btnC17.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC17.setText("jToggleButton16");
+        panelMapa.add(btnC17, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 40, -1));
+
+        btnC18.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC18.setText("jToggleButton17");
+        panelMapa.add(btnC18, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 40, -1));
+
+        btnC19.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC19.setText("jToggleButton18");
+        panelMapa.add(btnC19, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, 40, -1));
+
+        btnC20.setFont(new java.awt.Font("Bahnschrift", 0, 8)); // NOI18N
+        btnC20.setText("C20");
+        panelMapa.add(btnC20, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 40, -1));
+
+        btnC21.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC21.setText("jToggleButton20");
+        panelMapa.add(btnC21, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 40, -1));
+
+        btnC22.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC22.setText("jToggleButton21");
+        panelMapa.add(btnC22, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 40, -1));
+
+        btnC23.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC23.setText("jToggleButton22");
+        panelMapa.add(btnC23, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, 40, -1));
+
+        btnC24.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC24.setText("jToggleButton23");
+        panelMapa.add(btnC24, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, 40, -1));
+
+        btnC25.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC25.setText("jToggleButton24");
+        panelMapa.add(btnC25, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 40, -1));
 
-        txtC1.setText("C-1");
-        txtC1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnC26.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC26.setText("jToggleButton25");
+        panelMapa.add(btnC26, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 40, -1));
 
-        txtC2.setText("C-2");
+        btnC27.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC27.setText("jToggleButton26");
+        panelMapa.add(btnC27, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 40, -1));
 
-        txtC3.setText("C-3");
+        btnC28.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC28.setText("jToggleButton27");
+        panelMapa.add(btnC28, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, 40, -1));
 
-        txtC4.setText("C-4");
+        btnC29.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC29.setText("jToggleButton28");
+        panelMapa.add(btnC29, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, 40, -1));
 
-        txtC5.setText("C-5");
+        btnC30.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC30.setText("jToggleButton29");
+        panelMapa.add(btnC30, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 40, -1));
 
-        txtC6.setText("C-6");
+        btnC31.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC31.setText("jToggleButton30");
+        panelMapa.add(btnC31, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, 40, -1));
 
-        txtC7.setText("C-7");
+        btnC32.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC32.setText("jToggleButton31");
+        panelMapa.add(btnC32, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 40, -1));
 
-        txtC8.setText("C-8");
+        btnC33.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC33.setText("jToggleButton32");
+        panelMapa.add(btnC33, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 40, -1));
 
-        txtC9.setText("C-9");
+        btnC34.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC34.setText("jToggleButton33");
+        panelMapa.add(btnC34, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 40, -1));
 
-        txtC10.setText("C-10");
+        btnC35.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC35.setText("jToggleButton34");
+        panelMapa.add(btnC35, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, 40, -1));
 
-        txtC11.setText("C-11");
+        btnC36.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC36.setText("jToggleButton35");
+        panelMapa.add(btnC36, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 40, -1));
 
-        txtC12.setText("C-12");
+        btnC37.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC37.setText("jToggleButton36");
+        panelMapa.add(btnC37, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 40, -1));
 
-        txtC13.setText("C-13");
+        btnC38.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC38.setText("jToggleButton37");
+        panelMapa.add(btnC38, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 170, 40, -1));
 
-        txtC14.setText("C-14");
+        btnC39.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC39.setText("jToggleButton38");
+        panelMapa.add(btnC39, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, 40, -1));
 
-        txtC15.setText("C-15");
+        btnC40.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC40.setText("jToggleButton39");
+        panelMapa.add(btnC40, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 40, -1));
 
-        txtC16.setText("C-16");
+        btnC41.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC41.setText("jToggleButton40");
+        panelMapa.add(btnC41, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, 40, -1));
 
-        txtC17.setText("C-17");
+        btnC42.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC42.setText("jToggleButton41");
+        panelMapa.add(btnC42, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 40, -1));
 
-        txtC18.setText("C-18");
+        btnC43.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC43.setText("jToggleButton42");
+        panelMapa.add(btnC43, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, 40, -1));
 
-        txtC19.setText("C-19");
+        btnC44.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC44.setText("jToggleButton43");
+        panelMapa.add(btnC44, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, 40, -1));
 
-        txtC20.setText("C-20");
+        btnC45.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC45.setText("jToggleButton44");
+        panelMapa.add(btnC45, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, 40, -1));
 
-        txtC21.setText("C-21");
+        btnC46.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC46.setText("jToggleButton45");
+        panelMapa.add(btnC46, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, 40, -1));
 
-        txtC22.setText("C-22");
+        btnC47.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC47.setText("jToggleButton46");
+        panelMapa.add(btnC47, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, 40, -1));
 
-        txtC23.setText("C-23");
+        btnC48.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC48.setText("jToggleButton47");
+        panelMapa.add(btnC48, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, 40, -1));
 
-        txtC24.setText("C-24");
+        btnC49.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC49.setText("jToggleButton48");
+        panelMapa.add(btnC49, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, 40, -1));
 
-        txtC25.setText("C-25");
+        btnC50.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC50.setText("jToggleButton49");
+        panelMapa.add(btnC50, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, 40, -1));
 
-        txtC26.setText("C-26");
+        btnC51.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC51.setText("jToggleButton50");
+        panelMapa.add(btnC51, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, 40, -1));
 
-        txtC27.setText("C-27");
+        btnC52.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC52.setText("jToggleButton51");
+        panelMapa.add(btnC52, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, 40, -1));
 
-        txtC28.setText("C-28");
+        btnC53.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC53.setText("jToggleButton52");
+        panelMapa.add(btnC53, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, 40, -1));
 
-        txtC30.setText("C-30");
+        btnC54.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC54.setText("jToggleButton53");
+        panelMapa.add(btnC54, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 90, 40, -1));
 
-        txtC29.setText("C-29");
+        btnC55.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC55.setText("jToggleButton54");
+        panelMapa.add(btnC55, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, 40, -1));
 
-        txtC31.setText("C-31");
+        btnC56.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC56.setText("jToggleButton55");
+        panelMapa.add(btnC56, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 130, 40, -1));
 
-        txtC32.setText("C-32");
+        btnC57.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC57.setText("jToggleButton56");
+        panelMapa.add(btnC57, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 150, 40, -1));
 
-        txtC33.setText("C-33");
+        btnC58.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC58.setText("jToggleButton57");
+        panelMapa.add(btnC58, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, 40, -1));
 
-        txtC34.setText("C-34");
+        btnC59.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC59.setText("jToggleButton58");
+        panelMapa.add(btnC59, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 190, 40, -1));
 
-        txtC35.setText("C-35");
+        btnC60.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC60.setText("jToggleButton59");
+        panelMapa.add(btnC60, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 210, 40, -1));
 
-        txtC36.setText("C-36");
+        btnC61.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC61.setText("jToggleButton60");
+        panelMapa.add(btnC61, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, 40, -1));
 
-        txtC37.setText("C-37");
+        btnC62.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC62.setText("jToggleButton61");
+        panelMapa.add(btnC62, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, 40, -1));
 
-        txtC38.setText("C-38");
+        btnC63.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC63.setText("jToggleButton62");
+        panelMapa.add(btnC63, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, 40, -1));
 
-        txtC39.setText("C-39");
+        btnC64.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC64.setText("jToggleButton63");
+        panelMapa.add(btnC64, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, 40, -1));
 
-        txtC40.setText("C-40");
+        btnC65.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC65.setText("jToggleButton64");
+        panelMapa.add(btnC65, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 110, 40, -1));
 
-        txtC41.setText("C-41");
+        btnC66.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC66.setText("jToggleButton65");
+        panelMapa.add(btnC66, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 40, -1));
 
-        txtC42.setText("C-42");
+        btnC67.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC67.setText("jToggleButton66");
+        panelMapa.add(btnC67, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 150, 40, -1));
 
-        txtC43.setText("C-43");
+        btnC68.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC68.setText("jToggleButton67");
+        panelMapa.add(btnC68, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 170, 40, 20));
 
-        txtC44.setText("C-44");
+        btnC69.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC69.setText("jToggleButton68");
+        panelMapa.add(btnC69, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 190, 40, -1));
 
-        txtC45.setText("C-45");
+        btnC70.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC70.setText("jToggleButton69");
+        panelMapa.add(btnC70, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, 40, 20));
 
-        txtC46.setText("C-46");
+        btnC71.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC71.setText("jToggleButton70");
+        panelMapa.add(btnC71, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 30, 40, -1));
 
-        txtC47.setText("C-47");
+        btnC72.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC72.setText("jToggleButton71");
+        panelMapa.add(btnC72, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, 40, -1));
 
-        txtC48.setText("C-48");
+        btnC73.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC73.setText("jToggleButton72");
+        panelMapa.add(btnC73, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 70, 40, -1));
 
-        txtC49.setText("C-49");
+        btnC74.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC74.setText("jToggleButton73");
+        panelMapa.add(btnC74, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, 40, -1));
 
-        txtC50.setText("C-50");
+        btnC75.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC75.setText("jToggleButton74");
+        panelMapa.add(btnC75, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 40, -1));
 
-        txtC51.setText("C-51");
+        btnC76.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC76.setText("jToggleButton75");
+        panelMapa.add(btnC76, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, 40, -1));
 
-        txtC52.setText("C-52");
+        btnC77.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC77.setText("jToggleButton76");
+        panelMapa.add(btnC77, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 150, 40, -1));
 
-        txtC53.setText("C-53");
+        btnC78.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC78.setText("jToggleButton77");
+        panelMapa.add(btnC78, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, 40, -1));
 
-        txtC54.setText("C-54");
+        btnC79.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC79.setText("jToggleButton78");
+        panelMapa.add(btnC79, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 190, 40, -1));
 
-        txtC55.setText("C-55");
+        btnC80.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC80.setText("jToggleButton79");
+        panelMapa.add(btnC80, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, 40, -1));
 
-        txtC56.setText("C-56");
+        btnC81.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC81.setText("jToggleButton80");
+        panelMapa.add(btnC81, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, 40, -1));
 
-        txtC57.setText("C-57");
+        btnC82.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC82.setText("jToggleButton81");
+        panelMapa.add(btnC82, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 50, 40, -1));
 
-        txtC58.setText("C-58");
+        btnC83.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC83.setText("jToggleButton82");
+        panelMapa.add(btnC83, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, 40, -1));
 
-        txtC59.setText("C-59");
+        btnC84.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC84.setText("jToggleButton83");
+        panelMapa.add(btnC84, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 90, 40, -1));
 
-        txtC60.setText("C-60");
+        btnC85.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC85.setText("jToggleButton84");
+        panelMapa.add(btnC85, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, 40, -1));
 
-        txtC61.setText("C-61");
+        btnC86.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC86.setText("jToggleButton85");
+        panelMapa.add(btnC86, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 130, 40, -1));
 
-        txtC62.setText("C-62");
+        btnC87.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC87.setText("jToggleButton86");
+        panelMapa.add(btnC87, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 150, 40, -1));
 
-        txtC63.setText("C-63");
+        btnC88.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC88.setText("jToggleButton87");
+        panelMapa.add(btnC88, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, 40, -1));
 
-        txtC64.setText("C-64");
-
-        txtC65.setText("C-65");
-
-        txtC66.setText("C-66");
-
-        txtC67.setText("C-67");
-
-        txtC68.setText("C-68");
-
-        txtC69.setText("C-69");
-
-        txtC70.setText("C-70");
-
-        txtC71.setText("C-71");
-
-        txtC72.setText("C-72");
-
-        txtC73.setText("C-73");
-
-        txtC74.setText("C-74");
-
-        txtC75.setText("C-75");
-
-        txtC76.setText("C-76");
-
-        txtC77.setText("C-77");
-
-        txtC78.setText("C-78");
-
-        txtC79.setText("C-79");
-
-        txtC80.setText("C-80");
-
-        javax.swing.GroupLayout panelTxtLugaresLayout = new javax.swing.GroupLayout(panelTxtLugares);
-        panelTxtLugares.setLayout(panelTxtLugaresLayout);
-        panelTxtLugaresLayout.setHorizontalGroup(
-            panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelTxtLugaresLayout.createSequentialGroup()
-                .addGap(291, 291, 291)
-                .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelTxtLugaresLayout.createSequentialGroup()
-                        .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelTxtLugaresLayout.createSequentialGroup()
-                                    .addComponent(txtC10, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtC20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelTxtLugaresLayout.createSequentialGroup()
-                                    .addComponent(txtC9, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtC19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelTxtLugaresLayout.createSequentialGroup()
-                                    .addComponent(txtC8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtC18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(panelTxtLugaresLayout.createSequentialGroup()
-                                .addComponent(txtC7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtC17, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtC29, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtC27, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtC30, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtC28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(panelTxtLugaresLayout.createSequentialGroup()
-                                .addComponent(txtC37)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtC47, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTxtLugaresLayout.createSequentialGroup()
-                                .addComponent(txtC38)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtC48, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(panelTxtLugaresLayout.createSequentialGroup()
-                                .addComponent(txtC39)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtC49, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTxtLugaresLayout.createSequentialGroup()
-                                .addComponent(txtC40)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtC50)))
-                        .addGap(18, 18, 18)
-                        .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtC60, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                            .addComponent(txtC59, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtC58, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtC57, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtC69, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtC68, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtC67, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtC70, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                        .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtC77, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtC78, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtC79, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtC80, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTxtLugaresLayout.createSequentialGroup()
-                        .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelTxtLugaresLayout.createSequentialGroup()
-                                .addComponent(txtC3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtC13, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtC23, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtC33)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtC43, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(panelTxtLugaresLayout.createSequentialGroup()
-                                .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTxtLugaresLayout.createSequentialGroup()
-                                        .addComponent(txtC6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtC16, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtC26, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panelTxtLugaresLayout.createSequentialGroup()
-                                        .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(panelTxtLugaresLayout.createSequentialGroup()
-                                                .addComponent(txtC5)
-                                                .addGap(25, 25, 25)
-                                                .addComponent(txtC15, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelTxtLugaresLayout.createSequentialGroup()
-                                                .addComponent(txtC4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(txtC14, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtC24, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                                            .addComponent(txtC25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtC36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtC35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtC34, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtC45, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtC46, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtC44, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(18, 18, 18)
-                        .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtC54, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
-                                .addComponent(txtC53, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtC55, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(txtC56))
-                        .addGap(16, 16, 16)
-                        .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtC64, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtC63, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtC66, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtC65, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtC73, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtC74, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtC75, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtC76, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTxtLugaresLayout.createSequentialGroup()
-                        .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(panelTxtLugaresLayout.createSequentialGroup()
-                                .addComponent(txtC2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtC12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(panelTxtLugaresLayout.createSequentialGroup()
-                                .addComponent(txtC1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtC11)))
-                        .addGap(18, 18, 18)
-                        .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtC22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtC21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(panelTxtLugaresLayout.createSequentialGroup()
-                                .addComponent(txtC31)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtC41))
-                            .addGroup(panelTxtLugaresLayout.createSequentialGroup()
-                                .addComponent(txtC32)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtC42, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtC51, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtC52, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtC61, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtC62, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtC71, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtC72, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addGap(24, 24, 24))
-        );
-        panelTxtLugaresLayout.setVerticalGroup(
-            panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelTxtLugaresLayout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtC1)
-                    .addComponent(txtC11)
-                    .addComponent(txtC21)
-                    .addComponent(txtC31)
-                    .addComponent(txtC41)
-                    .addComponent(txtC51)
-                    .addComponent(txtC61)
-                    .addComponent(txtC71))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtC2)
-                    .addComponent(txtC12)
-                    .addComponent(txtC22)
-                    .addComponent(txtC32)
-                    .addComponent(txtC42)
-                    .addComponent(txtC52)
-                    .addComponent(txtC62)
-                    .addComponent(txtC72))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtC3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtC13)
-                    .addComponent(txtC23)
-                    .addComponent(txtC33)
-                    .addComponent(txtC43)
-                    .addComponent(txtC53)
-                    .addComponent(txtC63)
-                    .addComponent(txtC73))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtC4)
-                    .addComponent(txtC14)
-                    .addComponent(txtC24)
-                    .addComponent(txtC34)
-                    .addComponent(txtC44)
-                    .addComponent(txtC54)
-                    .addComponent(txtC64)
-                    .addComponent(txtC74))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtC5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtC15)
-                    .addComponent(txtC25)
-                    .addComponent(txtC35)
-                    .addComponent(txtC45)
-                    .addComponent(txtC55)
-                    .addComponent(txtC65)
-                    .addComponent(txtC75))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtC6)
-                    .addComponent(txtC16)
-                    .addComponent(txtC26)
-                    .addComponent(txtC36)
-                    .addComponent(txtC46)
-                    .addComponent(txtC56)
-                    .addComponent(txtC66)
-                    .addComponent(txtC76))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtC7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtC17)
-                    .addComponent(txtC27)
-                    .addComponent(txtC37)
-                    .addComponent(txtC47)
-                    .addComponent(txtC57)
-                    .addComponent(txtC67)
-                    .addComponent(txtC77))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtC8)
-                    .addComponent(txtC18)
-                    .addComponent(txtC28)
-                    .addComponent(txtC38)
-                    .addComponent(txtC48)
-                    .addComponent(txtC58)
-                    .addComponent(txtC68)
-                    .addComponent(txtC78))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtC9, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtC19)
-                    .addComponent(txtC29)
-                    .addComponent(txtC39)
-                    .addComponent(txtC49)
-                    .addComponent(txtC59)
-                    .addComponent(txtC69)
-                    .addComponent(txtC79))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelTxtLugaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtC10)
-                    .addComponent(txtC20)
-                    .addComponent(txtC30)
-                    .addComponent(txtC40)
-                    .addComponent(txtC50)
-                    .addComponent(txtC60)
-                    .addComponent(txtC70)
-                    .addComponent(txtC80))
-                .addContainerGap(254, Short.MAX_VALUE))
-        );
-
-        panelMapa.add(panelTxtLugares, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 580));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ParqueoCroquis.png"))); // NOI18N
-        panelMapa.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 660, 580));
+        btnC89.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC89.setText("jToggleButton88");
+        panelMapa.add(btnC89, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 190, 40, -1));
+
+        btnC90.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC90.setText("jToggleButton89");
+        panelMapa.add(btnC90, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 210, 40, -1));
+
+        btnC91.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC91.setText("jToggleButton90");
+        panelMapa.add(btnC91, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 30, 40, -1));
+
+        btnC92.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC92.setText("jToggleButton91");
+        panelMapa.add(btnC92, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 50, 40, -1));
+
+        btnC93.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC93.setText("jToggleButton92");
+        panelMapa.add(btnC93, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 70, 40, -1));
+
+        btnC94.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC94.setText("jToggleButton93");
+        panelMapa.add(btnC94, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 90, 40, -1));
+
+        btnC95.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC95.setText("jToggleButton94");
+        panelMapa.add(btnC95, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 110, 40, -1));
+
+        btnC96.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC96.setText("jToggleButton95");
+        panelMapa.add(btnC96, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 130, 40, -1));
+
+        btnC97.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC97.setText("jToggleButton96");
+        panelMapa.add(btnC97, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 150, 40, -1));
+
+        btnC98.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC98.setText("jToggleButton97");
+        panelMapa.add(btnC98, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 170, 40, -1));
+
+        btnC99.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC99.setText("jToggleButton98");
+        panelMapa.add(btnC99, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 190, 40, -1));
+
+        btnC100.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC100.setText("jToggleButton99");
+        panelMapa.add(btnC100, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 210, 40, -1));
+
+        btnC101.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC101.setText("jToggleButton100");
+        panelMapa.add(btnC101, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 30, 40, -1));
+
+        btnC102.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC102.setText("jToggleButton101");
+        panelMapa.add(btnC102, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 50, 40, -1));
+
+        btnC103.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC103.setText("jToggleButton102");
+        panelMapa.add(btnC103, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 70, 40, -1));
+
+        btnC104.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC104.setText("jToggleButton103");
+        panelMapa.add(btnC104, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 90, 40, -1));
+
+        btnC105.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC105.setText("jToggleButton104");
+        panelMapa.add(btnC105, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 110, 40, -1));
+
+        btnC106.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC106.setText("jToggleButton105");
+        panelMapa.add(btnC106, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 130, 40, -1));
+
+        btnC107.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC107.setText("jToggleButton106");
+        panelMapa.add(btnC107, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 150, 40, -1));
+
+        btnC108.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC108.setText("jToggleButton107");
+        panelMapa.add(btnC108, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 170, 40, -1));
+
+        btnC109.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC109.setText("jToggleButton108");
+        panelMapa.add(btnC109, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 190, 40, -1));
+
+        btnC110.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC110.setText("jToggleButton109");
+        panelMapa.add(btnC110, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 210, 40, -1));
+
+        btnC111.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC111.setText("jToggleButton110");
+        panelMapa.add(btnC111, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 30, 40, -1));
+
+        btnC112.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC112.setText("jToggleButton111");
+        panelMapa.add(btnC112, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 50, 40, -1));
+
+        btnC113.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC113.setText("jToggleButton112");
+        panelMapa.add(btnC113, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 70, 40, -1));
+
+        btnC114.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC114.setText("jToggleButton113");
+        panelMapa.add(btnC114, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 90, 40, -1));
+
+        btnC115.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC115.setText("jToggleButton114");
+        panelMapa.add(btnC115, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 110, 40, -1));
+
+        btnC116.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC116.setText("jToggleButton115");
+        panelMapa.add(btnC116, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 130, 40, -1));
+
+        btnC117.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC117.setText("jToggleButton116");
+        panelMapa.add(btnC117, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 150, 40, -1));
+
+        btnC118.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC118.setText("jToggleButton117");
+        panelMapa.add(btnC118, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 170, 40, -1));
+
+        btnC119.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC119.setText("jToggleButton118");
+        panelMapa.add(btnC119, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 190, 40, -1));
+
+        btnC120.setFont(new java.awt.Font("Poppins", 0, 8)); // NOI18N
+        btnC120.setText("jToggleButton119");
+        panelMapa.add(btnC120, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 210, 40, -1));
+
+        btnCT10.setText("jToggleButton1");
+        panelMapa.add(btnCT10, new org.netbeans.lib.awtextra.AbsoluteConstraints(672, 330, 50, -1));
+
+        btnCT11.setText("jToggleButton2");
+        panelMapa.add(btnCT11, new org.netbeans.lib.awtextra.AbsoluteConstraints(672, 350, 50, -1));
+
+        btnCT12.setText("jToggleButton3");
+        panelMapa.add(btnCT12, new org.netbeans.lib.awtextra.AbsoluteConstraints(672, 370, 50, -1));
+
+        btnCT13.setText("jToggleButton4");
+        panelMapa.add(btnCT13, new org.netbeans.lib.awtextra.AbsoluteConstraints(672, 390, 50, -1));
+
+        btnCT14.setText("jToggleButton5");
+        panelMapa.add(btnCT14, new org.netbeans.lib.awtextra.AbsoluteConstraints(672, 410, 50, -1));
+
+        btnCT15.setText("jToggleButton6");
+        panelMapa.add(btnCT15, new org.netbeans.lib.awtextra.AbsoluteConstraints(672, 430, 50, -1));
+
+        btnCT16.setText("jToggleButton7");
+        panelMapa.add(btnCT16, new org.netbeans.lib.awtextra.AbsoluteConstraints(672, 450, 50, -1));
+
+        btnCT17.setText("jToggleButton8");
+        panelMapa.add(btnCT17, new org.netbeans.lib.awtextra.AbsoluteConstraints(672, 470, 50, -1));
+
+        btnCT18.setText("jToggleButton9");
+        panelMapa.add(btnCT18, new org.netbeans.lib.awtextra.AbsoluteConstraints(672, 490, 50, -1));
+
+        btnCT9.setText("jToggleButton10");
+        panelMapa.add(btnCT9, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 490, 50, -1));
+
+        btnCT8.setText("jToggleButton11");
+        panelMapa.add(btnCT8, new org.netbeans.lib.awtextra.AbsoluteConstraints(559, 470, 50, -1));
+
+        btnCT7.setText("jToggleButton12");
+        panelMapa.add(btnCT7, new org.netbeans.lib.awtextra.AbsoluteConstraints(559, 450, 50, -1));
+
+        btnCT6.setText("jToggleButton13");
+        panelMapa.add(btnCT6, new org.netbeans.lib.awtextra.AbsoluteConstraints(559, 430, 50, -1));
+
+        btnCT5.setText("jToggleButton14");
+        panelMapa.add(btnCT5, new org.netbeans.lib.awtextra.AbsoluteConstraints(559, 410, 50, -1));
+
+        btnCT4.setText("jToggleButton15");
+        panelMapa.add(btnCT4, new org.netbeans.lib.awtextra.AbsoluteConstraints(559, 390, 50, -1));
+
+        btnCT3.setText("jToggleButton16");
+        panelMapa.add(btnCT3, new org.netbeans.lib.awtextra.AbsoluteConstraints(559, 370, 50, -1));
+
+        btnCT2.setText("jToggleButton17");
+        panelMapa.add(btnCT2, new org.netbeans.lib.awtextra.AbsoluteConstraints(559, 350, 50, -1));
+
+        btnCT1.setText("jToggleButton18");
+        panelMapa.add(btnCT1, new org.netbeans.lib.awtextra.AbsoluteConstraints(559, 330, 50, -1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -629,8 +787,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(panelMapa, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addComponent(panelMapa, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -740,9 +898,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
       NuevaSalida salida = new NuevaSalida();
-      salida.setAlwaysOnTop(true);
       salida.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void btnC1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnC1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnC1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+      NuevoRegistro reg = new NuevoRegistro();
+      reg.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -771,6 +937,144 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton btnC1;
+    private javax.swing.JToggleButton btnC10;
+    private javax.swing.JToggleButton btnC100;
+    private javax.swing.JToggleButton btnC101;
+    private javax.swing.JToggleButton btnC102;
+    private javax.swing.JToggleButton btnC103;
+    private javax.swing.JToggleButton btnC104;
+    private javax.swing.JToggleButton btnC105;
+    private javax.swing.JToggleButton btnC106;
+    private javax.swing.JToggleButton btnC107;
+    private javax.swing.JToggleButton btnC108;
+    private javax.swing.JToggleButton btnC109;
+    private javax.swing.JToggleButton btnC11;
+    private javax.swing.JToggleButton btnC110;
+    private javax.swing.JToggleButton btnC111;
+    private javax.swing.JToggleButton btnC112;
+    private javax.swing.JToggleButton btnC113;
+    private javax.swing.JToggleButton btnC114;
+    private javax.swing.JToggleButton btnC115;
+    private javax.swing.JToggleButton btnC116;
+    private javax.swing.JToggleButton btnC117;
+    private javax.swing.JToggleButton btnC118;
+    private javax.swing.JToggleButton btnC119;
+    private javax.swing.JToggleButton btnC12;
+    private javax.swing.JToggleButton btnC120;
+    private javax.swing.JToggleButton btnC13;
+    private javax.swing.JToggleButton btnC14;
+    private javax.swing.JToggleButton btnC15;
+    private javax.swing.JToggleButton btnC16;
+    private javax.swing.JToggleButton btnC17;
+    private javax.swing.JToggleButton btnC18;
+    private javax.swing.JToggleButton btnC19;
+    private javax.swing.JToggleButton btnC2;
+    private javax.swing.JToggleButton btnC20;
+    private javax.swing.JToggleButton btnC21;
+    private javax.swing.JToggleButton btnC22;
+    private javax.swing.JToggleButton btnC23;
+    private javax.swing.JToggleButton btnC24;
+    private javax.swing.JToggleButton btnC25;
+    private javax.swing.JToggleButton btnC26;
+    private javax.swing.JToggleButton btnC27;
+    private javax.swing.JToggleButton btnC28;
+    private javax.swing.JToggleButton btnC29;
+    private javax.swing.JToggleButton btnC3;
+    private javax.swing.JToggleButton btnC30;
+    private javax.swing.JToggleButton btnC31;
+    private javax.swing.JToggleButton btnC32;
+    private javax.swing.JToggleButton btnC33;
+    private javax.swing.JToggleButton btnC34;
+    private javax.swing.JToggleButton btnC35;
+    private javax.swing.JToggleButton btnC36;
+    private javax.swing.JToggleButton btnC37;
+    private javax.swing.JToggleButton btnC38;
+    private javax.swing.JToggleButton btnC39;
+    private javax.swing.JToggleButton btnC4;
+    private javax.swing.JToggleButton btnC40;
+    private javax.swing.JToggleButton btnC41;
+    private javax.swing.JToggleButton btnC42;
+    private javax.swing.JToggleButton btnC43;
+    private javax.swing.JToggleButton btnC44;
+    private javax.swing.JToggleButton btnC45;
+    private javax.swing.JToggleButton btnC46;
+    private javax.swing.JToggleButton btnC47;
+    private javax.swing.JToggleButton btnC48;
+    private javax.swing.JToggleButton btnC49;
+    private javax.swing.JToggleButton btnC5;
+    private javax.swing.JToggleButton btnC50;
+    private javax.swing.JToggleButton btnC51;
+    private javax.swing.JToggleButton btnC52;
+    private javax.swing.JToggleButton btnC53;
+    private javax.swing.JToggleButton btnC54;
+    private javax.swing.JToggleButton btnC55;
+    private javax.swing.JToggleButton btnC56;
+    private javax.swing.JToggleButton btnC57;
+    private javax.swing.JToggleButton btnC58;
+    private javax.swing.JToggleButton btnC59;
+    private javax.swing.JToggleButton btnC6;
+    private javax.swing.JToggleButton btnC60;
+    private javax.swing.JToggleButton btnC61;
+    private javax.swing.JToggleButton btnC62;
+    private javax.swing.JToggleButton btnC63;
+    private javax.swing.JToggleButton btnC64;
+    private javax.swing.JToggleButton btnC65;
+    private javax.swing.JToggleButton btnC66;
+    private javax.swing.JToggleButton btnC67;
+    private javax.swing.JToggleButton btnC68;
+    private javax.swing.JToggleButton btnC69;
+    private javax.swing.JToggleButton btnC7;
+    private javax.swing.JToggleButton btnC70;
+    private javax.swing.JToggleButton btnC71;
+    private javax.swing.JToggleButton btnC72;
+    private javax.swing.JToggleButton btnC73;
+    private javax.swing.JToggleButton btnC74;
+    private javax.swing.JToggleButton btnC75;
+    private javax.swing.JToggleButton btnC76;
+    private javax.swing.JToggleButton btnC77;
+    private javax.swing.JToggleButton btnC78;
+    private javax.swing.JToggleButton btnC79;
+    private javax.swing.JToggleButton btnC8;
+    private javax.swing.JToggleButton btnC80;
+    private javax.swing.JToggleButton btnC81;
+    private javax.swing.JToggleButton btnC82;
+    private javax.swing.JToggleButton btnC83;
+    private javax.swing.JToggleButton btnC84;
+    private javax.swing.JToggleButton btnC85;
+    private javax.swing.JToggleButton btnC86;
+    private javax.swing.JToggleButton btnC87;
+    private javax.swing.JToggleButton btnC88;
+    private javax.swing.JToggleButton btnC89;
+    private javax.swing.JToggleButton btnC9;
+    private javax.swing.JToggleButton btnC90;
+    private javax.swing.JToggleButton btnC91;
+    private javax.swing.JToggleButton btnC92;
+    private javax.swing.JToggleButton btnC93;
+    private javax.swing.JToggleButton btnC94;
+    private javax.swing.JToggleButton btnC95;
+    private javax.swing.JToggleButton btnC96;
+    private javax.swing.JToggleButton btnC97;
+    private javax.swing.JToggleButton btnC98;
+    private javax.swing.JToggleButton btnC99;
+    private javax.swing.JToggleButton btnCT1;
+    private javax.swing.JToggleButton btnCT10;
+    private javax.swing.JToggleButton btnCT11;
+    private javax.swing.JToggleButton btnCT12;
+    private javax.swing.JToggleButton btnCT13;
+    private javax.swing.JToggleButton btnCT14;
+    private javax.swing.JToggleButton btnCT15;
+    private javax.swing.JToggleButton btnCT16;
+    private javax.swing.JToggleButton btnCT17;
+    private javax.swing.JToggleButton btnCT18;
+    private javax.swing.JToggleButton btnCT2;
+    private javax.swing.JToggleButton btnCT3;
+    private javax.swing.JToggleButton btnCT4;
+    private javax.swing.JToggleButton btnCT5;
+    private javax.swing.JToggleButton btnCT6;
+    private javax.swing.JToggleButton btnCT7;
+    private javax.swing.JToggleButton btnCT8;
+    private javax.swing.JToggleButton btnCT9;
     private javax.swing.JButton btnNuevoTicket;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -781,109 +1085,42 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JPanel panelDatosUser;
     private javax.swing.JPanel panelMapa;
-    private javax.swing.JPanel panelTxtLugares;
-    private javax.swing.JLabel txtC1;
-    private javax.swing.JLabel txtC10;
-    private javax.swing.JLabel txtC11;
-    private javax.swing.JLabel txtC12;
-    private javax.swing.JLabel txtC13;
-    private javax.swing.JLabel txtC14;
-    private javax.swing.JLabel txtC15;
-    private javax.swing.JLabel txtC16;
-    private javax.swing.JLabel txtC17;
-    private javax.swing.JLabel txtC18;
-    private javax.swing.JLabel txtC19;
-    private javax.swing.JLabel txtC2;
-    private javax.swing.JLabel txtC20;
-    private javax.swing.JLabel txtC21;
-    private javax.swing.JLabel txtC22;
-    private javax.swing.JLabel txtC23;
-    private javax.swing.JLabel txtC24;
-    private javax.swing.JLabel txtC25;
-    private javax.swing.JLabel txtC26;
-    private javax.swing.JLabel txtC27;
-    private javax.swing.JLabel txtC28;
-    private javax.swing.JLabel txtC29;
-    private javax.swing.JLabel txtC3;
-    private javax.swing.JLabel txtC30;
-    private javax.swing.JLabel txtC31;
-    private javax.swing.JLabel txtC32;
-    private javax.swing.JLabel txtC33;
-    private javax.swing.JLabel txtC34;
-    private javax.swing.JLabel txtC35;
-    private javax.swing.JLabel txtC36;
-    private javax.swing.JLabel txtC37;
-    private javax.swing.JLabel txtC38;
-    private javax.swing.JLabel txtC39;
-    private javax.swing.JLabel txtC4;
-    private javax.swing.JLabel txtC40;
-    private javax.swing.JLabel txtC41;
-    private javax.swing.JLabel txtC42;
-    private javax.swing.JLabel txtC43;
-    private javax.swing.JLabel txtC44;
-    private javax.swing.JLabel txtC45;
-    private javax.swing.JLabel txtC46;
-    private javax.swing.JLabel txtC47;
-    private javax.swing.JLabel txtC48;
-    private javax.swing.JLabel txtC49;
-    private javax.swing.JLabel txtC5;
-    private javax.swing.JLabel txtC50;
-    private javax.swing.JLabel txtC51;
-    private javax.swing.JLabel txtC52;
-    private javax.swing.JLabel txtC53;
-    private javax.swing.JLabel txtC54;
-    private javax.swing.JLabel txtC55;
-    private javax.swing.JLabel txtC56;
-    private javax.swing.JLabel txtC57;
-    private javax.swing.JLabel txtC58;
-    private javax.swing.JLabel txtC59;
-    private javax.swing.JLabel txtC6;
-    private javax.swing.JLabel txtC60;
-    private javax.swing.JLabel txtC61;
-    private javax.swing.JLabel txtC62;
-    private javax.swing.JLabel txtC63;
-    private javax.swing.JLabel txtC64;
-    private javax.swing.JLabel txtC65;
-    private javax.swing.JLabel txtC66;
-    private javax.swing.JLabel txtC67;
-    private javax.swing.JLabel txtC68;
-    private javax.swing.JLabel txtC69;
-    private javax.swing.JLabel txtC7;
-    private javax.swing.JLabel txtC70;
-    private javax.swing.JLabel txtC71;
-    private javax.swing.JLabel txtC72;
-    private javax.swing.JLabel txtC73;
-    private javax.swing.JLabel txtC74;
-    private javax.swing.JLabel txtC75;
-    private javax.swing.JLabel txtC76;
-    private javax.swing.JLabel txtC77;
-    private javax.swing.JLabel txtC78;
-    private javax.swing.JLabel txtC79;
-    private javax.swing.JLabel txtC8;
-    private javax.swing.JLabel txtC80;
-    private javax.swing.JLabel txtC9;
     // End of variables declaration//GEN-END:variables
 
-    private void iniciarVerificacionLugaresCarros() {
-    JLabel[] labels = {
-        txtC1, txtC2, txtC3, txtC4, txtC5, txtC6, txtC7, txtC8, txtC9, txtC10,
-        txtC11, txtC12, txtC13, txtC14, txtC15, txtC16, txtC17, txtC18, txtC19, txtC20,
-        txtC21, txtC22, txtC23, txtC24, txtC25, txtC26, txtC27, txtC28, txtC29, txtC30,
-        txtC31, txtC32, txtC33, txtC34, txtC35, txtC36, txtC37, txtC38, txtC39, txtC40,
-        txtC41, txtC42, txtC43, txtC44, txtC45, txtC46, txtC47, txtC48, txtC49, txtC50,
-        txtC51, txtC52, txtC53, txtC54, txtC55, txtC56, txtC57, txtC58, txtC59, txtC60,
-        txtC61, txtC62, txtC63, txtC64, txtC65, txtC66, txtC67, txtC68, txtC69, txtC70,
-        txtC71, txtC72, txtC73, txtC74, txtC75, txtC76, txtC77, txtC78, txtC79, txtC80
+private void iniciarVerificacionLugaresCarros() {
+
+    JToggleButton[] buttons = {
+        btnC1, btnC2, btnC3, btnC4, btnC5, btnC6, btnC7, btnC8, btnC9, btnC10,
+        btnC11, btnC12, btnC13, btnC14, btnC15, btnC16, btnC17, btnC18, btnC19, btnC20,
+        btnC21, btnC22, btnC23, btnC24, btnC25, btnC26, btnC27, btnC28, btnC29, btnC30,
+        btnC31, btnC32, btnC33, btnC34, btnC35, btnC36, btnC37, btnC38, btnC39, btnC40,
+        btnC41, btnC42, btnC43, btnC44, btnC45, btnC46, btnC47, btnC48, btnC49, btnC50,
+        btnC51, btnC52, btnC53, btnC54, btnC55, btnC56, btnC57, btnC58, btnC59, btnC60,
+        btnC61, btnC62, btnC63, btnC64, btnC65, btnC66, btnC67, btnC68, btnC69, btnC70,
+        btnC71, btnC72, btnC73, btnC74, btnC75, btnC76, btnC77, btnC78, btnC79, btnC80,
+        btnC81, btnC82, btnC83, btnC84, btnC85, btnC86, btnC87, btnC88, btnC89, btnC90,
+        btnC91, btnC92, btnC93, btnC94, btnC95, btnC96, btnC97, btnC98, btnC99, btnC100,
+        btnC101, btnC102, btnC103, btnC104, btnC105, btnC106, btnC107, btnC108, btnC109, btnC110,
+        btnC111, btnC112, btnC113, btnC114, btnC115, btnC116, btnC117, btnC118, btnC119, btnC120
     };
 
+  
+    for (int i = 0; i < buttons.length; i++) {
 
-    for (JLabel label : labels) {
-        label.setOpaque(true);
+        JToggleButton btn = buttons[i];
+
+        btn.setText(String.valueOf(i + 1)); 
+
+        btn.setOpaque(true); // permite ver color
+        btn.setContentAreaFilled(true);
+        btn.setBorderPainted(true);
+        btn.putClientProperty("JButton.buttonType", "square"); 
+
+
     }
 
 
@@ -893,41 +1130,108 @@ public class MenuPrincipal extends javax.swing.JFrame {
                  Statement st = con.createStatement();
                  ResultSet rs = st.executeQuery("SELECT numero, ocupado FROM lugaresCarros")) {
 
-
-                int[] ocupados = new int[labels.length];
+                int[] ocupados = new int[buttons.length];
 
                 while (rs.next()) {
                     int id = rs.getInt("numero");
                     int ocupado = rs.getInt("ocupado");
 
-                    if (id >= 1 && id <= labels.length) {
+                    if (id >= 1 && id <= buttons.length) {
                         ocupados[id - 1] = ocupado;
                     }
                 }
 
-
+      
                 SwingUtilities.invokeLater(() -> {
-                    for (int i = 0; i < labels.length; i++) {
-                        JLabel label = labels[i];
+                    for (int i = 0; i < buttons.length; i++) {
+                        JToggleButton btn = buttons[i];
+
                         if (ocupados[i] == 1) {
-                            label.setForeground(Color.RED);   // lugar ocupado
+                            btn.setBackground(Color.RED); // ocupado
+                            btn.setForeground(Color.WHITE);
+                            btn.setToolTipText("Lugar " + (i + 1) + " — Ocupado");
+                            btn.setEnabled(false);
                         } else {
-                            label.setForeground(new Color(0, 128, 0)); // lugar libre
+                            btn.setBackground(Color.GREEN); // libre (verde)
+                            btn.setForeground(Color.BLACK);
+                            btn.setToolTipText("Lugar " + (i + 1) + " — Libre");
+                            btn.setEnabled(false);
                         }
                     }
                 });
 
-                Thread.sleep(2000); // actualiza cada 2 segundos
+                Thread.sleep(2000);
+
             } catch (Exception e) {
-                System.err.println("Error en hilo de actualización: " + e.getMessage());
                 e.printStackTrace();
             }
         }
     });
 
-    hilo.setDaemon(true); // hace que el hilo se cierre al salir del programa
+    hilo.setDaemon(true);
     hilo.start();
 }
+private void iniciarVerificacionLugaresCatedraticos() {
+
+    JToggleButton[] buttons = {
+        btnCT1, btnCT2, btnCT3, btnCT4, btnCT5, btnCT6,
+        btnCT7, btnCT8, btnCT9, btnCT10, btnCT11, btnCT12,
+        btnCT13, btnCT14, btnCT15, btnCT16, btnCT17, btnCT18
+    };
+
+    for (int i = 0; i < buttons.length; i++) {
+        JToggleButton btn = buttons[i];
+        btn.setText(String.valueOf(i + 1));
+        btn.setEnabled(false);
+        btn.setOpaque(true);
+        btn.setContentAreaFilled(true);
+        btn.setBorderPainted(true);
+        btn.setBackground(new Color(0, 128, 0));
+        btn.setForeground(Color.WHITE);
+        btn.setToolTipText("Lugar CT " + (i + 1) + " — Libre");
+    }
+
+    Thread hilo = new Thread(() -> {
+        while (true) {
+            try (Connection con = ConexionSQL.conectar();
+                 Statement st = con.createStatement();
+                 ResultSet rs = st.executeQuery("SELECT numero, ocupado FROM lugaresCatedraticos")) {
+
+                int[] ocupados = new int[buttons.length];
+
+                while (rs.next()) {
+                    int numero = rs.getInt("numero");
+                    int ocupado = rs.getInt("ocupado");
+                    if (numero >= 1 && numero <= buttons.length) {
+                        ocupados[numero - 1] = ocupado;
+                    }
+                }
+
+                SwingUtilities.invokeLater(() -> {
+                    for (int i = 0; i < buttons.length; i++) {
+                        JToggleButton btn = buttons[i];
+                        if (ocupados[i] == 1) {
+                            btn.setBackground(Color.RED);
+                            btn.setToolTipText("Lugar CT " + (i + 1) + " — OCUPADO");
+                        } else {
+                            btn.setBackground(Color.GREEN);
+                            btn.setToolTipText("Lugar CT " + (i + 1) + " — Libre");
+                        }
+                    }
+                });
+
+                Thread.sleep(2000);
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    });
+
+    hilo.setDaemon(true);
+    hilo.start();
+}
+
 
 }
 

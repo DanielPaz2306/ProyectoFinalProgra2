@@ -32,8 +32,9 @@ public class LugarDAO {
 
             if (rs.next()) {
                 int idLugar = rs.getInt("id");
+                lugarOcupado = rs.getInt("numero");
                 // Actualizar el lugar como ocupado
-                String updateLugar = "UPDATE lugaresMotos SET ocupado = 1, placa = ?, hora_entrada = ? WHERE idTicket = ?";
+                String updateLugar = "UPDATE lugaresMotos SET ocupado = 1, placa = ?, hora_entrada = ? WHERE id = ?";
                 try (PreparedStatement psUpdate = conn.prepareStatement(updateLugar)) {
                     psUpdate.setString(1, placa);
                     psUpdate.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
@@ -42,12 +43,13 @@ public class LugarDAO {
                 }
 
                 // Insertar registro de entrada
-                String insertRegistro = "INSERT INTO historico (placa, hora_entrada, tipo_vehiculo, lugarOcupado, tarifa) VALUES (?, ?, 'MOTOCICLETA', ?)";
+                String insertRegistro = "INSERT INTO historico (placa, hora_entrada, tipoVehiculo, esCatedratico, lugarOcupado, tarifa) VALUES (?, ?, 'Moto','0', ?, ?)";
                 try (PreparedStatement psReg = conn.prepareStatement(insertRegistro)) {
+                    String m = "M-";
+                    String lugar = m + lugarOcupado;
                     psReg.setString(1, placa);
                     psReg.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
-                    lugarOcupado = rs.getInt("numero");
-                    psReg.setInt(3, lugarOcupado);
+                    psReg.setString(3, lugar);
                     psReg.setString(4, tipoTarifa);
                     psReg.executeUpdate();
                 }
@@ -55,8 +57,10 @@ public class LugarDAO {
                 JOptionPane.showMessageDialog(null, "El Vehículo " + placa + " ingresó en lugar M" + rs.getInt("numero"));
                 lugarOcupado = rs.getInt("numero");
                 return lugarOcupado;
-            } else {
+            } 
+            else {
                 JOptionPane.showMessageDialog(null, "No hay lugares disponibles, espere a que se desocupe uno");
+                return null;
             }
 
         } catch (SQLException e) {
@@ -74,6 +78,7 @@ public class LugarDAO {
 
             if (rs.next()) {
                 int idLugar = rs.getInt("id");
+                lugarOcupado = rs.getInt("numero");
                 // EL LUGAR PASA A ESTAR OCUPADO
                 String updateLugar = "UPDATE lugaresCarros SET ocupado = 1, placa = ?, hora_entrada = ? WHERE id = ?";
                 try (PreparedStatement psUpdate = conn.prepareStatement(updateLugar)) {
@@ -84,12 +89,13 @@ public class LugarDAO {
                 }
 
                 // INGRESO a HISTORICO
-                String insertRegistro = "INSERT INTO historico (placa, hora_entrada, tipo_vehiculo, lugarOcupado, tarifa) VALUES (?, ?, 'CARRO', ?)";
+                String insertRegistro = "INSERT INTO historico (placa, hora_entrada, tipoVehiculo, esCatedratico, lugarOcupado, tarifa) VALUES (?, ?, 'Carro', '0', ?, ?)";
                 try (PreparedStatement psReg = conn.prepareStatement(insertRegistro)) {
+                    String c = "C-";
+                    String lugar = c+lugarOcupado;
                     psReg.setString(1, placa);
                     psReg.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
-                    lugarOcupado = rs.getInt("numero");
-                    psReg.setInt(3, lugarOcupado);
+                    psReg.setString(3, lugar);
                     psReg.setString(4, tipoTarifa);
                     psReg.executeUpdate();
                 }
@@ -99,7 +105,7 @@ public class LugarDAO {
                 return lugarOcupado;
             } else {
                 JOptionPane.showMessageDialog(null, "No hay lugares disponibles, espere a que se desocupe uno");
-                
+                return null;
             }
 
         } catch (SQLException e) {
@@ -117,8 +123,9 @@ public class LugarDAO {
 
             if (rs.next()) {
                 int idLugar = rs.getInt("id");
+                lugarOcupado = rs.getInt("numero");
                 // ACTUALIZA EL LUGAR
-                String updateLugar = "UPDATE lugaresCatedraticos SET ocupado = 1, placa = ?, hora_entrada = ?, tipoVehiculo = ? WHERE idTicket = ?";
+                String updateLugar = "UPDATE lugaresCatedraticos SET ocupado = 1, placa = ?, hora_entrada = ?, tipoVehiculo = ? WHERE id = ?";
                 try (PreparedStatement psUpdate = conn.prepareStatement(updateLugar)) {
                     psUpdate.setString(1, placa);
                     psUpdate.setObject(2, LocalDateTime.now());
@@ -128,13 +135,14 @@ public class LugarDAO {
                 }
 
                 // INGRESAR AL HISTORICO
-                String insertRegistro = "INSERT INTO historico (placa, hora_entrada, tipo_vehiculo ,lugarOcupado, tarifa) VALUES (?, ?, ?, ?, ?)";
+                String insertRegistro = "INSERT INTO historico (placa, hora_entrada, tipoVehiculo , esCatedratico,lugarOcupado, tarifa) VALUES (?, ?, ?, '1', ?, ?)";
                 try (PreparedStatement psReg = conn.prepareStatement(insertRegistro)) {
+                    String ct = "CT-";
+                    String lugar = ct+lugarOcupado;
                     psReg.setString(1, placa);
                     psReg.setObject(2, LocalDateTime.now());
                     psReg.setString(3, tipoVehiculo);
-                    lugarOcupado = rs.getInt("numero");
-                    psReg.setInt(4, lugarOcupado);
+                    psReg.setString(4, lugar);
                     psReg.setString(5, tipoTarifa);
                     psReg.executeUpdate();
                 }
@@ -145,7 +153,7 @@ public class LugarDAO {
                
             } else {
                 JOptionPane.showMessageDialog(null, "No hay lugares disponibles, espere a que se desocupe uno");
-                
+                return null;
             }
 
         } catch (SQLException e) {
@@ -189,8 +197,7 @@ public class LugarDAO {
                         psReg.setString(3, placa);
                         psReg.executeUpdate();
                     }
-
-                    
+                    JOptionPane.showMessageDialog(null, "El Vehiculo placas "+placa+" ha abandonado el recinto exitosamente.");
                     return total;
 
                 } else {
@@ -208,7 +215,7 @@ public class LugarDAO {
     }
     public double registrarSalidaMotoVariable(String placa, double tarifaPorHora) {
         double total = 0;
-        String queryLugar = "SELECT * FROM lugaresMoto WHERE placa = ?";
+        String queryLugar = "SELECT * FROM lugaresMotos WHERE placa = ?";
         try (Connection conn = ConexionSQL.conectar();
              PreparedStatement psLugar = conn.prepareStatement(queryLugar)) {
 
@@ -220,7 +227,7 @@ public class LugarDAO {
                     LocalDateTime salida = LocalDateTime.now();
 
                     //LIBERA EL LUGAR
-                    String updateLugar = "UPDATE lugaresMoto SET ocupado = 0, placa = NULL, hora_entrada = NULL WHERE id = ?";
+                    String updateLugar = "UPDATE lugaresMotos SET ocupado = 0, placa = NULL, hora_entrada = NULL WHERE id = ?";
                     try (PreparedStatement psUpdate = conn.prepareStatement(updateLugar)) {
                         psUpdate.setInt(1, idLugar);
                         psUpdate.executeUpdate();
@@ -238,11 +245,11 @@ public class LugarDAO {
                         psReg.setString(3, placa);
                         psReg.executeUpdate();
                     }
-
+                    JOptionPane.showMessageDialog(null, "El Vehiculo Placas "+placa+" ha salido del recinto.");
                     return total;
                 } else {
                     JOptionPane.showMessageDialog(null, "No se encuentra el Vehiculo Ingresado");
-                   
+                    
                 }
             }
 
@@ -284,7 +291,7 @@ public class LugarDAO {
                         psReg.setString(3, placa);
                         psReg.executeUpdate();
                     }
-
+                    JOptionPane.showMessageDialog(null, "El Vehiculo Placas "+placa+" ha salido del recinto.");
                     return total;
 
                 } else {
@@ -333,7 +340,7 @@ public class LugarDAO {
                         psReg.executeUpdate();
                     }
 
-                    
+                    JOptionPane.showMessageDialog(null, "El Vehiculo Placas "+placa+" ha salido del recinto.");
                     return total;
 
                 } else {
@@ -351,19 +358,20 @@ public class LugarDAO {
     }
     public double registrarSalidaMotoFlat(String placa){
         double total = 0;
-        String queryLugar = "SELECT * FROM lugaresMoto WHERE placa = ?";
+        String queryLugar = "SELECT * FROM lugaresMotos WHERE placa = ?";
         try (Connection conn = ConexionSQL.conectar();
              PreparedStatement psLugar = conn.prepareStatement(queryLugar)) {
 
             psLugar.setString(1, placa);
             try (ResultSet rs = psLugar.executeQuery()) {
+                
                 if (rs.next()) {
                     int idLugar = rs.getInt("id");
                     Timestamp entrada = rs.getTimestamp("hora_entrada");
                     LocalDateTime salida = LocalDateTime.now();
 
                     //LIBERA EL LUGAR
-                    String updateLugar = "UPDATE lugaresCarros SET ocupado = 0, placa = NULL, hora_entrada = NULL WHERE id = ?";
+                    String updateLugar = "UPDATE lugaresMotos SET ocupado = 0, placa = NULL, hora_entrada = NULL WHERE id = ?";
                     try (PreparedStatement psUpdate = conn.prepareStatement(updateLugar)) {
                         psUpdate.setInt(1, idLugar);
                         psUpdate.executeUpdate();
@@ -381,7 +389,7 @@ public class LugarDAO {
                         psReg.setString(3, placa);
                         psReg.executeUpdate();
                     }
-
+                    JOptionPane.showMessageDialog(null, "El Vehiculo Placas "+placa+" ha salido del recinto.");
                     return total;
 
                 } else {
@@ -399,7 +407,7 @@ public class LugarDAO {
     }
     public double registrarSalidaCatedraticoFlat(String placa){
         double total = 0;
-        String queryLugar = "SELECT * FROM lugaresCatedráticos WHERE placa = ?";
+        String queryLugar = "SELECT * FROM lugaresCatedraticos WHERE placa = ?";
         try (Connection conn = ConexionSQL.conectar();
              PreparedStatement psLugar = conn.prepareStatement(queryLugar)) {
 
@@ -429,7 +437,7 @@ public class LugarDAO {
                         psReg.setString(3, placa);
                         psReg.executeUpdate();
                     }
-
+                    JOptionPane.showMessageDialog(null, "El Vehiculo Placas "+placa+" ha salido del recinto.");
                     return total;
 
                 } else {

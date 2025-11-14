@@ -535,7 +535,8 @@ public static void importarRegistros(File archivo, Connection con) {
                     
                     
                     
-                    String sql = "INSERT INTO lugaresMotos (numero, ocupado, placa, hora_entrada, tipoVehiculo) VALUES (?, ?, NULL, NULL)";
+                    
+                    String sql = "INSERT INTO lugaresMotos (numero, ocupado, placa, hora_entrada) VALUES (?, ?, NULL, NULL)";
 
                     try (PreparedStatement ps = con.prepareStatement(sql)) {
                         ps.setString(1, numero);
@@ -547,6 +548,7 @@ public static void importarRegistros(File archivo, Connection con) {
                 System.out.println("✅ Datos importados correctamente desde el CSV.");
 
             } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Importe Fallido ");
                 e.printStackTrace();
             }
         }

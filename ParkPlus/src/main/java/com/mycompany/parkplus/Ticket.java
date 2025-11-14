@@ -87,67 +87,39 @@ public class Ticket {
     public void imprimirTicketFlatCarro(){
         LocalDateTime ahora = LocalDateTime.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("MM/dd");
-        String fechaFormateada = ahora.format(formato);
         JOptionPane.showMessageDialog(null,
-                  "\nID Ticket: " + this.idTicket
-                + "\nFecha de Ingreso: " + this.fecha
-                + "\nFecha de Salida: " + fechaFormateada
-                + "\nPlaca: " + this.vehiculo.getPlaca()
-                + "\nNombre: "+ this.vehiculo.getNombre()
-                + "\nCarnet: "+ this.vehiculo.getCarnet()
-                + "\nTarifa Pagada: "+ this.tarifa
-                + "\nTipo de Vehiculo: "+ this.vehiculo.getTipo()
-                + "\nLugar Asignado: C-"+ this.lugarAsignado
-                + "\nTotal a Pagar: Q"+ this.totalTicket);
+                  "\nID Ticket: TKT-" + this.idTicket
+                + "\nFecha de Ingreso: " + this.fecha+ "     Placa: " + this.vehiculo.getPlaca()
+                + "\nNombre: "+ this.vehiculo.getNombre()+"     Carnet: "+ this.vehiculo.getCarnet()
+                + "\nTarifa Pagada: "+ this.tarifa+"     Lugar Asignado: C-"+ this.lugarAsignado);
     }
     public void imprimirTicketFlatMoto(){
         LocalDateTime ahora = LocalDateTime.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("MM/dd");
-        String fechaFormateada = ahora.format(formato);
         JOptionPane.showMessageDialog(null,
                   "\nID Ticket: TKT-" + this.idTicket
-                + "\nFecha de Ingreso: " + this.fecha
-                + "\nFecha de Salida: " + fechaFormateada
-                + "\nPlaca: " + this.vehiculo.getPlaca()
-                + "\nNombre: "+ this.vehiculo.getNombre()
-                + "\nCarnet: "+ this.vehiculo.getCarnet()
-                + "\nTarifa Pagada: "+ this.tarifa
-                + "\nTipo de Vehiculo: "+ this.vehiculo.getTipo()
-                + "\nLugar Asignado: M-"+ this.lugarAsignado
-                + "\nTotal a Pagar: Q"+ this.totalTicket);
+                + "\nFecha de Ingreso: " + this.fecha+ "     Placa: " + this.vehiculo.getPlaca()
+                + "\nNombre: "+ this.vehiculo.getNombre()+"     Carnet: "+ this.vehiculo.getCarnet()
+                + "\nTarifa Pagada: "+ this.tarifa+"     Lugar Asignado: C-"+ this.lugarAsignado);
     }
     public void imprimirTicketFlatCatedratico(){
         LocalDateTime ahora = LocalDateTime.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("MM/dd");
-        String fechaFormateada = ahora.format(formato);
         JOptionPane.showMessageDialog(null,
                   "\nID Ticket: TKT-" + this.idTicket
-                + "\nFecha de Ingreso: " + this.fecha
-                + "\nFecha de Salida: " + fechaFormateada
-                + "\nPlaca: " + this.vehiculo.getPlaca()
-                + "\nNombre: "+ this.vehiculo.getNombre()
-                + "\nCarnet: "+ this.vehiculo.getCarnet()
-                + "\nTarifa Pagada: "+ this.tarifa
-                + "\nTipo de Vehiculo: "+ this.vehiculo.getTipo()
-                + "\nLugar Asignado: CT-"+ this.lugarAsignado
-                + "\nTotal a Pagar: Q"+ this.totalTicket);
+                + "\nFecha de Ingreso: " + this.fecha+ "     Placa: " + this.vehiculo.getPlaca()
+                + "\nNombre: "+ this.vehiculo.getNombre()+"     Carnet: "+ this.vehiculo.getCarnet()
+                + "\nTarifa Pagada: "+ this.tarifa+"     Lugar Asignado: C-"+ this.lugarAsignado);
     }
     
     public void imprimirTicketVariableCarro(){
         LocalDateTime ahora = LocalDateTime.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("MM/dd");
-        String fechaFormateada = ahora.format(formato);
         JOptionPane.showMessageDialog(null,
                   "\nID Ticket: TKT-" + this.idTicket
-                + "\nFecha de Ingreso: " + this.fecha
-                + "\nFecha de Salida: " + fechaFormateada
-                + "\nPlaca: " + this.vehiculo.getPlaca()
-                + "\nNombre: "+ this.vehiculo.getNombre()
-                + "\nCarnet: "+ this.vehiculo.getCarnet()
-                + "\nTarifa Pagada: "+ this.tarifa
-                + "\nTipo de Vehiculo: "+ this.vehiculo.getTipo()
-                + "\nLugar Asignado: C-"+ this.lugarAsignado
-                + "\nTotal a Pagar: Q"+ this.totalTicket);
+                + "\nFecha de Ingreso: " + this.fecha+ "     Placa: " + this.vehiculo.getPlaca()
+                + "\nNombre: "+ this.vehiculo.getNombre()+"     Carnet: "+ this.vehiculo.getCarnet()
+                + "\nTarifa Pagada: "+ this.tarifa+"     Lugar Asignado: C-"+ this.lugarAsignado);
     }
     public void imprimirTicketVariableMoto(){
         LocalDateTime ahora = LocalDateTime.now();
@@ -155,17 +127,22 @@ public class Ticket {
         String fechaFormateada = ahora.format(formato);
         JOptionPane.showMessageDialog(null,
                   "\nID Ticket: TKT-" + this.idTicket
-                + "\nFecha de Ingreso: " + this.fecha
-                + "\nFecha de Salida: " + fechaFormateada
-                + "\nPlaca: " + this.vehiculo.getPlaca()
-                + "\nNombre: "+ this.vehiculo.getNombre()
-                + "\nCarnet: "+ this.vehiculo.getCarnet()
-                + "\nTarifa Pagada: "+ this.tarifa
-                + "\nTipo de Vehiculo: "+ this.vehiculo.getTipo()
-                + "\nLugar Asignado: M-"+ this.lugarAsignado
-                + "\nTotal a Pagar: Q"+ this.totalTicket);
+                + "\nFecha de Ingreso: " + this.fecha+ "     Placa: " + this.vehiculo.getPlaca()
+                + "\nNombre: "+ this.vehiculo.getNombre()+"     Carnet: "+ this.vehiculo.getCarnet()
+                + "\nTarifa Pagada: "+ this.tarifa+"     Lugar Asignado: C-"+ this.lugarAsignado);
     }
     public void imprimirTicketVariableCatedratico(){
+        LocalDateTime ahora = LocalDateTime.now();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("MM/dd");
+        String fechaFormateada = ahora.format(formato);
+        JOptionPane.showMessageDialog(null,
+                  "\nID Ticket: TKT-" + this.idTicket
+                + "\nFecha de Ingreso: " + this.fecha+ "     Placa: " + this.vehiculo.getPlaca()
+                + "\nNombre: "+ this.vehiculo.getNombre()+"     Carnet: "+ this.vehiculo.getCarnet()
+                + "\nTarifa Pagada: "+ this.tarifa+"     Lugar Asignado: C-"+ this.lugarAsignado);
+    }
+    
+    public void imprimirFacturaVariableCarro(){
         LocalDateTime ahora = LocalDateTime.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("MM/dd");
         String fechaFormateada = ahora.format(formato);
@@ -178,7 +155,7 @@ public class Ticket {
                 + "\nCarnet: "+ this.vehiculo.getCarnet()
                 + "\nTarifa Pagada: "+ this.tarifa
                 + "\nTipo de Vehiculo: "+ this.vehiculo.getTipo()
-                + "\nLugar Asignado: CT-"+ this.lugarAsignado
+                + "\nLugar Asignado: C-"+ this.lugarAsignado
                 + "\nTotal a Pagar: Q"+ this.totalTicket);
     }
 }

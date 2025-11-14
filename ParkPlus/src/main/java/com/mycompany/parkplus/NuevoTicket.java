@@ -55,10 +55,16 @@ public class NuevoTicket extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         comboTipo = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        txtApellido = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtCorreo = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtTelefono = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(176, 204, 224));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
         labelPlaca.setFont(new java.awt.Font("Gontserrat SemiBold", 0, 24)); // NOI18N
         labelPlaca.setText("Placa");
@@ -71,6 +77,7 @@ public class NuevoTicket extends javax.swing.JFrame {
 
         txtNombre.setEditable(false);
         txtNombre.setBackground(new java.awt.Color(255, 255, 255));
+        txtNombre.setForeground(new java.awt.Color(0, 153, 0));
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreActionPerformed(evt);
@@ -82,6 +89,7 @@ public class NuevoTicket extends javax.swing.JFrame {
 
         txtCarnet.setEditable(false);
         txtCarnet.setBackground(new java.awt.Color(255, 255, 255));
+        txtCarnet.setForeground(new java.awt.Color(0, 153, 0));
 
         jLabel3.setText("Fecha y Hora");
 
@@ -89,14 +97,16 @@ public class NuevoTicket extends javax.swing.JFrame {
         txtFecha.setBackground(new java.awt.Color(255, 255, 255));
         txtFecha.setText(fechaHoraFormateada);
 
-        buttonGroup1.add(radioCatedratico);
         radioCatedratico.setFont(new java.awt.Font("Gontserrat", 0, 12)); // NOI18N
         radioCatedratico.setText("Catedrático");
+        radioCatedratico.setContentAreaFilled(false);
         radioCatedratico.setEnabled(false);
 
+        btnFlat.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup2.add(btnFlat);
         btnFlat.setFont(new java.awt.Font("Gontserrat", 0, 12)); // NOI18N
         btnFlat.setText("Flat (Q10.00)");
+        btnFlat.setContentAreaFilled(false);
 
         jLabel4.setFont(new java.awt.Font("Gontserrat", 0, 14)); // NOI18N
         jLabel4.setText("Tarifa");
@@ -104,6 +114,7 @@ public class NuevoTicket extends javax.swing.JFrame {
         buttonGroup2.add(jRadioButton1);
         jRadioButton1.setFont(new java.awt.Font("Gontserrat", 0, 12)); // NOI18N
         jRadioButton1.setText("Variable Q2.00/ Hora (0-59min)");
+        jRadioButton1.setContentAreaFilled(false);
 
         txtCapacidad.setFont(new java.awt.Font("Gontserrat", 0, 18)); // NOI18N
         txtCapacidad.setText("jLabel5");
@@ -129,29 +140,65 @@ public class NuevoTicket extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Gontserrat Medium", 0, 18)); // NOI18N
+        jLabel5.setText("Apellido");
+
+        txtApellido.setEditable(false);
+        txtApellido.setBackground(new java.awt.Color(255, 255, 255));
+        txtApellido.setForeground(new java.awt.Color(0, 153, 0));
+
+        jLabel6.setFont(new java.awt.Font("Gontserrat Medium", 0, 18)); // NOI18N
+        jLabel6.setText("Correo");
+
+        txtCorreo.setEditable(false);
+        txtCorreo.setBackground(new java.awt.Color(255, 255, 255));
+        txtCorreo.setForeground(new java.awt.Color(0, 153, 0));
+
+        jLabel7.setFont(new java.awt.Font("Gontserrat Medium", 0, 18)); // NOI18N
+        jLabel7.setText("Teléfono");
+
+        txtTelefono.setEditable(false);
+        txtTelefono.setBackground(new java.awt.Color(255, 255, 255));
+        txtTelefono.setForeground(new java.awt.Color(0, 153, 0));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtTelefono))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCorreo))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-                                    .addComponent(labelPlaca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(radioCatedratico, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                                .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                                    .addComponent(labelPlaca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtPlaca)
                                     .addComponent(txtNombre)
-                                    .addComponent(txtCarnet, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(radioCatedratico, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
-                                .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtCarnet, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                                    .addComponent(txtApellido))))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(34, 34, 34)
@@ -162,21 +209,28 @@ public class NuevoTicket extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(28, 28, 28))
+                                    .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(96, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+                                .addContainerGap())))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnFlat)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jRadioButton1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -187,26 +241,27 @@ public class NuevoTicket extends javax.swing.JFrame {
                             .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCarnet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(radioCatedratico)
-                            .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnFlat)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel5)
+                            .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(13, 13, 13)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCarnet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(radioCatedratico)
+                        .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2))
@@ -232,242 +287,7 @@ public class NuevoTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     
-   if(buttonGroup2.getSelection() == null ){
-
-    JOptionPane.showMessageDialog(this, "Debes seleccionar al menos una tarifa ");
-    
-    }    
-   
-    else{
-    
-    String placa = txtPlaca.getText().trim();
-    if (placa.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Por favor ingresa una placa");
-        return;
-    }    
-    Connection con = ConexionSQL.conectar();
-    
-    String sql = "SELECT * FROM REGISTROS WHERE placa = ?";
-    
-    try (PreparedStatement ps = con.prepareStatement(sql)) {
-        
-        ps.setString(1, placa);
-        ResultSet rs = ps.executeQuery();
-        
-        if (rs.next()) {
-            
-            String nombre = rs.getString("nombre");
-            String carnet = rs.getString("carnet");
-            String tipoV = rs.getString("tipoVehiculo");
-            Integer catedratico = rs.getInt("esCatedratico");
-            txtNombre.setText(nombre);
-            txtCarnet.setText(carnet);
-            if(tipoV.equalsIgnoreCase("Carro")){
-                comboTipo.setSelectedIndex(1);
-            }    
-            else if(tipoV.equalsIgnoreCase("Motocicleta")){
-                comboTipo.setSelectedIndex(2);
-            }    
-            if (catedratico == 1){ radioCatedratico.setSelected(true);}
-            else { radioCatedratico.setSelected(false);}
-            int opcion = JOptionPane.showConfirmDialog(this, "¿Desea Generar este Ticket?");
-            if(opcion == JOptionPane.YES_OPTION){
-                Integer lugarAsignado = 0;
-                String tarifa = "";
-                long totalPagar;
-                Vehiculo vehTicket = new Vehiculo(placa, carnet, nombre, tipoV);
-                LocalDateTime ahora = LocalDateTime.now();
-                DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-                String fechaHoraFormateada = ahora.format(formato);
-                
-                if(btnFlat.isSelected()) //VERIFICACION PARA TARIFA PLANA
-                { 
-                    tarifa = "Flat";
-                    totalPagar = 10;
-                    if(tipoV.equalsIgnoreCase("Carro"))
-                    {
-                    if(radioCatedratico.isSelected()){ //SI ES CATEDRATICO REGISTRA UN CARRO EN UN LUGAR DE CATEDRATICO
-                        
-                    LugarDAO vehiculoAsignar = new LugarDAO(placa);
-                    lugarAsignado = vehiculoAsignar.registrarEntradaCatedratico(placa, tipoV, tarifa);
-                    String sql2 = "SELECT TOP 1 idTicket FROM historico WHERE placa = ? ORDER BY idTicket DESC";
-                    PreparedStatement ps2 = con.prepareStatement(sql2);
-                    ps2.setString(1, placa);
-                    ResultSet rs2 = ps2.executeQuery();
-                    Integer idTicket = 0;
-                    if (rs2.next()) {
-                        idTicket = rs2.getInt("idTicket");
-                    }
-                    Ticket ticketFlat = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
-                    ticketFlat.setIdTicket(idTicket);
-                    ticketFlat.imprimirTicketFlatCatedratico();
-                    rs2.close();
-                    ps2.close();
-                    }    
-                    
-                    else{ //Y SINO, REGISTRA UN CARRO EN UN LUGAR COMUN
-                        
-                    LugarDAO vehiculoAsignar = new LugarDAO(placa);
-                    lugarAsignado = vehiculoAsignar.registrarEntradaCarro(placa, tarifa);
-                    String sql2 = "SELECT TOP 1 idTicket FROM historico WHERE placa = ? ORDER BY idTicket DESC";
-                    PreparedStatement ps2 = con.prepareStatement(sql2);
-                    ps2.setString(1, placa);
-                    ResultSet rs2 = ps2.executeQuery();
-                    Integer idTicket = 0;
-                    if (rs2.next()) {
-                        idTicket = rs2.getInt("idTicket");
-                        System.out.println("ID ENCONTRADO");
-                    }
-                    Ticket ticketFlat = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
-                    ticketFlat.setIdTicket(idTicket);
-                    ticketFlat.imprimirTicketFlatCarro();
-                    rs2.close();
-                    ps2.close();
-                    }                  
-                    
-                    }
-                    else if(tipoV.equalsIgnoreCase("Moto")) //SI ES MOTO
-                    {
-                    if(radioCatedratico.isSelected()){ //SI ES CATEDRATICO REGISTRA UN MOTO EN UN LUGAR DE CATEDRATICO
-                        
-                    LugarDAO vehiculoAsignar = new LugarDAO(placa);
-                    lugarAsignado = vehiculoAsignar.registrarEntradaCatedratico(placa, tipoV, tarifa);
-                    String sql2 = "SELECT TOP 1 idTicket FROM historico WHERE placa = ? ORDER BY id DESC";
-                    PreparedStatement ps2 = con.prepareStatement(sql2);
-                    ps2.setString(1, placa);
-                    ResultSet rs2 = ps2.executeQuery();
-                    Integer idTicket = 0;
-                    if (rs2.next()) {
-                        idTicket = rs2.getInt("id");
-                    }
-                    Ticket ticketFlat = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
-                    ticketFlat.setIdTicket(idTicket);
-                    ticketFlat.imprimirTicketFlatCatedratico();
-                    rs2.close();
-                    ps2.close();
-                    }    
-                    
-                    else{ //Y SINO, REGISTRA UN MOTO EN UN LUGAR COMUN
-                        
-                    LugarDAO vehiculoAsignar = new LugarDAO(placa);
-                    lugarAsignado = vehiculoAsignar.registrarEntradaMoto(placa, tarifa);
-                    String sql2 = "SELECT TOP 1 idTicket FROM historico WHERE placa = ? ORDER BY id DESC";
-                    PreparedStatement ps2 = con.prepareStatement(sql2);
-                    ps2.setString(1, placa);
-                    ResultSet rs2 = ps2.executeQuery();
-                    Integer idTicket = 0;
-                    if (rs2.next()) {
-                        idTicket = rs2.getInt("id");
-                    }
-                    Ticket ticketFlat = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
-                    ticketFlat.setIdTicket(idTicket);
-                    ticketFlat.imprimirTicketFlatMoto();
-                    rs2.close();
-                    ps2.close();
-                    } 
-                }
-            }
-                else{ //SI ES TARIFA VARIABLE
-                    
-                    tarifa = "Variable";
-                    totalPagar = 0;
-                    
-                    if(tipoV.equalsIgnoreCase("Carro")) //SI ES CARRO
-                    {
-                        
-                        if(radioCatedratico.isSelected()){ //SI ES CATEDRATICO REGISTRA UN CARRO EN UN LUGAR DE CATEDRATICO
-
-                        LugarDAO vehiculoAsignar = new LugarDAO(placa);
-                        lugarAsignado = vehiculoAsignar.registrarEntradaCatedratico(placa, tipoV, tarifa);
-                        String sql2 = "SELECT TOP 1 idTicket FROM historico WHERE placa = ? ORDER BY id DESC";
-                        PreparedStatement ps2 = con.prepareStatement(sql2);
-                        ps2.setString(1, placa);
-                        ResultSet rs2 = ps2.executeQuery();
-                        Integer idTicket = 0;
-                        if (rs2.next()) {
-                        idTicket = rs2.getInt("id");
-                        }
-                        Ticket ticketVariable = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
-                        ticketVariable.setIdTicket(idTicket);
-                        ticketVariable.imprimirTicketVariableCatedratico();
-                        rs2.close();
-                        ps2.close();
-                        }    
-                    
-                        else{ //Y SINO, REGISTRA UN CARRO EN UN LUGAR COMUN
-
-                        LugarDAO vehiculoAsignar = new LugarDAO(placa);
-                        lugarAsignado = vehiculoAsignar.registrarEntradaCarro(placa, tarifa);
-                        String sql2 = "SELECT TOP 1 idTicket FROM historico WHERE placa = ? ORDER BY id DESC";
-                        PreparedStatement ps2 = con.prepareStatement(sql2);
-                        ps2.setString(1, placa);
-                        ResultSet rs2 = ps2.executeQuery();
-                        Integer idTicket = 0;
-                        if (rs2.next()) {
-                            idTicket = rs2.getInt("id");
-                        }
-                        Ticket ticketVariable = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
-                        ticketVariable.setIdTicket(idTicket);
-                        ticketVariable.imprimirTicketVariableCarro();
-                        rs2.close();
-                        ps2.close();
-                        }                    
-                    }
-                    
-                    else if(tipoV.equalsIgnoreCase("Moto")) //SI ES MOTO
-                    {
-                        
-                        if(radioCatedratico.isSelected()){ //SI ES CATEDRATICO REGISTRA UNA MOTO EN UN LUGAR DE CATEDRATICO
-                        
-                            LugarDAO vehiculoAsignar = new LugarDAO(placa);
-                            lugarAsignado = vehiculoAsignar.registrarEntradaCatedratico(placa, tipoV, tarifa);
-                            String sql2 = "SELECT TOP 1 idTicket FROM historico WHERE placa = ? ORDER BY id DESC";
-                            PreparedStatement ps2 = con.prepareStatement(sql2);
-                            ps2.setString(1, placa);
-                            ResultSet rs2 = ps2.executeQuery();
-                            Integer idTicket = 0;
-                            if (rs2.next()) {
-                                idTicket = rs2.getInt("id");
-                            }
-                            Ticket ticketVariable = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
-                            ticketVariable.setIdTicket(idTicket);
-                            ticketVariable.imprimirTicketVariableCatedratico();
-                            rs2.close();
-                            ps2.close();
-                        }    
-                        
-                        else{ //Y SINO, REGISTRA UNA MOTO EN UN LUGAR DE MOTO
-                            LugarDAO vehiculoAsignar = new LugarDAO(placa);
-                            lugarAsignado = vehiculoAsignar.registrarEntradaMoto(placa, tarifa);
-                            String sql2 = "SELECT TOP 1 idTicket FROM historico WHERE placa = ? ORDER BY id DESC";
-                            PreparedStatement ps2 = con.prepareStatement(sql2);
-                            ps2.setString(1, placa);
-                            ResultSet rs2 = ps2.executeQuery();
-                            Integer idTicket = 0;
-                            if (rs2.next()) {
-                                idTicket = rs2.getInt("id");
-                            }
-                            Ticket ticketVariable = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
-                            ticketVariable.setIdTicket(idTicket);
-                            ticketVariable.imprimirTicketVariableMoto();
-                            rs2.close();
-                            ps2.close();
-                        }
-                    }
-                } 
-            }    
-        } 
-        
-        else {
-            JOptionPane.showMessageDialog(this, "No se encontró la placa ingresada.");
-        }
-        
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(this, "Error al CONSULTAR: " + e.getMessage());
-    }
-}
-
+        nuevoTicket();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -509,18 +329,305 @@ public class NuevoTicket extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JLabel labelPlaca;
     private javax.swing.JRadioButton radioCatedratico;
+    private javax.swing.JTextField txtApellido;
     private javax.swing.JLabel txtCapacidad;
     private javax.swing.JTextField txtCarnet;
+    private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPlaca;
+    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
         LocalDateTime ahora = LocalDateTime.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         String fechaHoraFormateada = ahora.format(formato);     
+    public void nuevoTicket(){
+           Integer catedratico;  
+   if(buttonGroup2.getSelection() == null ){
+
+    JOptionPane.showMessageDialog(this, "Debes seleccionar al menos una tarifa ");
+    
+    }    
+   
+    else{
+    
+    String placa = txtPlaca.getText().trim();
+    if (placa.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor ingresa una placa");
+        return;
+    }    
+    Connection con = ConexionSQL.conectar();
+    
+    String sql = "SELECT * FROM REGISTROS WHERE placa = ?";
+    
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
         
+        ps.setString(1, placa);
+        ResultSet rs = ps.executeQuery();
+        
+        if (rs.next()) {
+            
+            String nombre = rs.getString("nombre");
+            String apellido = rs.getString("apellido");
+            String carnet = rs.getString("carnet");
+            String correo = rs.getString("correo");
+            String telefono = rs.getString("telefono");
+            String tipoV = rs.getString("tipoVehiculo");
+            catedratico = rs.getInt("esCatedratico");
+            txtNombre.setText(nombre);
+            txtApellido.setText(apellido);
+            txtCarnet.setText(carnet);
+            txtCorreo.setText(correo);
+            txtTelefono.setText(telefono);
+            if(tipoV.equalsIgnoreCase("Carro")){
+                comboTipo.setSelectedIndex(1);
+            }    
+            else if(tipoV.equalsIgnoreCase("Motocicleta")){
+                comboTipo.setSelectedIndex(2);
+            }
+            
+            if (catedratico == 1){radioCatedratico.setSelected(true);}
+            else { radioCatedratico.setSelected(false);}
+            
+            boolean opcion = true;
+            
+            if(opcion = true){
+                Integer lugarAsignado = 0;
+                String tarifa = "";
+                long totalPagar;
+                Vehiculo vehTicket = new Vehiculo(placa, carnet, nombre, tipoV);
+                LocalDateTime ahora = LocalDateTime.now();
+                DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+                String fechaHoraFormateada = ahora.format(formato);
+                
+                if(btnFlat.isSelected()) //VERIFICACION PARA TARIFA PLANA
+                { 
+                    tarifa = "Flat";
+                    totalPagar = 10;
+                    if(tipoV.equalsIgnoreCase("Carro"))
+                    {
+                    if(radioCatedratico.isSelected()){ //SI ES CATEDRATICO REGISTRA UN CARRO EN UN LUGAR DE CATEDRATICO
+                        
+                    LugarDAO vehiculoAsignar = new LugarDAO(placa);
+                    lugarAsignado = vehiculoAsignar.registrarEntradaCatedratico(placa, tipoV, tarifa);
+                    if(lugarAsignado == null){
+                        return;
+                    }
+                    String sql2 = "SELECT TOP 1 idTicket FROM historico WHERE placa = ? ORDER BY idTicket DESC";
+                    PreparedStatement ps2 = con.prepareStatement(sql2);
+                    ps2.setString(1, placa);
+                    ResultSet rs2 = ps2.executeQuery();
+                    Integer idTicket = 0;
+                    if (rs2.next()) {
+                        idTicket = rs2.getInt("idTicket");
+                    }
+                    Ticket ticketFlat = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
+                    ticketFlat.setIdTicket(idTicket);
+                    ticketFlat.imprimirTicketFlatCatedratico();
+                    rs2.close();
+                    ps2.close();
+                    
+                    }    
+                    
+                    else{ //Y SINO, REGISTRA UN CARRO EN UN LUGAR COMUN
+                        
+                    LugarDAO vehiculoAsignar = new LugarDAO(placa);
+                    lugarAsignado = vehiculoAsignar.registrarEntradaCarro(placa, tarifa);
+                    if(lugarAsignado == null){
+                        return;
+                    }
+                    String sql2 = "SELECT TOP 1 idTicket FROM historico WHERE placa = ? ORDER BY idTicket DESC";
+                    PreparedStatement ps2 = con.prepareStatement(sql2);
+                    ps2.setString(1, placa);
+                    ResultSet rs2 = ps2.executeQuery();
+                    Integer idTicket = 0;
+                    if (rs2.next()) {
+                        idTicket = rs2.getInt("idTicket");
+                        System.out.println("ID ENCONTRADO");
+                    }
+                    Ticket ticketFlat = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
+                    ticketFlat.setIdTicket(idTicket);
+                    ticketFlat.imprimirTicketFlatCarro();
+                    rs2.close();
+                    ps2.close();
+                    
+                    }                  
+                    
+                    }
+                    else if(tipoV.equalsIgnoreCase("Moto")) //SI ES MOTO
+                    {
+                    if(radioCatedratico.isSelected()){ //SI ES CATEDRATICO REGISTRA UN MOTO EN UN LUGAR DE CATEDRATICO
+                        
+                    LugarDAO vehiculoAsignar = new LugarDAO(placa);
+                    lugarAsignado = vehiculoAsignar.registrarEntradaCatedratico(placa, tipoV, tarifa);
+                    if(lugarAsignado == null){
+                        return;
+                    }
+                    String sql2 = "SELECT TOP 1 idTicket FROM historico WHERE placa = ? ORDER BY idTicket DESC";
+                    PreparedStatement ps2 = con.prepareStatement(sql2);
+                    ps2.setString(1, placa);
+                    ResultSet rs2 = ps2.executeQuery();
+                    Integer idTicket = 0;
+                    if (rs2.next()) {
+                        idTicket = rs2.getInt("idTicket");
+                    }
+                    Ticket ticketFlat = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
+                    ticketFlat.setIdTicket(idTicket);
+                    ticketFlat.imprimirTicketFlatCatedratico();
+                    rs2.close();
+                    ps2.close();
+                    
+                    }    
+                    
+                    else{ //Y SINO, REGISTRA UN MOTO EN UN LUGAR COMUN
+                        
+                    LugarDAO vehiculoAsignar = new LugarDAO(placa);
+                    lugarAsignado = vehiculoAsignar.registrarEntradaMoto(placa, tarifa);
+                    if(lugarAsignado == null){
+                        return;
+                    }
+                    String sql2 = "SELECT TOP 1 idTicket FROM historico WHERE placa = ? ORDER BY idTicket DESC";
+                    PreparedStatement ps2 = con.prepareStatement(sql2);
+                    ps2.setString(1, placa);
+                    ResultSet rs2 = ps2.executeQuery();
+                    Integer idTicket = 0;
+                    if (rs2.next()) {
+                        idTicket = rs2.getInt("idTicket");
+                    }
+                    Ticket ticketFlat = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
+                    ticketFlat.setIdTicket(idTicket);
+                    ticketFlat.imprimirTicketFlatMoto();
+                    rs2.close();
+                    ps2.close();
+                    
+                    } 
+                }
+            }
+                else{ //SI ES TARIFA VARIABLE
+                    
+                    tarifa = "Variable";
+                    totalPagar = 0;
+                    
+                    if(tipoV.equalsIgnoreCase("Carro")) //SI ES CARRO
+                    {
+                        
+                        if(radioCatedratico.isSelected()){ //SI ES CATEDRATICO REGISTRA UN CARRO EN UN LUGAR DE CATEDRATICO
+
+                        LugarDAO vehiculoAsignar = new LugarDAO(placa);
+                        lugarAsignado = vehiculoAsignar.registrarEntradaCatedratico(placa, tipoV, tarifa);
+                        if(lugarAsignado == null){
+                        return;
+                        }   
+                        String sql2 = "SELECT TOP 1 idTicket FROM historico WHERE placa = ? ORDER BY idTicket DESC";
+                        PreparedStatement ps2 = con.prepareStatement(sql2);
+                        ps2.setString(1, placa);
+                        ResultSet rs2 = ps2.executeQuery();
+                        Integer idTicket = 0;
+                        if (rs2.next()) {
+                        idTicket = rs2.getInt("idTicket");
+                        }
+                        Ticket ticketVariable = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
+                        ticketVariable.setIdTicket(idTicket);
+                        ticketVariable.imprimirTicketVariableCatedratico();
+                        rs2.close();
+                        ps2.close();
+                        
+                        }    
+                    
+                        else{ //Y SINO, REGISTRA UN CARRO EN UN LUGAR COMUN
+
+                        LugarDAO vehiculoAsignar = new LugarDAO(placa);
+                        lugarAsignado = vehiculoAsignar.registrarEntradaCarro(placa, tarifa);
+                        if(lugarAsignado == null){
+                        return;
+                        }
+                        String sql2 = "SELECT TOP 1 idTicket FROM historico WHERE placa = ? ORDER BY idTicket DESC";
+                        PreparedStatement ps2 = con.prepareStatement(sql2);
+                        ps2.setString(1, placa);
+                        ResultSet rs2 = ps2.executeQuery();
+                        Integer idTicket = 0;
+                        if (rs2.next()) {
+                            idTicket = rs2.getInt("idTicket");
+                        }
+                        Ticket ticketVariable = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
+                        ticketVariable.setIdTicket(idTicket);
+                        ticketVariable.imprimirTicketVariableCarro();
+                        rs2.close();
+                        ps2.close();
+                        
+                        }                    
+                    }
+                    
+                    else if(tipoV.equalsIgnoreCase("Moto")) //SI ES MOTO
+                    {
+                        
+                        if(radioCatedratico.isSelected()){ //SI ES CATEDRATICO REGISTRA UNA MOTO EN UN LUGAR DE CATEDRATICO
+                        
+                            LugarDAO vehiculoAsignar = new LugarDAO(placa);
+                            lugarAsignado = vehiculoAsignar.registrarEntradaCatedratico(placa, tipoV, tarifa);
+                            if(lugarAsignado == null){
+                            return;
+                            }
+                            String sql2 = "SELECT TOP 1 idTicket FROM historico WHERE placa = ? ORDER BY idTicket DESC";
+                            PreparedStatement ps2 = con.prepareStatement(sql2);
+                            ps2.setString(1, placa);
+                            ResultSet rs2 = ps2.executeQuery();
+                            Integer idTicket = 0;
+                            if (rs2.next()) {
+                                idTicket = rs2.getInt("idTicket");
+                            }
+                            Ticket ticketVariable = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
+                            ticketVariable.setIdTicket(idTicket);
+                            ticketVariable.imprimirTicketVariableCatedratico();
+                            rs2.close();
+                            ps2.close();
+                            
+                        }    
+                        
+                        else{ //Y SINO, REGISTRA UNA MOTO EN UN LUGAR DE MOTO
+                            LugarDAO vehiculoAsignar = new LugarDAO(placa);
+                            lugarAsignado = vehiculoAsignar.registrarEntradaMoto(placa, tarifa);
+                            if(lugarAsignado == null){
+                            return;
+                            }
+                            String sql2 = "SELECT TOP 1 idTicket FROM historico WHERE placa = ? ORDER BY idTicket DESC";
+                            PreparedStatement ps2 = con.prepareStatement(sql2);
+                            ps2.setString(1, placa);
+                            ResultSet rs2 = ps2.executeQuery();
+                            Integer idTicket = 0;
+                            if (rs2.next()) {
+                                idTicket = rs2.getInt("idTicket");
+                            }
+                            Ticket ticketVariable = new Ticket(vehTicket, tarifa, fechaHoraFormateada, tipoV, lugarAsignado, idTicket, totalPagar);
+                            ticketVariable.setIdTicket(idTicket);
+                            ticketVariable.imprimirTicketVariableMoto();
+                            rs2.close();
+                            ps2.close();
+                           
+                        }
+                    }
+                } 
+            }    
+        } 
+        
+        else {
+            JOptionPane.showMessageDialog(this, "No se encontró la placa ingresada.");
+         
+        }
+        
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error al CONSULTAR: " + e.getMessage());
+   
+    }
+
+}
+
+    }    
 }
