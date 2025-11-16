@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 
 public class LugarDAO {
@@ -453,4 +454,53 @@ public class LugarDAO {
         }
         return total;
     }
+    
+    public void imprimirFactura(String placa){
+        if (placa == null || placa.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "No se proporcionó placa.");
+        return;
+    }
+
+    String sql = "SELECT TOP 1 idTicket, hora_entrada, hora_salida, tipoVehiculo, esCatedratico, lugarOcupado, tarifa, total_pagar " +
+                 "FROM historico WHERE placa = ? ORDER BY idTicket DESC";
+
+    try (Connection con = ConexionSQL.conectar();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+
+        ps.setString(1, placa);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            int idTicket = rs.getInt("idTicket");
+            Timestamp horaEntrada = rs.getTimestamp("hora_entrada");
+            Timestamp horaSalida = rs.getTimestamp("hora_salida");
+            String tipoVehiculo = rs.getString("tipoVehiculo");
+            int esCatedraticoInt = rs.getInt("esCatedratico");
+            String esCatedratico = esCatedraticoInt == 1 ? "SI" : "NO";
+            String lugarOcupado = rs.getString("lugarOcupado");
+            String tarifa = rs.getString("tarifa");
+            double total = rs.getDouble("total_pagar");
+
+            String mensaje = "----- FACTURA -----\n" +
+                             "ID Ticket: " + idTicket + "\n" +
+                             "Placa: " + placa + "\n" +
+                             "Hora Entrada: " + horaEntrada + "\n" +
+                             "Hora Salida: " + horaSalida + "\n" +
+                             "Tipo Vehículo: " + tipoVehiculo + "\n" +
+                             "Catedrático: " + esCatedratico + "\n" +
+                             "Lugar: " + lugarOcupado + "\n" +
+                             "Tarifa: " + tarifa + "\n" +
+                             "Total a Pagar: Q" + total;
+
+            JOptionPane.showMessageDialog(null, mensaje, "Factura", JOptionPane.INFORMATION_MESSAGE);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontró ningún registro para la placa: " + placa);
+        }
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al obtener la factura: " + e.getMessage());
+        e.printStackTrace();
+    }
+}
 }

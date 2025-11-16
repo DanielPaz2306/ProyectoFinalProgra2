@@ -142,7 +142,7 @@ public class Ticket {
                 + "\nTarifa Pagada: "+ this.tarifa+"     Lugar Asignado: C-"+ this.lugarAsignado);
     }
     
-    public void imprimirFacturaVariableCarro(){
+    public void imprimirFactura(double total){
         LocalDateTime ahora = LocalDateTime.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("MM/dd");
         String fechaFormateada = ahora.format(formato);
@@ -156,6 +156,7 @@ public class Ticket {
                 + "\nTarifa Pagada: "+ this.tarifa
                 + "\nTipo de Vehiculo: "+ this.vehiculo.getTipo()
                 + "\nLugar Asignado: C-"+ this.lugarAsignado
-                + "\nTotal a Pagar: Q"+ this.totalTicket);
+                + "\nTotal a Pagar: Q"+ total);
     }
+    
 }

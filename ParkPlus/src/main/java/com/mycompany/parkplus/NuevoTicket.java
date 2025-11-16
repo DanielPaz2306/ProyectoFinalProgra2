@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 public class NuevoTicket extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(NuevoTicket.class.getName());
+    private Double total;
 
     /**
      * Creates new form NuevoTicket
@@ -629,5 +630,23 @@ public class NuevoTicket extends javax.swing.JFrame {
 
 }
 
-    }    
+    }  
+    
+    public void pagarEfectivo(){
+        String efectivo = JOptionPane.showInputDialog("Ingrese el Efectivo Recibido: \nSu total a pagar es de: Q" + this.total );
+        Double recibido = Double.parseDouble(efectivo);
+        if(recibido >= this.total){
+            double vuelto = recibido - this.total;
+            JOptionPane.showMessageDialog(null, "Pago Realizado con Exito \nSu cambio es de Q" + vuelto);
+            
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "El Efectivo es Insuficiente para realizar el pago, pago Fallido");
+        }
+        
+    }
+    public void pagarTarjeta(){
+        JOptionPane.showConfirmDialog(null, "Presente la Tarjeta: ");
+        JOptionPane.showMessageDialog(null, "Pago realizado con éxito");
+    }
 }

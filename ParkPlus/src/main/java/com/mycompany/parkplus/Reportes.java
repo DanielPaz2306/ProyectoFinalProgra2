@@ -4,9 +4,22 @@
  */
 package com.mycompany.parkplus;
 
+import java.io.FileOutputStream;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Supplier;
+import javax.swing.text.Document;
 
 /**
  *
@@ -16,9 +29,6 @@ public class Reportes extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Reportes.class.getName());
 
-    /**
-     * Creates new form Reportes
-     */
     public Reportes() {
         initComponents();
         dateDesde.setDate(new java.util.Date());
@@ -38,7 +48,7 @@ public class Reportes extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaReportes = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -50,12 +60,12 @@ public class Reportes extends javax.swing.JFrame {
         dateDesde = new com.toedter.calendar.JDateChooser();
         dateHasta = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboTipo = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        comboTipoVehiculo = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        comboEntraSal = new javax.swing.JComboBox<>();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -67,7 +77,7 @@ public class Reportes extends javax.swing.JFrame {
 
         jScrollPane1.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaReportes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -78,7 +88,7 @@ public class Reportes extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaReportes);
 
         jLabel8.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -99,7 +109,6 @@ public class Reportes extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -108,6 +117,9 @@ public class Reportes extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,11 +154,11 @@ public class Reportes extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel5.setText("Tipo de Reporte");
 
-        jComboBox1.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cierre del Dia", "General por Fecha", "Por Turno", "Entrada/Salida" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        comboTipo.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        comboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cierre del Dia", "General por Fecha" }));
+        comboTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                comboTipoActionPerformed(evt);
             }
         });
 
@@ -159,16 +171,16 @@ public class Reportes extends javax.swing.JFrame {
         });
 
         jLabel6.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jLabel6.setText("Turno (Para reporte por Turno)");
+        jLabel6.setText("Tipo de Vehiculo");
 
-        jComboBox2.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "General (6:00AM - 6:00PM)", "Matutino (6:00AM - 12:00PM)", "Vespertino (12:00PM - 6:00PM)" }));
+        comboTipoVehiculo.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        comboTipoVehiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Moto", "Carro", "Catedratico" }));
 
         jLabel7.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel7.setText("Entrada / Salida");
 
-        jComboBox3.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Entrada y Salida", "Entrada", "Salida" }));
+        comboEntraSal.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        comboEntraSal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Entrada y Salida", "Entrada", "Salida" }));
 
         javax.swing.GroupLayout panelReportesOpcionesLayout = new javax.swing.GroupLayout(panelReportesOpciones);
         panelReportesOpciones.setLayout(panelReportesOpcionesLayout);
@@ -179,11 +191,11 @@ public class Reportes extends javax.swing.JFrame {
                 .addGroup(panelReportesOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(dateHasta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(dateDesde, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox2, 0, 243, Short.MAX_VALUE)
+                    .addComponent(comboTipoVehiculo, 0, 243, Short.MAX_VALUE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelReportesOpcionesLayout.createSequentialGroup()
                         .addGroup(panelReportesOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,7 +204,7 @@ public class Reportes extends javax.swing.JFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(comboEntraSal, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelReportesOpcionesLayout.setVerticalGroup(
@@ -213,15 +225,15 @@ public class Reportes extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboTipoVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboEntraSal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -245,25 +257,79 @@ public class Reportes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void comboTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_comboTipoActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        if (dateDesde.getDate() == null || dateHasta.getDate() == null) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar ambas fechas.");
+        Date desde = dateDesde.getDate();
+        Date hasta = dateHasta.getDate();
+        Connection con = ConexionSQL.conectar();
+        if (desde == null || hasta == null) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar ambas fechas.");
             return;
         }
-        if (dateDesde.getDate().after(dateHasta.getDate())) {
-            JOptionPane.showMessageDialog(this, "La fecha inicial no puede ser mayor que la final.");
+
+        if (desde.after(hasta)) {
+            JOptionPane.showMessageDialog(null, "La fecha inicial no puede ser mayor que la final.");
             return;
         }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String desdeString = sdf.format(desde);
+        String hastaString = sdf.format(hasta);
+
+        String tipoReporte = (String) comboTipo.getSelectedItem();
+        String tipoVehiculo = (String) comboTipoVehiculo.getSelectedItem();
+        String entradaSalida = (String) comboEntraSal.getSelectedItem();
+
+        String key = tipoReporte + "|" + tipoVehiculo + "|" + entradaSalida;
+
+        Map<String, Supplier<DefaultTableModel>> acciones = new HashMap<>();
+
+        // --------------------- GENERAL POR FECHA ---------------------
+        acciones.put("General por Fecha|Todos|Entrada y Salida", () -> obtenerReporteCierreDelDia(desdeString, hastaString, con));
+        acciones.put("General por Fecha|Todos|Entrada", () -> obtenerReporteCierreDelDia(desdeString, hastaString, con));
+        acciones.put("General por Fecha|Todos|Salida", () -> obtenerReporteCierreDelDia(desdeString, hastaString, con));
         
+        acciones.put("General por Fecha|Carro|Entrada y Salida", () -> obtenerReporteGeneralCarroEntradaYSalida(desdeString, hastaString, con));
+        acciones.put("General por Fecha|Carro|Entrada", () -> obtenerReporteGeneralCarroEntrada(desdeString, hastaString, con));
+        acciones.put("General por Fecha|Carro|Salida", () -> obtenerReporteGeneralCarroSalida(desdeString, hastaString, con));
+
+        acciones.put("General por Fecha|Moto|Entrada y Salida", () -> obtenerReporteGeneralMotoEntradaYSalida(desdeString, hastaString, con));
+        acciones.put("General por Fecha|Moto|Entrada", () -> obtenerReporteGeneralMotoEntrada(desdeString, hastaString, con));
+        acciones.put("General por Fecha|Moto|Salida", () -> obtenerReporteGeneralMotoSalida(desdeString, hastaString, con));
+
+        acciones.put("General por Fecha|Catedratico|Entrada y Salida", () -> obtenerReporteGeneralCatedraticoEntradaYSalida(desdeString, hastaString, con));
+        acciones.put("General por Fecha|Catedratico|Entrada", () -> obtenerReporteGeneralCatedraticoEntrada(desdeString, hastaString, con));
+        acciones.put("General por Fecha|Catedratico|Salida", () -> obtenerReporteGeneralCatedraticoSalida(desdeString, hastaString, con));
+
+        // --------------------- CIERRE DEL DÍA ---------------------
+        acciones.put("Cierre del Dia|Carro|Entrada y Salida", () -> obtenerReporteCierreDelDia(desdeString, hastaString, con));
+        acciones.put("Cierre del Dia|Carro|Entrada", () -> obtenerReporteCierreDelDia(desdeString, hastaString, con));
+        acciones.put("Cierre del Dia|Carro|Salida", () -> obtenerReporteCierreDelDia(desdeString, hastaString, con));
+
+        acciones.put("Cierre del Dia|Moto|Entrada y Salida", () -> obtenerReporteCierreDelDia(desdeString, hastaString, con));
+        acciones.put("Cierre del Dia|Moto|Entrada", () -> obtenerReporteCierreDelDia(desdeString, hastaString, con));
+        acciones.put("Cierre del Dia|Moto|Salida", () -> obtenerReporteCierreDelDia(desdeString, hastaString, con));
+
+        acciones.put("Cierre del Dia|Catedratico|Entrada y Salida", () -> obtenerReporteCierreDelDia(desdeString, hastaString, con));
+        acciones.put("Cierre del Dia|Catedratico|Entrada", () -> obtenerReporteCierreDelDia(desdeString, hastaString, con));
+        acciones.put("Cierre del Dia|Catedratico|Salida", () -> obtenerReporteCierreDelDia(desdeString, hastaString, con));
+
+        // --------------------- EJECUCIÓN ---------------------
+        Supplier<DefaultTableModel> accion = acciones.get(key);
+        if (accion != null) {
+            DefaultTableModel model = accion.get();
+            tablaReportes.setModel(model);
+            
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay acción definida para esta combinación: " + key);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -292,14 +358,14 @@ public class Reportes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> comboEntraSal;
+    private javax.swing.JComboBox<String> comboTipo;
+    private javax.swing.JComboBox<String> comboTipoVehiculo;
     private com.toedter.calendar.JDateChooser dateDesde;
     private com.toedter.calendar.JDateChooser dateHasta;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -311,17 +377,309 @@ public class Reportes extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JPanel panelReportesOpciones;
+    private javax.swing.JTable tablaReportes;
     // End of variables declaration//GEN-END:variables
-    public DefaultTableModel obtenerReporte(String desde, String hasta, Connection con){
-        DefaultTableModel modelo = new DefaultTableModel(
-            new String[]{"IdTicket", "Nombre", "Placa", "Hora entrada", "Hora Salida", "Tipo de Vehiculo", "Catedratico", "Lugar Ocupado", "Tarifa"}, 0);
-        
-        String sql = "SELECT idTicket, nombre, placa, hora_entrada, hora_salida, tipoVehiculo, esCatedratico, lugarOcupado, tarifa FROM historico WHERE hora_entrada BETWEEN ? AND ?";
-        
-        return null;
-        
+
+
+    
+    
+public DefaultTableModel obtenerReporteGeneralCarroEntradaYSalida(String desde, String hasta, Connection con) {
+    DefaultTableModel modelo = new DefaultTableModel(
+        new String[]{"IdTicket","Placa","Entrada","Salida","Catedratico","Lugar","Tarifa","Total"}, 0);
+
+    String sql = "SELECT idTicket, placa, hora_entrada, hora_salida, esCatedratico, lugarOcupado, tarifa, total_pagar " +
+                 "FROM historico " +
+                 "WHERE tipoVehiculo = 'CARRO' AND esCatedratico = 0 AND hora_entrada BETWEEN ? AND ?";
+
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
+        ps.setString(1, desde);
+        ps.setString(2, hasta);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            modelo.addRow(new Object[]{
+                rs.getInt("idTicket"),
+                rs.getString("placa"),
+                rs.getTimestamp("hora_entrada"),
+                rs.getTimestamp("hora_salida"),
+                rs.getInt("esCatedratico"),
+                rs.getString("lugarOcupado"),
+                rs.getString("tarifa"),
+                rs.getDouble("total_pagar")
+            });
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+
+    return modelo;
+}
+public DefaultTableModel obtenerReporteGeneralCarroEntrada(String desde, String hasta, Connection con) {
+    DefaultTableModel modelo = new DefaultTableModel(
+        new String[]{"IdTicket","Placa","Entrada","Lugar","Tarifa"}, 0);
+
+    String sql = "SELECT idTicket, placa, hora_entrada, lugarOcupado, tarifa " +
+                 "FROM historico " +
+                 "WHERE tipoVehiculo = 'CARRO' AND esCatedratico = 0 AND hora_entrada BETWEEN ? AND ?";
+
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
+        ps.setString(1, desde);
+        ps.setString(2, hasta);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            modelo.addRow(new Object[]{
+                rs.getInt("idTicket"),
+                rs.getString("placa"),
+                rs.getTimestamp("hora_entrada"),
+                rs.getString("lugarOcupado"),
+                rs.getString("tarifa")
+            });
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return modelo;
+}
+public DefaultTableModel obtenerReporteGeneralCarroSalida(String desde, String hasta, Connection con) {
+    DefaultTableModel modelo = new DefaultTableModel(
+        new String[]{"IdTicket","Placa","Salida","Lugar","Tarifa"}, 0);
+
+    String sql = "SELECT idTicket, placa, hora_salida, lugarOcupado, tarifa " +
+                 "FROM historico " +
+                 "WHERE tipoVehiculo = 'CARRO' AND esCatedratico = 0 AND hora_salida BETWEEN ? AND ?";
+
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
+        ps.setString(1, desde);
+        ps.setString(2, hasta);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            modelo.addRow(new Object[]{
+                rs.getInt("idTicket"),
+                rs.getString("placa"),
+                rs.getTimestamp("hora_salida"),
+                rs.getString("lugarOcupado"),
+                rs.getString("tarifa")
+            });
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return modelo;
+}
+
+public DefaultTableModel obtenerReporteGeneralMotoEntradaYSalida(String desde, String hasta, Connection con) {
+    DefaultTableModel modelo = new DefaultTableModel(
+        new String[]{"IdTicket","Placa","Entrada","Salida","Lugar","Tarifa"}, 0);
+
+    String sql = "SELECT idTicket, placa, hora_entrada, hora_salida, lugarOcupado, tarifa " +
+                 "FROM historico " +
+                 "WHERE tipoVehiculo = 'MOTO' AND esCatedratico = 0 " +
+                 "AND hora_entrada BETWEEN ? AND ?";
+
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
+        ps.setString(1, desde);
+        ps.setString(2, hasta);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            modelo.addRow(new Object[]{
+                rs.getInt("idTicket"),
+                rs.getString("placa"),
+                rs.getTimestamp("hora_entrada"),
+                rs.getTimestamp("hora_salida"),
+                rs.getString("lugarOcupado"),
+                rs.getString("tarifa")
+            });
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return modelo;
+}
+public DefaultTableModel obtenerReporteGeneralMotoEntrada(String desde, String hasta, Connection con) {
+    DefaultTableModel modelo = new DefaultTableModel(
+        new String[]{"IdTicket","Placa","Entrada","Lugar","Tarifa"}, 0);
+
+    String sql = "SELECT idTicket, placa, hora_entrada, lugarOcupado, tarifa " +
+                 "FROM historico " +
+                 "WHERE tipoVehiculo = 'MOTO' AND esCatedratico = 0 AND hora_entrada BETWEEN ? AND ?";
+
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
+        ps.setString(1, desde);
+        ps.setString(2, hasta);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            modelo.addRow(new Object[]{
+                rs.getInt("idTicket"),
+                rs.getString("placa"),
+                rs.getTimestamp("hora_entrada"),
+                rs.getString("lugarOcupado"),
+                rs.getString("tarifa")
+            });
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return modelo;
+}
+public DefaultTableModel obtenerReporteGeneralMotoSalida(String desde, String hasta, Connection con) {
+    DefaultTableModel modelo = new DefaultTableModel(
+        new String[]{"IdTicket","Placa","Salida","Lugar","Tarifa"}, 0);
+
+    String sql = "SELECT idTicket, placa, hora_salida, lugarOcupado, tarifa " +
+                 "FROM historico " +
+                 "WHERE tipoVehiculo = 'MOTO' AND esCatedratico = 0 AND hora_salida BETWEEN ? AND ?";
+
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
+        ps.setString(1, desde);
+        ps.setString(2, hasta);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            modelo.addRow(new Object[]{
+                rs.getInt("idTicket"),
+                rs.getString("placa"),
+                rs.getTimestamp("hora_salida"),
+                rs.getString("lugarOcupado"),
+                rs.getString("tarifa")
+            });
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return modelo;
+}
+
+public DefaultTableModel obtenerReporteGeneralCatedraticoEntradaYSalida(String desde, String hasta, Connection con) {
+    DefaultTableModel modelo = new DefaultTableModel(
+        new String[]{"IdTicket","Placa","Entrada","Salida","Tipo Vehiculo","Lugar","Tarifa"}, 0);
+
+    String sql = "SELECT idTicket, placa, hora_entrada, hora_salida, tipoVehiculo, lugarOcupado, tarifa " +
+                 "FROM historico " +
+                 "WHERE esCatedratico = 1 AND hora_entrada BETWEEN ? AND ?";
+
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
+        ps.setString(1, desde);
+        ps.setString(2, hasta);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            modelo.addRow(new Object[]{
+                rs.getInt("idTicket"),
+                rs.getString("placa"),
+                rs.getTimestamp("hora_entrada"),
+                rs.getTimestamp("hora_salida"),
+                rs.getString("tipoVehiculo"),
+                rs.getString("lugarOcupado"),
+                rs.getString("tarifa")
+            });
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return modelo;
+}
+public DefaultTableModel obtenerReporteGeneralCatedraticoEntrada(String desde, String hasta, Connection con) {
+    DefaultTableModel modelo = new DefaultTableModel(
+        new String[]{"IdTicket","Placa","Entrada","Tipo Vehiculo","Lugar","Tarifa"}, 0);
+
+    String sql = "SELECT idTicket, placa, hora_entrada, tipoVehiculo, lugarOcupado, tarifa " +
+                 "FROM historico " +
+                 "WHERE esCatedratico = 1 AND hora_entrada BETWEEN ? AND ?";
+
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
+        ps.setString(1, desde);
+        ps.setString(2, hasta);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            modelo.addRow(new Object[]{
+                rs.getInt("idTicket"),
+                rs.getString("placa"),
+                rs.getTimestamp("hora_entrada"),
+                rs.getString("tipoVehiculo"),
+                rs.getString("lugarOcupado"),
+                rs.getString("tarifa")
+            });
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return modelo;
+}
+public DefaultTableModel obtenerReporteGeneralCatedraticoSalida(String desde, String hasta, Connection con) {
+    DefaultTableModel modelo = new DefaultTableModel(
+        new String[]{"IdTicket","Placa","Salida","Tipo Vehiculo","Lugar","Tarifa"}, 0);
+
+    String sql = "SELECT idTicket, placa, hora_salida, tipoVehiculo, lugarOcupado, tarifa " +
+                 "FROM historico " +
+                 "WHERE esCatedratico = 1 AND hora_salida BETWEEN ? AND ?";
+
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
+        ps.setString(1, desde);
+        ps.setString(2, hasta);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            modelo.addRow(new Object[]{
+                rs.getInt("idTicket"),
+                rs.getString("placa"),
+                rs.getTimestamp("hora_salida"),
+                rs.getString("tipoVehiculo"),
+                rs.getString("lugarOcupado"),
+                rs.getString("tarifa")
+            });
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return modelo;
+}
+
+public DefaultTableModel obtenerReporteCierreDelDia(String desde, String hasta, Connection con) {
+    DefaultTableModel modelo = new DefaultTableModel(
+        new String[]{"IdTicket", "Placa", "Hora Entrada", "Hora Salida", "Tipo Vehiculo", "Lugar", "Tarifa", "Total"}, 0);
+
+    String sql = "SELECT idTicket, placa, hora_entrada, hora_salida, tipoVehiculo, lugarOcupado, tarifa, total_pagar " +
+                 "FROM historico " +
+                 "WHERE hora_entrada BETWEEN ? AND ?";
+
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
+        ps.setString(1, desde);
+        ps.setString(2, hasta);
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            modelo.addRow(new Object[]{
+                rs.getInt("idTicket"),
+                rs.getString("placa"),
+                rs.getTimestamp("hora_entrada"),
+                rs.getTimestamp("hora_salida"),
+                rs.getString("tipoVehiculo"),
+                rs.getString("lugarOcupado"),
+                rs.getString("tarifa"),
+                rs.getDouble("total_pagar")
+            });
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return modelo;
+}
+
 }
